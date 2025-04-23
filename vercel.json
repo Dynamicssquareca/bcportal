@@ -1,0 +1,6 @@
+{
+    "redirects": [
+      { "source": "/solutions/marketing-cloud/", "destination": "/solutions/salesforce-marketing-cloud/", "statusCode": 308 }
+    ]
+  }
+  
