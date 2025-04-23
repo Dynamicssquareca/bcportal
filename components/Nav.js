@@ -124,6 +124,10 @@ const Nav = () => {
           <li><a className="nav-link scrollto" href="/about-us/">About Us</a></li>
           <li><a className="nav-link" href="/">Blogs</a></li> 
           <li><a className="nav-link scrollto" href="/">Contact Us</a></li>
+          <li><a className='btn btn-one' href=''>Get a Quote</a></li>
+          <li><a className='btn btn-two' href=''><span><i className="bi bi-whatsapp"></i></span></a></li>
+
+
           {/* <li className="dropdown"><a href="#"><span>Drop Down</span> <i className="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -211,10 +215,7 @@ const Nav = () => {
                   
                 </li> */}
                 <li><a className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
-
-
-                {/* <li><a className="getstarted-outline" href="/"><div className='call-btn'><i className="bi bi-telephone-fill"></i><div className='call-r'>Give us a call <span>9876 543 210</span></div></div></a></li>
-                <li><a className="getstarted scrollto" href="/">Get Started</a></li> */}
+             
               </ul>
 
             </OffcanvasBody>
