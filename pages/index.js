@@ -186,8 +186,68 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='row'>
-          </div>         
+          <div className='row g-2'>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-07.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Bench</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-08.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Kerbsets</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-09.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Flower Vases</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-10.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Urns</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-11.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Angle Heqadstones</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='col-lg-2'>
+              <div className='card-04'>
+                <div className='card-04-item text-center'>
+                  <a href="/">
+                    <img src='/img/webpages/pic-12.jpg' alt='About Us' className='img-fluid' />
+                    <h4>Children Memorial</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -431,7 +431,6 @@ ul li{
   border: solid 2px transparent;
   border-radius: 8px;
   z-index: 1;
-  position: relative;
 }
 .card-02-item img{}
 .card-02-item h3{
@@ -473,6 +472,26 @@ ul li{
 .card-03 ul li p{
   margin-bottom: 0px;
 }
+.card-04{}
+.card-04 .card-04-item a{
+  display: block;
+  position: relative;
+  color: var(--color-secondary);
+}
+.card-04 .card-04-item a h4{
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.card-04 .card-04-item img{
+  margin-bottom: 15px;
+}
+.card-04 .card-04-item a:hover{
+  color: var(--primary);
+  transform: translateY(-5px);
+  transition: all 0.5s ease-in-out;
+}
+
 /*get quation*/
 .quote-us-section{
   padding: 300px 0;

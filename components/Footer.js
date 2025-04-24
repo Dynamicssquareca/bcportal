@@ -24,7 +24,7 @@ const Footer = () => {
 
     return (
         <>
-            <FooterContactForm />
+            {/* <FooterContactForm /> */}
             <footer id="footer" className="footer">
                 <div className={`footer-top ${footerClass}`}>
                     <div className='container'>
@@ -34,7 +34,7 @@ const Footer = () => {
                                     <Image src="/stone-logo.png" alt="stone-logo" width={200} height={30} />
                                     {/* <span>FlexStart</span> */}
                                 </a>
-                                <p>CRM Frontier goes beyond CRM. Our certified experts unlock explosive growth for businesses with future-proof Salesforce solutions, crafting seamless customer experiences that drive results.</p>
+                                <p>Stone Discover – Largest manufacturer & supplier of Tombstone & Natural stone since 1984. We offer a wide range of Monuments such as Headstone, Angel Memorial, Plaques, Bench, Vases, Urns, Columbarium in various stones and natural stone in Granite, Marble from India. We also include sandstone and limestone in our offerings.</p>
                                 <div className="social-links mt-3">
                                     {/* <a href="#" className="twitter"><i className="bi bi-twitter"></i></a>
                                     <a href="#" className="facebook"><i className="bi bi-facebook"></i></a>
@@ -43,10 +43,10 @@ const Footer = () => {
                                 </div>
                             </div>
                             <div className="col-lg-2 col-6 footer-links">
-                                <h4>Quick Links</h4>
+                                <h4>Company</h4>
                                 <ul>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Home</a></li>
                                     <li><i className="bi bi-chevron-right"></i> <a href="/about-us/">About us</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/about-us/">Product</a></li>
                                     <li><i className="bi bi-chevron-right"></i> <a href="/blog/">Blogs</a></li>
                                     <li><i className="bi bi-chevron-right"></i> <a href="/contact-us/">Contact Us</a></li>
                                     <li><i className="bi bi-chevron-right"></i> <a href="/terms-of-use/">Terms of service</a></li>
@@ -54,21 +54,20 @@ const Footer = () => {
                                 </ul>
                             </div>
                             <div className="col-lg-2 col-6 footer-links">
-                                <h4>Services</h4>
+                                <h4>Our Products</h4>
                                 <ul>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-implementation/">Salesforce Implementation</a></li>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-customization/">Salesforce Customization</a></li>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-integration/">Salesforce Integration</a></li>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-training/">Salesforce Training</a></li>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-support/">Salesforce Support</a></li>
-                                    <li><i className="bi bi-chevron-right"></i> <a href="/services/salesforce-optimization/">Salesforce Optimization</a></li>
-                                    
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Tombstones</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Granite</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Marble</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Sandstone</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Limestone</a></li>
+                                    <li><i className="bi bi-chevron-right"></i> <a href="/">Quartz</a></li>
                                 </ul>
 
                             </div>
                             <div className="col-lg-4 col-md-12 footer-contact text-center text-md-start">
-                                <h4>Subscribe our Newsletter</h4>
-                                <FormSubscribe />
+                                <h4>Address:</h4>
+                                {/* <FormSubscribe /> */}
                             </div>
 
                         </div>
