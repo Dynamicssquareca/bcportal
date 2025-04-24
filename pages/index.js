@@ -144,6 +144,38 @@ export default function Home() {
         </div>
       </section>
 
+      <section className='content-section-two p-b-100 p-t-100'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-lg-6 align-items-center'>
+              <div className='left-card-01-img'>
+              <img src='/img/webpages/pic-06.png' alt='About Us' className='img-fluid' />
+              </div>
+            </div>
+            <div className='col-lg-6 d-flex'>
+              <div className='card-03'>
+                <ul>
+                  <li className='m-b-20'>
+                    <h3 className='m-b-20'>Memorial Wholesaler</h3>
+                    <p>We supply memorials to monument suppliers, wholesalers, and fabricators throughout the UK. As the largest stockist of granite headstones in the country, we are known for our reliable delivery service and exceptional quality.</p>
+                  </li>
+                  <li className='m-b-20'>
+                    <h3 className='m-b-20'>Premium Granite Colors</h3>
+                    <p>We offer a variety of premium granite colors, including Absolute Indian Black, Bahama Blue, Indian Aurora, Indian Impala, Imperial Red, Light Grey Granite, and many more. Imported varieties such as Black Pearl, Olive Green, and South African Impala are also available for bespoke designs.</p>
+                  </li>
+                  <li>
+                    <h3 className='m-b-20'>Bespoke Designs</h3>
+                    <p>We are able to produce monuments of any custom dimensions, finishes, and engraving options to meet your local market needs. We can also replicate the design in a variety of granite colors depending on availability and preference.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+      </section>
+
 
 
     </>
