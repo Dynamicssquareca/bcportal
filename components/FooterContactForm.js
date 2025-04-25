@@ -48,7 +48,7 @@ const FooterContactForm = () => {
     };
 
     return (
-        <div className='container bottom-form'>
+        <div className='container bottom-form m-t-80'>
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
                     <div className='heading-center p-b-40'>

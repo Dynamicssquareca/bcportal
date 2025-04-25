@@ -321,10 +321,19 @@ ul li{
 
 /*padding and margi*/
 .m-t-20{
-  margin-top: 30px !important;
+  margin-top: 20px !important;
 }
 .m-t-30{
   margin-top: 30px !important;
+}
+.m-t-40{
+  margin-top: 40px !important;
+}
+.m-t-60{
+  margin-top: 60px !important;
+}
+.m-t-80{
+  margin-top: 80px !important;
 }
 .m-b-20{
   margin-bottom: 20px !important;
@@ -586,7 +595,9 @@ ul li{
   padding:40px 20px;
 }
 .form-one{
-  padding-right: 80px;
+  padding: 25px 30px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 .form-one .form-control{
   height: 50px;
@@ -649,7 +660,9 @@ ul li{
 }
 .form-one .react-tel-input {
   font-family: var(--font-mono);
-
+}
+.form-one .form-check-label{
+  font-size: 14px;
 }
 .form-one .react-tel-input .form-control{
   width: 100%;
@@ -663,14 +676,14 @@ ul li{
   font-family: var(--font-sec) !important;
 }
 .form-one .react-tel-input .flag-dropdown{
-  background-color: #f1f8fa;
+  background: transparent;
   border:1px solid transparent;
   border-right-color:rgb(247 246 243);
   border-bottom: 1px solid #727272;
 }
 
 .form-one .react-tel-input .selected-flag{
-  background: rgb(247 246 243);
+  background: transparent;
 }
 .form-one  .react-tel-input  input:-internal-autofill-selected{
   background: #f1f8fa !important;
@@ -696,15 +709,53 @@ ul li{
   background: #f1f8fa;
 }
 
+.footer-subscriber{
+  background-color: #ffbb78;
+  background-image: linear-gradient(to right, #ffbb78, #ff8c3a);
+}
+  .subsc-head{
+    display: flex;
+        justify-content: space-evenly;
+        gap: 15px;
+        padding: 25px 0px;
+  }
+  .subsc-head .sub-it{
+    flex: 50%;
+  }
+  .subsc-head .sub-it p{
+    font-size: 16px;
+    font-weight: 600;
+    color: #3d382a;
+    margin-bottom: 2px;
+  }
+  .subsc-head .sub-it span{
+ display: block;
+    font-size: 20px;
+    color: #3d382a;
+    font-weight: bold;
+  }
+  .subsc-head-right{
+display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  .subsc-head-right .subsc-head-right-l h4{
+    font-size: 14px;
+  }
+  .subsc-head-right-r{
+    flex: 1 1 60%;
+  }
+  .subsc-head-right-r .form-subscribe .mb-3{
 
+  }
 .form-subscribe .btn-outline-secondary{
   padding: 0.768rem 1.3rem;
-    background-color: var(--color-white);
-    margin-left: 10px;
+  background-color: #1b1b1b;
+    margin-left: -1px;
     border-radius: 0px 5px 5px 0px;
 }
 .form-subscribe .btn-outline-secondary:hover{
-  background-color:var(--primary);
+  background-color: #1b1b1b;
 }
 .form-subscribe .btn-outline-secondary .bi{
   color:var(--primary)
@@ -785,6 +836,7 @@ gap:30px;
 .d-flex-model .model-left p{
   font-size:18px
 }
+
 
 
 /*faq*/

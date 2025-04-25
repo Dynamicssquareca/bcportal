@@ -126,7 +126,7 @@ export default function SubscribeForm() {
     <>
       <form onSubmit={handleSubmit}>
         <div className="form-subscribe">
-          <div className="input-group mb-3">
+          <div className="input-group">
             <input
               type="email"
               className="form-control"

@@ -67,7 +67,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section className='p-t-40'>
         <div className='container'>
           <div className='row'>
             <div className='col-lg-4 d-flex'>
@@ -176,7 +176,7 @@ export default function Home() {
 
       </section>
 
-      <section>
+      <section className='p-t-60'>
         <div className='container'>
           <div className='row justify-content-center'>
             <div className='col-lg-9'>
@@ -251,7 +251,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      {/* <section className='p-t-80'>
         <div className='container'>
           <div className='row justify-content-center'>
             <div className='col-lg-9'>
@@ -267,8 +267,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-      <section>
+      </section> */}
+      <section className='p-t-80'>
         <div className='container'>
           <div className='row justify-content-center'>
             <div className='col-lg-9'>

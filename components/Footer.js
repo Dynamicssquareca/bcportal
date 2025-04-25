@@ -25,6 +25,35 @@ const Footer = () => {
     return (
         <>
             <FooterContactForm />
+            <div className='footer-subscriber m-t-80'>
+                <div className='container'>
+                    <div className='row'>
+                        <div className='col-lg-7'>
+                            <div className='subsc-head'>
+                               <div className='sub-it'>
+                                <p>Sales and Support:</p>
+                                <span>+91 966 7584 700</span>
+                               </div>
+                               <div className='sub-it'>
+                                <p>Or Mail us at:</p>
+                                <span>info@stonediscover.co.uk</span>
+                               </div>
+                            </div>
+                        </div>
+                        <div className='col-lg-5 align-self-center'>
+                            <div className='subsc-head-right'>
+
+                                <div className='subsc-head-right-l'>
+                                    <h4>Subscribe Us for Offers</h4>
+                                </div>
+                                <div className='subsc-head-right-r'>
+                                    <FormSubscribe />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <footer id="footer" className="footer">
                 <div className={`footer-top ${footerClass}`}>
                     <div className='container'>

@@ -334,7 +334,7 @@ const Form = ({ onSubmit }) => {
         {errors.message && <div className="text-danger">{errors.message}</div>}
       </div>
       <div className="mb-3 form-check">
-        <input type="checkbox" checked readOnly className="form-check-input" id="exampleCheck1" />
+        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
         <label className="form-check-label">
           I agree to the
           <a href="/privacy-policy/" target="_blank">
