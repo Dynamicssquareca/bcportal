@@ -23,7 +23,7 @@ const ContactUs = () => {
             <div className='contact-main p-t-60 p-b-40'>
                 <div className='container'>
                     <div className='row'>
-                        <div className='col-lg-6'>
+                        <div className='col-lg-6 align-self-center'>
                             <div className='addre-left'>
                                     <h2>Get in touch with us</h2>
                                     <p>Get in touch with us using the form below. We're excited to assist you with all your tiles and stone needs!</p>
