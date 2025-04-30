@@ -292,6 +292,7 @@ ul li {
   border-color: var(--primary-dark) !important;
 }
 
+
 /*end of code*/
 
 /*hreo banner one*/
@@ -356,7 +357,14 @@ ul li {
 .hero-banner-two-image {
   text-align: right;
 }
-
+.common-header-banner{
+  text-align: center;
+  background: #f7f7f7;
+  padding: 60px 0px;
+}
+.common-header-banner h1{
+font-weight:600
+}
 /*padding and margi*/
 .m-t-20 {
   margin-top: 20px !important;
@@ -384,6 +392,15 @@ ul li {
 }
 .m-b-40 {
   margin-bottom: 40px !important;
+}
+.m-b-60 {
+  margin-bottom: 60px !important;
+}
+.m-b-80 {
+  margin-bottom: 80px !important;
+}
+.m-b-100 {
+  margin-bottom: 80px !important;
 }
 .p-t-20 {
   padding-top: 20px !important;
@@ -1073,6 +1090,27 @@ ul li {
 .product-dis .form-left .accordion-one .accordion-button:not(.collapsed) {
   box-shadow: none;
 }
+/*contact -us*/
+.addre-right .form-one{
+  box-shadow: 0px 0px 53px #0000000d;
+  padding: 30px 60px 50px;
+}
+.addre-left{}
+.addre-left h2{}
+.addre-left p{}
+.add-list{
+  display: flex;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+.add-list .icons-l .bi{
+  font-size: 18px;
+  color: var(--primary);
+}
+.inf-wigt h4{
+  font-size: 18px;
+}
+.inf-wigt p{}
 
 @media (min-width: 1640px) and (max-width: 1920px) {
 }

@@ -124,7 +124,7 @@ const Nav = () => {
           </li>
           <li><a className="nav-link scrollto" href="/about-us/">About Us</a></li>
           <li><a className="nav-link" href="/">Blogs</a></li> 
-          <li><a className="nav-link scrollto" href="/">Contact Us</a></li>
+          <li><a className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
           <li><a className='btn btn-one' href=''>Get a Quote</a></li>
           <li><a className='btn btn-two' href=''><span><i className="bi bi-whatsapp"></i></span></a></li>
 
