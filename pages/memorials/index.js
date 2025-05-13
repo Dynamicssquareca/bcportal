@@ -57,7 +57,7 @@ const Index = ({ categories }) => {
                     <div className='row'>
                         <div className='col-lg-6 align-self-end'>
                             <div className='hero-banner-two-head '>
-                                <h1>ALL  <span>Memorials</span></h1>
+                                <h1>Memorials <span> Stone</span></h1>
                                 <p>Trusted Tombstone Supplier for Global B2B Partners</p>
                             </div>
                         </div>
