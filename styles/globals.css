@@ -298,30 +298,32 @@ ul li {
 /*hreo banner one*/
 
 .hero-banner-one {
-  padding: 160px 40px;
+  padding: 40px 40px 160px;
   position:relative
 }
 .hero-banner-content {
-  -webkit-backdrop-filter: blur(25px);
+  /* -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(35px);
   box-shadow: 11px 20px 57.8px 0 rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
+  border-radius: 8px; */
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(20px);
   padding: 50px 80px;
 }
 .hero-banner-content h1 {
   font-size: 52px;
   font-weight: bold;
-  color: var(--color-white);
+  color: #000;
   margin-bottom: 20px;
 }
 .hero-banner-content h1 span {
-  background-image: linear-gradient(102deg, #ffbb78 -16%, #ff8c3a 97%);
+  /* background-image: linear-gradient(102deg, #ffbb78 -16%, #ff8c3a 97%);
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
 }
 .hero-banner-content p {
-  color: var(--color-white);
+  color: #000;
   font-size: 24px;
   font-weight: 600;
 }
@@ -1166,9 +1168,17 @@ font-size:48px
   font-weight: 700;
   color: #ffffff;
 }
+.custom-model .btn-transparent{
+         border: 1px solid #000 !important;
+          color: #000 !important;
+  }
 
-
-
+ .desh-top{
+    display:block
+  }
+  .mobile-top{
+    display:none
+  }
 
 
 @media (min-width: 1640px) and (max-width: 1920px) {
@@ -1178,7 +1188,7 @@ font-size:48px
 }
 @media (max-width: 1400px) {
   .hero-banner-one{
-    padding: 120px 40px;
+    padding: 40px 40px 140px;
   }
   .hero-banner-content h1,.common-header-banner h1 {
     font-size: 40px;
@@ -1253,7 +1263,7 @@ font-size:48px
   }
   .hero-banner-content h1,
   .hero-banner-two-head h1,.common-header-banner h1 {
-    font-size: 36px;
+    font-size: 32px;
   }
   .hero-banner-content {
     padding: 40px 30px;
@@ -1317,6 +1327,7 @@ font-size:48px
   .addre-left {
     padding-right: 0px;
 }
+
 }
 @media (min-width: 768px) and (max-width: 992px) {
 }
@@ -1372,7 +1383,7 @@ font-size:48px
     padding: 20px;
   }
   .hero-banner-content p {
-    font-size: 16px;
+    font-size: 14px;
   }
   .hero-banner-btn {
     margin-top: 40px;
@@ -1396,5 +1407,30 @@ font-size:48px
   }
   .addre-right .form-one{
     padding:15px
+  }
+ .btn-three {
+        /* font-size: 12px !important;
+       padding: 7px 10px !important; */
+
+  }
+  .custom-model .btn-transparent{
+/* font-size: 14px !important;
+        border: 1px solid #000 !important;
+        font-weight: 400 !important;
+        padding: 7px 10px !important;
+        color: #000 !important; */
+         border: 1px solid #000 !important;
+          color: #000 !important;
+  }
+ .desh-top{
+    
+     display:none
+  }
+  .mobile-top{
+   display:block
+  }
+  .hero-banner-one{
+    height:100vh;
+    padding: 40px 0px;
   }
 }

@@ -14,36 +14,45 @@ export default function Home() {
       </Head>
 
       <div className="hero-banner-one">
-    <Image
-      src="/img/banner/hero-banner-01.jpg"
-      alt="Hero Banner"
-      fill
-      style={{ objectFit: 'cover', objectPosition: 'center' }}
-      priority
-    />
+        <Image
+          src="/img/banner/hero-banner-two.png"
+          alt="Hero Banner"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          priority
+          className='desh-top'
+        />
+        <Image
+          src="/img/banner/mobile-bg.png"
+          alt="Hero Banner"
+          fill
+          className='mobile-top'
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
+          priority
+        />
 
-    {/* Content over the image */}
-    <div className="relative z-10">
-      <div className="container">
-        <div className="row align-items-center justify-content-center">
-          <div className="col-lg-9 text-center">
-            <div className="hero-banner-content">
-              <h1>
-                Welcome to <span>Stone Discover</span> UK
-              </h1>
-              <p>
-                We specialize in creating premium quality memorial headstones and gravestones using the finest granite
-              </p>
-              <div className="hero-banner-btn">
-                <ModelBox className="btn-three" headerText="Scale Your Store!" buttonText="Get Quotes" />
-                <ModelBox className="btn-transparent" headerText="Scale Your Store!" buttonText="Request Catalogue" />
+        {/* Content over the image */}
+        <div className="relative z-10">
+          <div className="container">
+            <div className="row align-items-center justify-content-center">
+              <div className="col-lg-9 text-center">
+                <div className="hero-banner-content">
+                  <h1>
+                    Welcome to <span>Stone Discover</span> UK
+                  </h1>
+                  <p>
+                    We specialize in creating premium quality memorial headstones and gravestones using the finest granite
+                  </p>
+                  <div className="hero-banner-btn">
+                    <ModelBox className="btn-three" headerText="Scale Your Store!" buttonText="Get Quotes" />
+                    <ModelBox className="btn-transparent" headerText="Scale Your Store!" buttonText="Request Catalogue" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
       <section className='quote-us-section'>
         <div className='container'>
