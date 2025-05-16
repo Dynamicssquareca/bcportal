@@ -92,7 +92,7 @@ const Index = ({ categories }) => {
                 </div>
             </section>
 
-            <section className='p-b-80'>
+            <section className='p-b-80 p-t-40'>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-lg-12'>

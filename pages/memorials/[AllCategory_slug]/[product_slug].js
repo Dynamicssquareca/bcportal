@@ -68,7 +68,7 @@ const ProductPage = ({ product, relatedProducts, specifications, error }) => {
           <div className='col-lg-12'>
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item"><a href="#">Home</a></li>
+                <li className="breadcrumb-item"><a href="/memorials/">Memorial Stones</a></li>
                 <li className="breadcrumb-item"><a href={`/memorials/${product.category.slug}/`}>{product.category.title}</a></li>
                 <li className="breadcrumb-item active" aria-current="page">{product.metaTitle || product.title}</li>
               </ol>

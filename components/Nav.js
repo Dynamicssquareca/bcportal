@@ -187,9 +187,10 @@ const Nav = () => {
 
               <ul>
 
-                <DropdownComponent id="servicesDropdown" label="Drop Down" items={servicesItems} />
-                <DropdownComponent id="solutionsDropdown" label="Drop Down" items={solutionsItems} />
+                {/* <DropdownComponent id="servicesDropdown" label="Drop Down" items={servicesItems} />
+                <DropdownComponent id="solutionsDropdown" label="Drop Down" items={solutionsItems} /> */}
                 {/* <DropdownComponent label="Resources" items={resourceItems} /> */}
+                 <li><a className="nav-link scrollto" href="/memorials/">Memorial Stones</a></li>
                 <li><a className="nav-link scrollto" href="/about-us/">About US</a></li>
                 <li><a className="nav-link" href="/">Blogs</a></li> 
                 {/* <Dropdown nav isOpen={dropdownOpen} toggle={toggles}>

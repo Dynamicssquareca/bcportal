@@ -365,7 +365,7 @@ const Form = ({ onSubmit }) => {
       </div>
       <div className="m-t-30">
         <button className='btn btn-three' type="submit" disabled={submitted}>
-          {submitted ? `Submitting (${redirectTimer})` : 'Get Quotes'}
+          {submitted ? `Submitting (${redirectTimer})` : 'Submit'}
         </button>
       </div>
       {submitted && <p>Your form has been submitted!</p>}

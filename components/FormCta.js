@@ -374,7 +374,7 @@ const FormCta = ({ onSubmit }) => {
         </label>
       </div>
       <button className='btn btn-three' type="submit" disabled={submitted}>
-        {submitted ? `Submitting (${redirectTimer})` : 'Request a Quote'}
+        {submitted ? `Submitting (${redirectTimer})` : 'Submit'}
       </button>
       {/* {submitted && <p>Your form has been submitted!</p>} */}
     </form>
