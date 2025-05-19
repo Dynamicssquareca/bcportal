@@ -95,7 +95,7 @@ const Footer = ({faq}) => {
 
                             </div>
                             <div className="col-lg-4 col-md-12 footer-contact text-center text-md-start">
-                                <h4>More:</h4>
+                                <h4>Usefull</h4>
                                 {/* <p><b>Office:</b> 1116, JMD Megapolis, Sector 48, Gurugram, Haryana 122018.</p> */}
                                 <p><b>Working Time:</b> Mon-Sat: 8 AM - 5 PM</p>
                                 <p><b>Email:</b> info@stonediscover.com</p>
