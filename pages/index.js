@@ -96,14 +96,14 @@ export default function Home() {
             <div className='col-lg-4 d-flex'>
               <div className='card-01'>
                 <Image src='/img/icons/add-location-alt.png' alt='Our Location' className='img-fluid' width={48} height={49} />
-                <h3>Our Location</h3>
+                <h3>UK Presence</h3>
                 <p>We are based in Liverpool and Southampton, where we maintain a large inventory of catalog items for immediate delivery. As the largest stockist of headstones in the UK. Our manufacturing facility is located in Alinagar, Chetlapotham, Telangana, Southern India.</p>
               </div>
             </div>
             <div className='col-lg-4 d-flex'>
               <div className='card-01'>
                 <Image src='/img/icons/delivery-truck-speed.png' alt='Seamless Delivery' className='img-fluid' width={48} height={49} />
-                <h3>Seamless Delivery</h3>
+                <h3>Quick Turnaround</h3>
                 <p>We keep standard catalogue items in stock for quick delivery. If you need special bespoke designs or made-to-order items, we have one of the fastest delivery times in the industry, taking just 7 to 8 weeks from our factory in India.</p>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Home() {
               <div className='card-01'>
                 <Image src='/img/icons/handyman.png' alt='Timeless Craftsmanship' className='img-fluid' width={48} height={49} />
                 <h3>Timeless Craftsmanship</h3>
-                <p>Our factory in India is powered by skilled craftsmen who expertly create memorials in any bespoke design you need. Click here to explore the latest personalized headstone designs that we have delivered.</p>
+                <p>Our factory in India is powered by skilled craftsmen who expertly create memorials in any bespoke design you need. Every piece is made using the finest granite and detail-focused workmanship.</p>
               </div>
             </div>
           </div>

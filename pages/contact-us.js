@@ -28,7 +28,7 @@ const ContactUs = () => {
                                 <h2>Get in touch with us</h2>
                                 <p>Get in touch with us using the form below. We're excited to assist you with all your tiles and stone needs!</p>
                                 <div className='addres-sec'>
-                                    <div className='add-list'>
+                                    {/* <div className='add-list'>
                                         <div className='icons-l'>
                                             <i className="bi bi-house-fill"></i>
                                         </div>
@@ -37,7 +37,7 @@ const ContactUs = () => {
                                             <p>1545 Capital Dr. Suite 100
                                                 Carrollton Tx-75006</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className='add-list'>
                                         <div className='icons-l'>
                                             <i className="bi bi-person-lines-fill"></i>
@@ -53,7 +53,7 @@ const ContactUs = () => {
                                         </div>
                                         <div className='inf-wigt'>
                                             <h4>Email Us</h4>
-                                            <p>info@stonediscoveruk.com</p>
+                                            <p>info@stonediscover.com</p>
                                         </div>
                                     </div>
                                 </div>

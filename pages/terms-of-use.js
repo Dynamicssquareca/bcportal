@@ -50,7 +50,7 @@ const TermsOfUse = () => {
                             <p><strong>Contact Us</strong></p>
                             <p>For any questions regarding this privacy policy, you may contact us using the information below:</p>
                             <ul>
-                                <li><strong>Email</strong>: <a href="mailto:info@stonediscoveruk.com">info@stonediscoveruk.com</a></li>
+                                <li><strong>Email</strong>: <a href="mailto:info@stonediscover.com">info@stonediscover.com</a></li>
                                 <li><strong>Phone</strong>: <strong>+91 9667584700</strong></li>
                             </ul>
 

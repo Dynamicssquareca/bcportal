@@ -28,7 +28,7 @@ const FaqAccordion = ({ faqList = [] }) => {
     },
     {
       title: "What materials do you use for your memorial stone?",
-      description: "We use premium quality Granite, sourced from the finest quarries of India for the industrial production of memorial tombstones and headstones grave markers. India is popular for its finest granite deposits in the world due to its premium quality, affordability, and aesthetic appeal. However, we can also accommodate special requests for other materials like marble, sandstone, and limestone, based on availability and order size.",
+      description: "We use premium quality Granite, sourced from the finest quarries of India for the industrial production of memorial tombstones and headstones grave markers. However, we can also accommodate special requests for other materials like marble, sandstone, and limestone, based on availability and order size.",
     },
     {
       title: "Can you customize memorials according to our specifications?",

@@ -36,7 +36,7 @@ const Footer = ({faq}) => {
                                 </div>
                                 <div className='sub-it'>
                                     <p>Or Mail us at:</p>
-                                    <span>info@stonediscover.co.uk</span>
+                                    <span>info@stonediscover.com</span>
                                 </div>
                             </div>
                         </div>
@@ -63,12 +63,12 @@ const Footer = ({faq}) => {
                                     <Image src="/stone-logo.png" alt="stone-logo" width={200} height={30} />
                                     {/* <span>FlexStart</span> */}
                                 </a>
-                                <p>Stone Discover – Largest manufacturer & supplier of Tombstone & Natural stone since 1984. We offer a wide range of Monuments such as Headstone, Angel Memorial, Plaques, Bench, Vases, Urns, Columbarium in various stones and natural stone in Granite, Marble from India. We also include sandstone and limestone in our offerings.</p>
+                                <p>Stone Discover UK is a trusted wholesale supplier of premium granite memorials, serving the UK with unmatched quality and service. We understand the B2B dynamics of the memorial industry and deliver not just products, but trust, consistency, and partnership. Partner with us for exceptional craftsmanship and competitive pricing you can count on.</p>
                                 <div className="social-links mt-3">
                                     {/* <a href="#" className="twitter"><i className="bi bi-twitter"></i></a>
                                     <a href="#" className="facebook"><i className="bi bi-facebook"></i></a>
                                     <a href="#" className="instagram"><i className="bi bi-instagram"></i></a> */}
-                                    <a href="https://www.linkedin.com/company/crm-frontier/" className="linkedin" target='_blank'><i className="bi bi-linkedin"></i></a>
+                                    <a href="#" className="linkedin" target='_blank'><i className="bi bi-linkedin"></i></a>
                                 </div>
                             </div>
                             <div className="col-lg-2 col-6 footer-links">
@@ -95,8 +95,8 @@ const Footer = ({faq}) => {
 
                             </div>
                             <div className="col-lg-4 col-md-12 footer-contact text-center text-md-start">
-                                <h4>Address:</h4>
-                                <p><b>Office:</b> 1116, JMD Megapolis, Sector 48, Gurugram, Haryana 122018.</p>
+                                <h4>More:</h4>
+                                {/* <p><b>Office:</b> 1116, JMD Megapolis, Sector 48, Gurugram, Haryana 122018.</p> */}
                                 <p><b>Working Time:</b> Mon-Sat: 8 AM - 5 PM</p>
                                 <p><b>Email:</b> info@stonediscover.com</p>
                                 {/* <FormSubscribe /> */}

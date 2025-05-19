@@ -177,8 +177,8 @@ const CategoryPage = ({ category, products, faq, error }) => {
                         <div className="d-flex justify-content-between align-items-center w-100">
                           <h3><img src='/img/icons/faq-icon-01.png' alt='faq-icon' />Direct Manufacturer Advantage</h3>
                           {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
-                                                              {open === '1' ? '-' : '+'}
-                                                          </span> */}
+                                                                                     {open === '1' ? '-' : '+'}
+                                                                                 </span> */}
                         </div>
                       </AccordionHeader>
                       <AccordionBody accordionId="1">
@@ -195,13 +195,25 @@ const CategoryPage = ({ category, products, faq, error }) => {
                         <div className="d-flex justify-content-between align-items-center w-100">
                           <h3><img src='/img/icons/faq-icon-02.png' alt='faq-icon' />Consistent Quality, Every Time</h3>
                           {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
-                                                              {open === '1' ? '-' : '+'}
-                                                          </span> */}
+                                                                                     {open === '1' ? '-' : '+'}
+                                                                                 </span> */}
                         </div>
                       </AccordionHeader>
                       <AccordionBody accordionId="2">
                         <p>Our tombstones are crafted from premium-grade Indian granite, renowned for its durability and timeless appeal. Every piece is quality-checked to ensure consistent finishing, accurate dimensions, and enduring aesthetics.</p>
-                        <p><b>Bespoke Designs</b></p>
+
+                      </AccordionBody>
+                    </AccordionItem>
+                    <AccordionItem>
+                      <AccordionHeader targetId="3">
+                        <div className="d-flex justify-content-between align-items-center w-100">
+                          <h3><img src='/img/icons/faq-icon-04.png' alt='faq-icon' />Bespoke Designs</h3>
+                          {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
+                                                                                     {open === '1' ? '-' : '+'}
+                                                                                 </span> */}
+                        </div>
+                      </AccordionHeader>
+                      <AccordionBody accordionId="3">
                         <p>We support customizations including:</p>
                         <ul>
                           <li>Headstones</li>
@@ -214,15 +226,15 @@ const CategoryPage = ({ category, products, faq, error }) => {
                       </AccordionBody>
                     </AccordionItem>
                     <AccordionItem>
-                      <AccordionHeader targetId="3">
+                      <AccordionHeader targetId="4">
                         <div className="d-flex justify-content-between align-items-center w-100">
                           <h3><img src='/img/icons/faq-icon-03.png' alt='faq-icon' />Seamless Logistics & Delivery</h3>
                           {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
-                                                              {open === '1' ? '-' : '+'}
-                                                          </span> */}
+                                                                                     {open === '1' ? '-' : '+'}
+                                                                                 </span> */}
                         </div>
                       </AccordionHeader>
-                      <AccordionBody accordionId="3">
+                      <AccordionBody accordionId="4">
                         <p>With our warehouses located in Liverpool and Southampton, we guarantee:</p>
                         <ul>
                           <li>On-time delivery</li>
@@ -231,19 +243,7 @@ const CategoryPage = ({ category, products, faq, error }) => {
                         </ul>
                       </AccordionBody>
                     </AccordionItem>
-                    <AccordionItem>
-                      <AccordionHeader targetId="4">
-                        <div className="d-flex justify-content-between align-items-center w-100">
-                          <h3><img src='/img/icons/faq-icon-04.png' alt='faq-icon' />Partner with a Reliable Tombstone Exporter</h3>
-                          {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
-                                                              {open === '1' ? '-' : '+'}
-                                                          </span> */}
-                        </div>
-                      </AccordionHeader>
-                      <AccordionBody accordionId="4">
-                        <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products, but trust, consistency, and partnership.</p>
-                      </AccordionBody>
-                    </AccordionItem>
+
 
                   </Accordion>
                 </div>

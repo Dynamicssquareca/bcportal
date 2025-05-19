@@ -88,14 +88,13 @@ export default function About() {
                         <div className='col-lg-6 d-flex'>
                             <div className='about-us-content'>
                                 <h2>Our Vision</h2>
-                                <p>Our modern manufacturing plant in Khammam, India, produces granite memorials and tombstones in a wide variety of Granite colors, such as
-                                    Absolute Indian Black Light Grey, Bahama Blue, Indian Aurora, Indian ImpalaImperial Red, and many others.</p>
+                                <p>To be the most trusted name in granite memorials globally, popular for unmatched quality, craftsmanship, and reliability. We hold expertise in honouring memories with stone that lasts forever.</p>
                             </div>
                         </div>
                         <div className='col-lg-6 d-flex'>
                             <div className='about-us-content'>
                                 <h2>Our Mission</h2>
-                                <p>To provide superior quality granite monuments to our partners/wholesalers across the UK at the most competitive prices. To maintain excellence in sourcing, shipping, and delivery, ensuring a seamless customer experience.</p> <p>To build long-lasting partnerships with dealers, fabricators, and wholesalers by ensuring trust, transparency, and consistency.</p>
+                                <p>Our mission is to provide superior quality granite monuments to our partners and wholesalers across the UK at the most competitive prices, while maintaining excellence in sourcing, shipping, and delivery.</p>
                             </div>
                         </div>
 
@@ -152,7 +151,19 @@ export default function About() {
                                             </AccordionHeader>
                                             <AccordionBody accordionId="2">
                                                 <p>Our tombstones are crafted from premium-grade Indian granite, renowned for its durability and timeless appeal. Every piece is quality-checked to ensure consistent finishing, accurate dimensions, and enduring aesthetics.</p>
-                                                <p><b>Bespoke Designs</b></p>
+                                                
+                                            </AccordionBody>
+                                        </AccordionItem>
+                                        <AccordionItem>
+                                            <AccordionHeader targetId="3">
+                                                <div className="d-flex justify-content-between align-items-center w-100">
+                                                    <h3><img src='/img/icons/faq-icon-04.png' alt='faq-icon' />Bespoke Designs</h3>
+                                                    {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
+                                                                       {open === '1' ? '-' : '+'}
+                                                                   </span> */}
+                                                </div>
+                                            </AccordionHeader>
+                                            <AccordionBody accordionId="3">
                                                 <p>We support customizations including:</p>
                                                 <ul>
                                                     <li>Headstones</li>
@@ -165,7 +176,7 @@ export default function About() {
                                             </AccordionBody>
                                         </AccordionItem>
                                         <AccordionItem>
-                                            <AccordionHeader targetId="3">
+                                            <AccordionHeader targetId="4">
                                                 <div className="d-flex justify-content-between align-items-center w-100">
                                                     <h3><img src='/img/icons/faq-icon-03.png' alt='faq-icon' />Seamless Logistics & Delivery</h3>
                                                     {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
@@ -173,7 +184,7 @@ export default function About() {
                                                                    </span> */}
                                                 </div>
                                             </AccordionHeader>
-                                            <AccordionBody accordionId="3">
+                                            <AccordionBody accordionId="4">
                                                 <p>With our warehouses located in Liverpool and Southampton, we guarantee:</p>
                                                 <ul>
                                                     <li>On-time delivery</li>
@@ -182,19 +193,7 @@ export default function About() {
                                                 </ul>
                                             </AccordionBody>
                                         </AccordionItem>
-                                        <AccordionItem>
-                                            <AccordionHeader targetId="4">
-                                                <div className="d-flex justify-content-between align-items-center w-100">
-                                                    <h3><img src='/img/icons/faq-icon-04.png' alt='faq-icon' />Partner with a Reliable Tombstone Exporter</h3>
-                                                    {/* <span className={`icon ${open === '1' ? 'open' : 'closed'}`}>
-                                                                       {open === '1' ? '-' : '+'}
-                                                                   </span> */}
-                                                </div>
-                                            </AccordionHeader>
-                                            <AccordionBody accordionId="4">
-                                                <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products, but trust, consistency, and partnership.</p>
-                                            </AccordionBody>
-                                        </AccordionItem>
+                                        
 
                                     </Accordion>
                                 </div>
