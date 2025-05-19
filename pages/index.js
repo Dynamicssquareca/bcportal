@@ -15,7 +15,7 @@ export default function Home() {
 
       <div className="hero-banner-one">
         <Image
-          src="/img/banner/hero-banner-two.png"
+          src="/img/banner/hero-banner-three.png"
           alt="Hero Banner"
           fill
           style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
