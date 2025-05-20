@@ -18,7 +18,7 @@ export default function Home() {
           src="/img/banner/hero-banner-three.png"
           alt="Hero Banner"
           fill
-          style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+          style={{ objectFit: 'contain', objectPosition: 'center bottom' }}
           priority
           className='desh-top'
         />
@@ -44,8 +44,8 @@ export default function Home() {
                     We specialize in creating premium quality memorial headstones and gravestones using the finest granite
                   </p>
                   <div className="hero-banner-btn">
-                    <ModelBox className="btn-three" headerText="Scale Your Store!" buttonText="Get Quotes" />
-                    <ModelBox className="btn-transparent" headerText="Scale Your Store!" buttonText="Request Catalogue" />
+                    <ModelBox className="btn-three" headerText="Scale Your Store!" buttonText="Get Quote Now" />
+                    {/* <ModelBox className="btn-transparent" headerText="Scale Your Store!" buttonText="Request Catalogue" /> */}
                   </div>
                 </div>
               </div>

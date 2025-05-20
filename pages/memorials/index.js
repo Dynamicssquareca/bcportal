@@ -69,29 +69,7 @@ const Index = ({ categories }) => {
                     </div>
                 </div>
             </div>
-            <section className='about-us-section p-t-80 p-b-40 m-p-05'>
-                <div className='container'>
-                    <div className='row'>
-
-                        <div className='col-lg-6'>
-                            <div className='about-us-content'>
-                                <h2>About Memorial Stones</h2>
-                                <p>Memorial stones are a long-lasting way to honour the memory of loved ones. These are specially crafted using premium granite stones and are available in a variety of shapes and sizes. Memorial stones reflect individual stories, cultural values, and timeless remembrance.</p>
-                                <p>At Stone Discover UK, we supply a complete range of memorial stones, designed to meet diverse needs across the funeral and memorial trade. We offer a wide variety of granite monuments in colours such as Absolute Indian Black, Bahama Blue, Light Grey, Indian Aurora, and Imperial Red, among others. We also offer imported granite options, including Blue Pearl, Olive Green, and South African Impala.</p>
-                                <p>Stone Discover UK is a trusted B2B supplier of high-quality granite memorial stones for the UK trade. We work with dealers, wholesalers, memorial retailers, and local authorities to deliver premium monuments at competitive prices.</p>
-                                <a href='/about-us/' className='btn btn-four m-t-30'>Read More</a>
-                            </div>
-                        </div>
-
-                        <div className='col-lg-6'>
-                            <div className='about-us-image'>
-                                <img src='/img/webpages/about-us-pic.png' alt='About Us' className='img-fluid' />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+         
             <section className='p-b-80 p-t-40 m-p-06'>
                 <div className='container'>
                     <div className='row'>
@@ -127,6 +105,29 @@ const Index = ({ categories }) => {
                     </div>
                 </div>
             </section>
+               <section className='about-us-section p-t-40 p-b-40 m-p-05'>
+                <div className='container'>
+                    <div className='row'>
+
+                        <div className='col-lg-6'>
+                            <div className='about-us-content'>
+                                <h2>About Memorial Stones</h2>
+                                <p>Memorial stones are a long-lasting way to honour the memory of loved ones. These are specially crafted using premium granite stones and are available in a variety of shapes and sizes. Memorial stones reflect individual stories, cultural values, and timeless remembrance.</p>
+                                <p>At Stone Discover UK, we supply a complete range of memorial stones, designed to meet diverse needs across the funeral and memorial trade. We offer a wide variety of granite monuments in colours such as Absolute Indian Black, Bahama Blue, Light Grey, Indian Aurora, and Imperial Red, among others. We also offer imported granite options, including Blue Pearl, Olive Green, and South African Impala.</p>
+                                <p>Stone Discover UK is a trusted B2B supplier of high-quality granite memorial stones for the UK trade. We work with dealers, wholesalers, memorial retailers, and local authorities to deliver premium monuments at competitive prices.</p>
+                                <a href='/about-us/' className='btn btn-four m-t-30'>Read More</a>
+                            </div>
+                        </div>
+
+                        <div className='col-lg-6'>
+                            <div className='about-us-image'>
+                                <img src='/img/webpages/about-us-pic.png' alt='About Us' className='img-fluid' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <section className='partner-section'>
                 <div className='container'>

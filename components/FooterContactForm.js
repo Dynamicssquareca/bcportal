@@ -10,7 +10,7 @@ const FooterContactForm = ({faq}) => {
     const router = useRouter();
 
     // Define the pathname of the page where you want to hide the component
-    const hiddenPagePaths = ['/contact-us', '/thank-you'];
+    const hiddenPagePaths = ['/contact-us', '/thank-you','/get-quote-now','/catalog-download'];
 
     const shouldHideComponent = hiddenPagePaths.includes(router.pathname);
     // Conditionally render the component based on whether it should be hidden

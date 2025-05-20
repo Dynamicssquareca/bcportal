@@ -13,7 +13,7 @@ const Footer = ({faq}) => {
     // Define classes based on different routes
     let footerClass = '';
 
-    if (pathname === '/contact-us' || pathname === '/about-us' || pathname === '/thank-you') {
+    if (pathname === '/contact-us' || pathname === '/about-us' || pathname === '/thank-you' || pathname=== '/get-quote-now' || pathname=== '/catalog-download') {
         footerClass = 'footer-pad';
     }
     // } else if (pathname === '/page2') {

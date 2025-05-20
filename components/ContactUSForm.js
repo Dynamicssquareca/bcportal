@@ -22,7 +22,7 @@ const ContactUSForm = () => {
                             <span>Customer Support</span>
                             <p>Our dedicated support team is available to assist<br/> you with any inquiries or issues you may have. <br/><b>Contact us via email at</b>: <br/><a href='mailto:support@yourcompany.com'>support@yourcompany.com</a></p>
                         </div> */}
-                        <div className='info-one'>
+                        {/* <div className='info-one'>
                             <span>For Sales Enquiry</span>
                             <p><a href='mailto:info@frontier.com'>info@frontier.com</a></p>
                         </div>
@@ -33,7 +33,7 @@ const ContactUSForm = () => {
                         <div className='info-one'>
                             <span>Visit Us</span>
                             <p>2372 Morse Ave, <br/>Ste. 310 Irvine, <br/>CA 92614</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className='col-lg-6'>

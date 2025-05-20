@@ -300,7 +300,7 @@ ul li {
 .hero-banner-one {
 padding: 30px 0px 0px 0px;
     position: relative;
-   height: calc(98vh - 20px);
+   height: calc(80vh - 20px);
 }
 .hero-banner-content {
   /* -webkit-backdrop-filter: blur(25px);
@@ -326,11 +326,11 @@ padding: 30px 0px 0px 0px;
 .hero-banner-content p {
   color: #000;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 400;
 }
 .hero-banner-btn {
   display: flex;
-  margin-top: 40px;
+  margin-top: 24px;
   justify-content: center;
   gap: 15px;
 }
@@ -917,17 +917,17 @@ font-size:48px
   background: -moz-linear-gradient(
     41deg,
     rgba(255, 255, 255, 1) 25%,
-    rgba(221, 237, 243, 1) 100%
+    rgb(238 214 187) 100%
   );
   background: -webkit-linear-gradient(
     41deg,
     rgba(255, 255, 255, 1) 25%,
-    rgba(221, 237, 243, 1) 100%
+    rgb(238 214 187) 100%
   );
   background: linear-gradient(
     41deg,
     rgba(255, 255, 255, 1) 25%,
-    rgba(221, 237, 243, 1) 100%
+    rgb(238 214 187) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ddedf3",GradientType=1);
   border-radius: 10px;
@@ -1174,6 +1174,11 @@ gap:2px
 .custom-model .btn-transparent{
          border: 1px solid #000 !important;
           color: #000 !important;
+          background:#fff !important;
+          padding: 0.7rem 1.6rem !important;
+  }
+  .custom-model .btn-transparent:hover{
+    
   }
 
  .desh-top{
@@ -1202,18 +1207,22 @@ gap:2px
 
 @media (min-width: 1400px) and (max-width: 1639px) {
 }
-@media (max-width: 1400px) {
+@media (min-width: 1500px){
+
+}
+@media (max-width: 1440px) {
   .hero-banner-one{
-    padding: 40px 40px 140px;
+    padding: 60px 40px 140px;
   }
   .hero-banner-content h1,.common-header-banner h1 {
     font-size: 40px;
+    margin-bottom:15px
   }
   .hero-banner-content p {
-    font-size: 20px;
+    font-size: 18px;
   }
   .hero-banner-content {
-    padding: 50px 40px;
+    padding: 30px 40px 10px;
   }
   .about-us-content h2,
   .heading-center h2,.addre-left h2 {
@@ -1442,7 +1451,7 @@ gap:2px
     font-size: 14px;
   }
   .hero-banner-btn {
-    margin-top: 40px;
+    margin-top: 24px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
