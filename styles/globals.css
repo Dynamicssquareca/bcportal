@@ -1214,7 +1214,7 @@ gap:2px
 }
 @media (max-width: 1440px) {
   .hero-banner-one{
-    padding: 60px 40px 140px;
+    padding: 40px 40px 140px;
   }
   .hero-banner-content h1,.common-header-banner h1 {
     font-size: 40px;
