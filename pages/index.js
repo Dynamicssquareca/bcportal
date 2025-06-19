@@ -10,27 +10,27 @@ export default function Home() {
   return (
     <>
       <Head>
-                <title>UK’s Trusted Supplier of Memorial Stones | Stone Discover UK</title>
+                <title>Wholesale Memorial Headstones in the UK | Stone Discover UK</title>
                 <meta
                     name="description"
-                    content="Stone Discover UK supplies high-quality memorial stones at wholesale prices. Trusted by funeral homes and retailers across the UK. Contact us today!"
+                    content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today."
                 />
                 <link rel="canonical" href="https://www.stonediscover.co.uk/" />
                 <meta property="og:locale" content="US" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="UK’s Trusted Supplier of Memorial Stones | Stone Discover UK" />
-                <meta property="og:description" content="Stone Discover UK supplies high-quality memorial stones at wholesale prices. Trusted by funeral homes and retailers across the UK. Contact us today!" />
+                <meta property="og:title" content="Wholesale Memorial Headstones in the UK | Stone Discover UK" />
+                <meta property="og:description" content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today." />
                 <meta property="og:url" content="https://www.stonediscover.co.uk/" />
                 <meta property="og:site_name" content="CRM Frontier " />
-                <meta property="og:image" content="https://www.crmfrontier.com/img/feature/customization.jpg" />
+                <meta property="og:image" content="https://www.stonediscover.co.uk/img/feature/customization.jpg" />
                 <meta property="og:image:width" content="200" />
                 <meta property="og:image:height" content="200" />
                 <meta property="og:image:type" content="image/jpg" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@CRM Frontier" />
-                <meta name="twitter:title" content="UK’s Trusted Supplier of Memorial Stones | Stone Discover UK" />
-                <meta name="twitter:description" content="Stone Discover UK supplies high-quality memorial stones at wholesale prices. Trusted by funeral homes and retailers across the UK. Contact us today!" />
-                <meta name="twitter:image" content="https://www.crmfrontier.com/img/feature/customization.jpg" />
+                <meta name="twitter:title" content="Wholesale Memorial Headstones in the UK | Stone Discover UK" />
+                <meta name="twitter:description" content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today." />
+                <meta name="twitter:image" content="https://www.stonediscover.co.uk/img/feature/customization.jpg" />
             </Head>
 
       <div className="hero-banner-one">

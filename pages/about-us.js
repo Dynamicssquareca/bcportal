@@ -29,7 +29,7 @@ export default function About() {
                 <meta property="og:description" content="Stone Discover UK is a reliable supplier of wholesale memorial headstones, serving funeral homes and retailers across the UK with quality granite products." />
                 <meta property="og:url" content="https://www.stonediscover.co.uk/about-us/" />
                 <meta property="og:site_name" content="CRM Frontier " />
-                <meta property="og:image" content="https://www.crmfrontier.com/img/feature/customization.jpg" />
+                <meta property="og:image" content="https://www.stonediscover.co.uk/img/feature/customization.jpg" />
                 <meta property="og:image:width" content="200" />
                 <meta property="og:image:height" content="200" />
                 <meta property="og:image:type" content="image/jpg" />
@@ -37,7 +37,7 @@ export default function About() {
                 <meta name="twitter:site" content="@CRM Frontier" />
                 <meta name="twitter:title" content="About Stone Discover UK : Memorial Headstones Supplier in UK" />
                 <meta name="twitter:description" content="Stone Discover UK is a reliable supplier of wholesale memorial headstones, serving funeral homes and retailers across the UK with quality granite products." />
-                <meta name="twitter:image" content="https://www.crmfrontier.com/img/feature/customization.jpg" />
+                <meta name="twitter:image" content="https://www.stonediscover.co.uk/img/feature/customization.jpg" />
             </Head>
 
             <div className='common-header-banner'>
