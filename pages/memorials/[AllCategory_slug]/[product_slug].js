@@ -181,7 +181,7 @@ const ProductPage = ({ product, relatedProducts, specifications, error }) => {
           <div className='row justify-content-center'>
             <div className='col-lg-9'>
               <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Realted Products</h2>
+                <h2 className='m-b-30'>Related Products</h2>
               </div>
             </div>
           </div>
