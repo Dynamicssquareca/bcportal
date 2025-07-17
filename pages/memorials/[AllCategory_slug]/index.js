@@ -58,12 +58,13 @@ const CategoryPage = ({ category, products, faq, error }) => {
         {category.metaKeywords && <meta name="keywords" content={category.metaKeywords} />}
         <meta property="og:title" content={category.metaTitle || category.title} />
         <meta property="og:description" content={category.metaDescription || category.excerpt || ''} />
+         <meta property="og:site_name" content="Stone Discover UK" />
         <meta
           property="og:image"
           content={
             category.featuredimage
               ? CanImageUrl(category.featuredimage)
-              : `${process.env.NEXT_PUBLIC_SITE_URL}img/banner/home-main-banner.png`
+              : `${process.env.NEXT_PUBLIC_SITE_URL}img/stone-og-inne.jpg`
           }
         />
       </Head>

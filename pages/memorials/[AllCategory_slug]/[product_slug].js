@@ -54,12 +54,13 @@ const ProductPage = ({ product, relatedProducts, specifications, error }) => {
         {product.metaKeywords && <meta name="keywords" content={product.metaKeywords} />}
         <meta property="og:title" content={product.metaTitle || product.title} />
         <meta property="og:description" content={product.metaDescription || product.excerpt || ''} />
+         <meta property="og:site_name" content="Stone Discover UK" />
         <meta
           property="og:image"
           content={
             product.featuredimage
               ? CanImageUrl(product.featuredimage)
-              : `${process.env.NEXT_PUBLIC_SITE_URL}img/banner/home-main-banner.png`
+              : `${process.env.NEXT_PUBLIC_SITE_URL}img/stone-og-inne.jpg`
           }
         />
       </Head>
