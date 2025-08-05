@@ -9,7 +9,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-      <meta name="google-site-verification" content="UuMJs_UyrvoSDR_TKigPMzLmqY6XAPP2u9Oq__tBcd0" />
+        <meta name="google-site-verification" content="UuMJs_UyrvoSDR_TKigPMzLmqY6XAPP2u9Oq__tBcd0" />
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=G-H0L8BSTQ7R`}
@@ -24,9 +24,26 @@ export default function Document() {
               `,
           }}
         />
+        <Script id="GoogleTagManager" strategy="beforeInteractive">
+          {
+            `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQ28WFGB');;`
+          }
+        </Script>
         {/* End Google Analytics tracking code */}
       </Head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KQ28WFGB"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          ></iframe>
+        </noscript>
         <Main />
         <NextScript />
 
