@@ -111,7 +111,7 @@ const BlogIndex = ({ posts, categories }) => {
                 latestPost.metaimage
                   ? getImageUrl(latestPost.metaimage)
                   : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
-              } alt="side pop" className="img-fluid" width={800} height={418} priority /></a>
+              } alt="side pop" className="img-fluid" width={1200} height={628} priority /></a>
                
               </div>
             </div>
