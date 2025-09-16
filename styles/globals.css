@@ -211,7 +211,7 @@ ul li {
   padding: 10px 20px !important;
   font-size: 14px !important;
   font-weight: 600 !important;
-  color: var(--color-white) !important;
+  color: #000000 !important;
   background-color: var(--primary-dark);
 }
 .btn-one:hover {
