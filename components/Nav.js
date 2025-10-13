@@ -35,6 +35,9 @@ const Nav = () => {
     { label: 'Careers', href: '/career/' },
   ];
 
+
+
+
   return (
 
     <>
@@ -114,19 +117,23 @@ const Nav = () => {
           {/* <li><Link className="nav-link scrollto" href="/solutions/">Solutions</Link></li> */}
           {/* <li><a className="nav-link scrollto" href="/">Industries</a></li> */}
           {/* <li><a className="nav-link scrollto" href="/">Company</a></li> */}
-          <li className="dropdown"><a href="/memorials/"><span>Memorial Stones</span> </a>
-            {/* <ul>
-              <li><a href="/">Links 1</a></li>
-              <li><a href="/">Links 2</a></li>
-              <li><a href="/">Links 4</a></li>
-              <li><a href="/">Links 5</a></li>
-            </ul> */}
+          <li className="dropdown"><a href="/memorials/"><span>Memorial Stones</span> <i className="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/memorials/angel-headstone/">Angel Headstone</a></li>
+              <li><a href="/memorials/headstones/">Headstones</a></li>
+              <li><a href="/memorials/kerb-sets/">Kerb Sets</a></li>
+              <li><a href="/memorials/benches/">Memorial Benches</a></li>
+              <li><a href="/memorials/childrens-headstones/">Childrens Headstones</a></li>
+              <li><a href="/memorials/heart-headstones/">Heart Headstones</a></li>
+              <li><a href="/memorials/vases/">Vases</a></li>
+              <li><a href="/memorials/urns/">urns</a></li>
+            </ul>
           </li>
           <li><a className="nav-link scrollto" href="/about-us/">About Us</a></li>
-       
-           <li><a  style={{color:'#a44400',fontWeight:'bold'}} className="nav-link scrollto" href="/catalog-download/">Catalog</a></li>
-              <li><a className="nav-link" href="/blog/">Blogs</a></li> 
-          <li><a   className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
+
+          <li><a style={{ color: '#a44400', fontWeight: 'bold' }} className="nav-link scrollto" href="/catalog-download/">Catalog</a></li>
+          <li><a className="nav-link" href="/blog/">Blogs</a></li>
+          <li><a className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
           <li><a className='btn btn-one' href='/get-quote-now/'>Get a Quote</a></li>
           <li><a className='btn btn-two' href='https://wa.me/9667584700'><span><i className="bi bi-whatsapp"></i></span></a></li>
 
@@ -192,9 +199,9 @@ const Nav = () => {
                 {/* <DropdownComponent id="servicesDropdown" label="Drop Down" items={servicesItems} />
                 <DropdownComponent id="solutionsDropdown" label="Drop Down" items={solutionsItems} /> */}
                 {/* <DropdownComponent label="Resources" items={resourceItems} /> */}
-                 <li><a className="nav-link scrollto" href="/memorials/">Memorial Stones</a></li>
+                <li><a className="nav-link scrollto" href="/memorials/">Memorial Stones</a></li>
                 <li><a className="nav-link scrollto" href="/about-us/">About US</a></li>
-                <li><a className="nav-link" href="/blog/">Blogs</a></li> 
+                <li><a className="nav-link" href="/blog/">Blogs</a></li>
                 {/* <Dropdown nav isOpen={dropdownOpen} toggle={toggles}>
                   <DropdownToggle nav caret>
                     Resources
@@ -219,7 +226,7 @@ const Nav = () => {
                   
                 </li> */}
                 <li><a className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
-             
+
               </ul>
 
             </OffcanvasBody>

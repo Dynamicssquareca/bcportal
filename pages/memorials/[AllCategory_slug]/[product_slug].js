@@ -54,7 +54,7 @@ const ProductPage = ({ product, relatedProducts, specifications, error }) => {
         {product.metaKeywords && <meta name="keywords" content={product.metaKeywords} />}
         <meta property="og:title" content={product.metaTitle || product.title} />
         <meta property="og:description" content={product.metaDescription || product.excerpt || ''} />
-         <meta property="og:site_name" content="Stone Discover UK" />
+        <meta property="og:site_name" content="Stone Discover UK" />
         <meta
           property="og:image"
           content={
@@ -63,6 +63,14 @@ const ProductPage = ({ product, relatedProducts, specifications, error }) => {
               : `${process.env.NEXT_PUBLIC_SITE_URL}img/stone-og-inne.jpeg`
           }
         />
+        {product.schema &&
+          product.schema.map((scriptContent, index) => (
+            <script
+              key={index}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: scriptContent }}
+            />
+          ))}
       </Head>
       <div className='container m-t-40'>
         <div className='row'>
