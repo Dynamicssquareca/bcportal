@@ -14,12 +14,9 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 
-const CardSliderOne = () => {
-
+const CardSliderTwo = () => {
     const prevRef = useRef(null);
-    const nextRef = useRef(null);
-
-
+  const nextRef = useRef(null);
     return (
         <div>
             <>
@@ -166,5 +163,5 @@ const CardSliderOne = () => {
     );
 }
 
-export default CardSliderOne;
+export default CardSliderTwo;
 

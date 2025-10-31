@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import CardSliderOne from '@/components/CardSliderOne';
+import CardSliderTwo from '@/components/CardSliderTwo';
 
 const BlogIndex = () => {
 
@@ -120,8 +121,19 @@ const BlogIndex = () => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
-        <CardSliderOne />
-      </div>
+                  <CardSliderOne />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='slider-wrapper b-colo'>
+          <div className='container cccc'>
+            <div className='row'>
+              <div className='col-lg-12'>
+                <div className="fullwidth-slider">
+                  <CardSliderTwo />
+                </div>
               </div>
             </div>
           </div>

@@ -2280,7 +2280,11 @@ border-radius: 30px;
 }
 .slider-wrapper{
    position: relative;
-  overflow:hidden
+  overflow:hidden;
+   /* background-color: #f7f3f3; */
+}
+.b-colo{
+  /* background-color: #3f3f3f; */
 }
 .card-2{}
 .card-2 a{
@@ -2299,6 +2303,20 @@ border-radius: 30px;
  
   width: calc(100vw - var(--bs-gutter-x, 1.5rem));
   margin-right: calc(-50vw + 50%);
-  background-color: #f7f3f3;
+ 
   padding:60px 30px
+}
+.myswip-n .btn-cc{
+  width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color:#3f3f3f;
+    border: 2px solid #3f3f3f;
+}
+.myswip-n .swiper-next{
+ color: #ff8d2a;
+    border: 2px solid #ff8d2a;
+}
+.myswip-n .swiper-button-disabled{
+  opacity:0.1
 }
