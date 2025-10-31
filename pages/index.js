@@ -127,7 +127,7 @@ const BlogIndex = () => {
             </div>
           </div>
         </section>
-        <section className='slider-wrapper b-colo'>
+        {/* <section className='slider-wrapper b-colo'>
           <div className='container cccc'>
             <div className='row'>
               <div className='col-lg-12'>
@@ -137,7 +137,7 @@ const BlogIndex = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
       </div>
 

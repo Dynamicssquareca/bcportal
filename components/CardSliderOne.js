@@ -24,7 +24,7 @@ const CardSliderOne = () => {
         <div>
             <>
                 <Swiper
-                    slidesPerView={4}
+                    slidesPerView={3.5}
                     spaceBetween={30}
                     modules={[Navigation]}
                     onBeforeInit={(swiper) => {
@@ -37,10 +37,10 @@ const CardSliderOne = () => {
                         nextEl: nextRef.current,
                     }}
                     breakpoints={{
-                        0: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        992: { slidesPerView: 3 },
-                    }}
+            0: { slidesPerView: 1.2, spaceBetween: 15 },
+            768: { slidesPerView: 2.2, spaceBetween: 20 },
+            992: { slidesPerView: 3.5, spaceBetween: 24 },
+          }}
                     className="mySwiper"
                 >
                     <SwiperSlide>
