@@ -2281,10 +2281,10 @@ border-radius: 30px;
 .slider-wrapper{
    position: relative;
   overflow:hidden;
-   /* background-color: #f7f3f3; */
+   background-color: #f7f3f3;
 }
 .b-colo{
-  /* background-color: #3f3f3f; */
+  background-color: #3f3f3f;
 }
 .card-2{}
 .card-2 a{
