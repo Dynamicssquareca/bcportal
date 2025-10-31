@@ -2278,3 +2278,27 @@ border-radius: 30px;
 .news-section .card-body{
   
 }
+.slider-wrapper{
+   position: relative;
+  overflow:hidden
+}
+.card-2{}
+.card-2 a{
+}
+.card-2 a img{
+  width:100%;
+  margin-bottom:20px
+}
+.card-2 a h5{
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+.fullwidth-slider {
+ 
+  width: calc(100vw - var(--bs-gutter-x, 1.5rem));
+  margin-right: calc(-50vw + 50%);
+  background-color: #f7f3f3;
+  padding:60px 30px
+}

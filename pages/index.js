@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import CardSliderOne from '@/components/CardSliderOne';
 
 const BlogIndex = () => {
 
@@ -113,6 +110,18 @@ const BlogIndex = () => {
                     </h6>
                   </div>
                 </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className='slider-wrapper'>
+          <div className='container cccc'>
+            <div className='row'>
+              <div className='col-lg-12'>
+                <div className="fullwidth-slider">
+        <CardSliderOne />
+      </div>
               </div>
             </div>
           </div>
