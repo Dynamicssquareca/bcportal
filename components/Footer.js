@@ -24,7 +24,7 @@ const Footer = ({ faq }) => {
 
     return (
         <>
-            <FooterContactForm faq={faq} />
+            {/* <FooterContactForm faq={faq} /> */}
             <div className='footer-subscriber m-t-80'>
                 <div className='container'>
                     <div className='row'>

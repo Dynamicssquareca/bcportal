@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Offcanvas, OffcanvasHeader, OffcanvasBody } from 'reactstrap';
 import DropdownComponent from '@/components/DropdownComponent';
 import ModelBoxGetstatrd from './ModelBoxGetstatrd';
+import BlogSearch from './BlogSearch';
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggles = () => setIsOpen(!isOpen);
@@ -43,146 +44,19 @@ const Nav = () => {
     <>
       <nav id="navbar" className="navbar">
         <ul>
-          {/* <li className="dropdown dropdown-mega"><a href="#"><span>Services</span> <i className="bi bi-chevron-down"></i></a>
+          
+          <li className="dropdown"><a href="/memorials/"><span>Log In</span> <i className="bi bi-chevron-down"></i></a>
             <ul>
-              <li>
-                <div className='w-500'>
-                <a href="/services/salesforce-implementation/">
-                  <p>Salesforce Implementation</p>
-                  <span>Experienced team, proven methodology, successful implementations</span>
-                </a>
-                </div>
-                <div className='w-500'>
-                <a href="/services/salesforce-customization/">
-                  <p>Salesforce Customization</p>
-                  <span>Deep Salesforce expertise, tailored solutions, flawless integrations</span>
-                </a>
-                </div>
-                <div className='w-500'>
-                <a href="/services/salesforce-integration/">
-                  <p>Salesforce Integration</p>
-                  <span>Salesforce expertise, tailored solutions, flawless integrations</span>
-                </a>
-                </div>
-                <div className='w-500'>
-                <a href="/services/salesforce-training/">
-                  <p>Salesforce Training</p>
-                  <span>Expert training & ongoing support to maximize Salesforce adoption</span>
-                </a>
-                </div>
-                <div className='w-500'>
-                <a href="/services/salesforce-support/">
-                  <p>Salesforce Support</p>
-                  <span>Expert training & ongoing support to maximize Salesforce adoption</span>
-                </a>
-                </div>
-                <div className='w-500'>
-                <a href="/services/salesforce-optimization/">
-                  <p>Salesforce Optimization</p>
-                  <span>Optimize your Salesforce for maximum efficiency and ROI</span>
-                </a>
-                </div>
-              </li>
-
+              <li><a href="#">Susil</a></li>
+              <li><a href="/memorials/angel-headstone/">Dashboard</a></li>
+              <li><a href="/memorials/headstones/">Settings</a></li>
+              <li><a href="/memorials/urns/">Sign Out</a></li>
             </ul>
           </li>
-          <li className="dropdown dropdown-mega"><a href="#"><span>Solutions</span> <i className="bi bi-chevron-down"></i></a>
-            <ul>
-              <li>
-                <a href="/solutions/salesforce-small-business/">
-                  <p>Small Business</p>
-                  <span>Simple solutions to supercharge your small business</span>
-                </a>
-                <a href="/solutions/salesforce-sales-cloud/">
-                  <p>Sales Cloud</p>
-                  <span>The #1 CRM for driving sales pipeline & revenue growth</span>
-                </a>
-                <a href="/solutions/salesforce-service-cloud/">
-                  <p>Service Cloud</p>
-                  <span>Deliver exceptional customer service & build stronger relationships</span>
-                </a>
-                <a href="/solutions/salesforce-marketing-cloud/">
-                  <p>Marketing Cloud</p>
-                  <span>Automate marketing campaigns & personalize customer journeys</span>
-                </a>
-                <a href="/solutions/salesforce-commerce-cloud/">
-                  <p>Commerce Cloud</p>
-                  <span>Power your online store & deliver seamless omnichannel experiences</span>
-                </a>
-              </li>
-
-            </ul>
-          </li> */}
-          {/* <li><Link className="nav-link scrollto" href="/services/">Services</Link></li> */}
-          {/* <li><Link className="nav-link scrollto" href="/solutions/">Solutions</Link></li> */}
-          {/* <li><a className="nav-link scrollto" href="/">Industries</a></li> */}
-          {/* <li><a className="nav-link scrollto" href="/">Company</a></li> */}
-          <li className="dropdown"><a href="/memorials/"><span>Memorial Stones</span> <i className="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="/memorials/angel-headstone/">Angel Headstone</a></li>
-              <li><a href="/memorials/headstones/">Headstones</a></li>
-              <li><a href="/memorials/kerb-sets/">Kerb Sets</a></li>
-              <li><a href="/memorials/benches/">Memorial Benches</a></li>
-              <li><a href="/memorials/childrens-headstones/">Childrens Headstones</a></li>
-              <li><a href="/memorials/heart-headstones/">Heart Headstones</a></li>
-              <li><a href="/memorials/vases/">Vases</a></li>
-              <li><a href="/memorials/urns/">urns</a></li>
-            </ul>
-          </li>
-          <li><a className="nav-link scrollto" href="/about-us/">About Us</a></li>
-
-          <li><a style={{ color: '#a44400', fontWeight: 'bold' }} className="nav-link scrollto" href="/catalog-download/">Catalog</a></li>
-          <li><a className="nav-link" href="/blog/">Blogs</a></li>
-          <li><a className="nav-link scrollto" href="/contact-us/">Contact Us</a></li>
-          <li><a className='btn btn-one' href='/get-quote-now/'>Get a Quote</a></li>
-          <li><a className='btn btn-two' href='https://wa.me/9667584700'><span><i className="bi bi-whatsapp"></i></span></a></li>
-
-
-          {/* <li className="dropdown"><a href="#"><span>Drop Down</span> <i className="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li className="dropdown"><a href="#"><span>Deep Drop Down</span> <i className="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
-
-          <li className="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i className="bi bi-chevron-down"></i></a>
-            <ul>
-              <li>
-                <a href="#">Column 1 link 1</a>
-                <a href="#">Column 1 link 2</a>
-                <a href="#">Column 1 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 2 link 1</a>
-                <a href="#">Column 2 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 3 link 1</a>
-                <a href="#">Column 3 link 2</a>
-                <a href="#">Column 3 link 3</a>
-              </li>
-              <li>
-                <a href="#">Column 4 link 1</a>
-                <a href="#">Column 4 link 2</a>
-                <a href="#">Column 4 link 3</a>
-              </li>
-            </ul>
-          </li> */}
-
         </ul>
-
+        <div className='serc-nav'>
+           <BlogSearch />
+        </div>
 
         <i className="bi bi-list mobile-nav-toggle" onClick={toggles}></i>
         <div className='navbar-mobile'>
