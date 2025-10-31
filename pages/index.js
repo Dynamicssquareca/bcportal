@@ -1,393 +1,294 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Head from 'next/head';
-import ModelBox from '@/components/ModelBox';
+import Link from 'next/link';
 import Image from 'next/image';
-export default function Home() {
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const BlogIndex = ({ posts, categories }) => {
+  // "All" is default; visiblePostsCount controls "Load More"
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [visiblePostsCount, setVisiblePostsCount] = useState(6);
+
+  // Hero: first post; Most Recent: rest of posts (filtered if category selected)
+  const latestPost = posts.length > 0 ? posts[0] : null;
+  const filteredPosts =
+    selectedCategory === "all"
+      ? posts.length > 1 ? posts.slice(1) : []
+      : posts.filter(post => post.category && post.category._id === selectedCategory);
+  const visiblePosts = filteredPosts.slice(0, visiblePostsCount);
+
+  const buildImageUrl = (baseUrl, img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) return img;
+    return `${baseUrl.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
+  };
+
+  const getImageUrl = (img) =>
+    buildImageUrl(process.env.NEXT_PUBLIC_BLOG_API_Image, img);
+
+  const getProfileImageUrl = (img) =>
+    buildImageUrl(process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics, img);
+
+  const getExcerpt = (post) => {
+    if (post.excerpt) return post.excerpt;
+    if (post.content) {
+      const plainText = post.content.replace(/<[^>]+>/g, '');
+      return plainText.slice(0, 150) + (plainText.length > 150 ? '...' : '');
+    }
+    return '';
+  };
+
+
+  const getAuthorName = (post) =>
+    post.author && post.author.name ? post.author.name : 'Unknown';
+
+  // Helper function to limit the title to a specific character count (default 50)
+  const limitTitle = (title, limit = 50) => {
+    return title.length > limit ? title.substring(0, limit) + '...' : title;
+  };
 
 
 
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/`;
 
   return (
     <>
       <Head>
-        <title>Wholesale Memorial Headstones in the UK | Stone Discover UK</title>
+        <title>Wholesale Memorial Headstones Guides | Stone Discover UK</title>
         <meta
           name="description"
-          content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today."
+          content="Explore wholesale memorial headstone guides with Stone Discover UK. Resources for funeral trade, stonemasons & retailers to choose the best."
         />
-        <link rel="canonical" href="https://www.stonediscover.co.uk/" />
-        <meta property="og:locale" content="US" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Wholesale Memorial Headstones in the UK | Stone Discover UK" />
-        <meta property="og:description" content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today." />
-        <meta property="og:url" content="https://www.stonediscover.co.uk/" />
-        <meta property="og:site_name" content="Stone Discover UK" />
-        <meta property="og:image" content="https://www.stonediscover.co.uk/img/stone-home-o.jpeg" />
-        <meta property="og:image:width" content="200" />
-        <meta property="og:image:height" content="200" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Stone Discover UK" />
-        <meta name="twitter:title" content="Wholesale Memorial Headstones in the UK | Stone Discover UK" />
-        <meta name="twitter:description" content="Buy high-quality memorial headstones at wholesale prices in the UK. Ideal for funeral homes, stone retailers, and fabricators. Contact Stone Discover UK today." />
-        <meta name="twitter:image" content="https://www.stonediscover.co.uk/img/stone-home-o.jpeg" />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
-      <div className="hero-banner-one">
-        <Image
-          src="/img/banner/main-bg.jpg"
-          alt="Hero Banner"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'bottom' }}
-          priority
-          className='desh-top'
-        />
+      {/* Blog Hero Section */}
+      <div className="blog-hero">
+        <div className="container">
+          <div className="row justify-content-center">
+            {/* Left: Latest Post */}
+            <div className="col-xl-8">
+              <div className="blog-lates-card-one">
+                <span>Latest</span>
+                {latestPost && (
+                  <a href={`${latestPost.slug}`}>
+                    <h1>{limitTitle(latestPost.title, 80)}</h1>
+                  </a>
+                )}
+                {latestPost && (
+                  <div className="pic-poster-blog mt-3">
+                    <a href={`author/${latestPost.author.slug || latestPost.author._id}`}>
+                      <Image
+                        width={64}
+                        height={64}
+                        src={
+                          latestPost.author.profilePic
+                            ? getProfileImageUrl(latestPost.author.profilePic)
+                            : '/img/icons/user-avt.png'
+                        }
+                        alt="user avatar"
+                        className='rounded-circle'
+                      />
 
-        {/* Content over the image */}
-        <div className="relative z-10">
-          <div className="container">
-            <div className="row align-items-center justify-content-center">
-              <div className="col-lg-12 text-center">
-                <div className="hero-banner-content">
-                  <h1>Trusted Wholesale Granite Headstones Supplier</h1>
-                  <p>A Leading Granite Monuments Manufacturer and Exporter from India </p>
-                  <div className="hero-banner-btn">
-                    <ModelBox className="btn-three" headerText="Scale Your Store!" buttonText="Get Quote Now" />
-                    {/* <ModelBox className="btn-transparent" headerText="Scale Your Store!" buttonText="Request Catalogue" /> */}
+                    </a>
+                    <div className="av-info">
+                      <div className="av-name"><a href={`author/${latestPost.author.slug || latestPost.author._id}`}>{getAuthorName(latestPost)}</a></div>
+                      <div className="av-date">
+                        {new Date(latestPost.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'Date unknown'} <span className='m-22'>|</span> {latestPost.readtimes || 'read time'}min
+                      </div>
+                    </div>
+
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-lg-12'>
-                <div className='over-img'>
-                  <Image
-                  src="/img/banner/Granite-Headstones-Monuments.png"
-                  alt="Hero Banner"
-                  width={1024}
-                  height={368}
-                  className='mobile-new'
-                  priority
-                />
-                </div>
+                )}
 
               </div>
+              <div className='new-imag'>
+                <a href={`${latestPost.slug}`}> <Image src={
+                latestPost.metaimage
+                  ? getImageUrl(latestPost.metaimage)
+                  : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
+              } alt={latestPost.title} className="img-fluid" width={1200} height={628} priority /></a>
+               
+              </div>
             </div>
+          
           </div>
         </div>
       </div>
 
-      
-
-      <section className='about-us-section p-b-40'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-6 align-self-center'>
-              <div className='about-us-content'>
-                <h2>The legacy of <span>Stone Discover</span></h2>
-                <p>Stone Discover is the largest manufacturer and supplier of premium quality memorial granite headstones since 1984. We offer a complete range of natural stones in various forms, including headstone monuments, gravestones, memorials, and grave markers.</p>
-                <p>Our granite monuments are carefully selected, handcrafted, and sourced from quarries and factories owned by the MPG Group India, ensuring the highest quality standards. We pride ourselves on providing exceptional customer service, timely delivery, and competitive prices.</p>
-                <div className='d-flex-grd'>
-                  <div className='grif-list'>
-                    <span>38+</span>
-                    <p>Years of Expertise</p>
+      {/* Browse by Category Section */}
+      {/* <section className="py-5 over-hidd">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="blog-section-title">
+                <h2>Browse by Category</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={10}
+                pagination={{ clickable: true }}
+                breakpoints={{
+                  640: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 2 },
+                  1200: { slidesPerView: 4 }
+                }}
+                modules={[Pagination]}
+                className="mySwiper mySwiperNew"
+              >
+    
+                <SwiperSlide key="all">
+                  <div
+                    className={`blog-category-card-one  ${selectedCategory === "all" ? "active" : ""}`}
+                    onClick={() => { setSelectedCategory("all"); setVisiblePostsCount(6); }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <div><Image src="/img/icons/icons-01.png" className="mb-2" width={68} height={68} alt="icons" /></div>
+                    <span>All</span>
                   </div>
-                  <div className='grif-list'>
-                    <span>70+</span>
-                    <p>Countries</p>
-                  </div>
-                  <div className='grif-list'>
-                    <span>38+</span>
-                    <p>Memorial Shipped Annually</p>
-                  </div>
-                </div>
-                <a href='/about-us/' className='btn btn-four m-t-30' >Read More<span className="sr-only">about Stone Discover</span></a>
-              </div>
-            </div>
-
-            <div className='col-lg-6'>
-              <div className='about-us-image'>
-                <Image src='/img/webpages/about-main.png' alt='About Us' className='img-fluid' width={670} height={589} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-     
-      <section className='products-section-one m-p-02'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-12 text-center'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-20'>Any <span> Design</span>, Size, Color</h2>
-
-              </div>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-lg-12'>
-              <div className='card-02'>
-                <div className='card-02-item'>
-                  <a href="/memorials/book-headstones/">
-                    <Image src='/img/webpages/pic-01.png' alt='Balck Granite Book Headstone' className='img-fluid' width={256} height={471} />
-                    <h3>Book Headstone</h3>
-                  </a>
-                </div>
-                <div className='card-02-item'>
-                  <a href="/memorials/heart-headstones/">
-                    <Image src='/img/webpages/pic-02.png' alt='Balck Granite Heart Headstone' className='img-fluid' width={256} height={471} />
-                    <h3>Heart Headstone</h3>
-                  </a>
-                </div>
-                <div className='card-02-item'>
-                  <a href="/memorials/headstones/">
-                    <Image src='/img/webpages/pic-03.png' alt='Balck Granite Headstones' className='img-fluid' width={256} height={471} />
-                    <h3>Headstones</h3>
-                  </a>
-                </div>
-                <div className='card-02-item'>
-                  <a href="/memorials/angel-headstone/">
-                    <Image src='/img/webpages/pic-04.png' alt='Balck Granite Angels Headstone' className='img-fluid' width={256} height={471} />
-                    <h3>Angels Headstone</h3>
-                  </a>
-                </div>
-                <div className='card-02-item'>
-                  <a href="/memorials/vases/">
-                    <Image src='/img/webpages/pic-05.png' alt='Balck Granite Vases' className='img-fluid' width={256} height={471} />
-                    <h3>Vases</h3>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-9'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Pillars of Strength</h2>
-                <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products—but trust, consistency, and partnership.</p>
-              </div>
-
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-lg-12'>
-              <div className='card-05'>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-1.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Finest Quality Stones</span>
-                  <p>We ensure that each headstone is crafted with great attention to detail</p>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-2.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Competitive Prices</span>
-                  <p>Get Quality Headstones at the Best Rates!</p>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-3.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>On-time Delivery</span>
-                  <p>Ensuring Your Headstones Arrive When You Need Them!</p>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-4.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Bulk Order</span>
-                  <p>Streamline Your Business with Our Premium Headstones!</p>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-5.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Shipping Worldwide</span>
-                  <p>Delivering Quality Headstones Everywhere!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className='content-section-two p-b-80 p-t-100 m-p-03'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-6 align-items-center'>
-              <div className='left-card-01-img'>
-                <Image src='/img/webpages/pic-06.png' alt='About Us' className='img-fluid' width={553} height={545} />
-              </div>
-            </div>
-            <div className='col-lg-6 d-flex'>
-              <div className='card-03'>
-                <ul>
-                  <li className='m-b-20'>
-                    <h3 className='m-b-20'>Memorial Wholesaler</h3>
-                    <p>We supply memorials to monument suppliers, wholesalers, and fabricators throughout the UK. As the largest stockist of granite headstones in the country, we are known for our reliable delivery service and exceptional quality.</p>
-                  </li>
-                  <li className='m-b-20'>
-                    <h3 className='m-b-20'>Premium Granite Colors</h3>
-                    <p>We offer a variety of premium granite colors, including Absolute Indian Black, Bahama Blue, Indian Aurora, Indian Impala, Imperial Red, Light Grey Granite, and many more. Imported varieties such as Black Pearl, Olive Green, and South African Impala are also available for bespoke designs.</p>
-                  </li>
-                  <li>
-                    <h3 className='m-b-20'>Bespoke Designs</h3>
-                    <p>We are able to produce monuments of any custom dimensions, finishes, and engraving options to meet your local market needs. We can also replicate the design in a variety of granite colors depending on availability and preference.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </section>
-
-      <section className='p-b-100 m-p-04'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-9'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Memorial Collection <span>Crafted</span> for All</h2>
-                <p>We offer a wide range of expertly crafted memorial designs to suit every need and occasion. From classic headstones and kerbsets to elegant bench and heart memorials, our collection also includes vases, urns, angel tributes, and dedicated children’s memorials. Each piece is made with care, precision, and a deep respect for the memories it honors. Contact us directly for competitive quotes and tailored solutions.</p>
-              </div>
-            </div>
-          </div>
-          <div className='row g-2 sliding-row'>
-            <div className='col-lg-2 col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/benches/">
-                    <img src='/img/webpages/pic-07.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Bench</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='col-lg-2 col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/kerb-sets/">
-                    <img src='/img/webpages/pic-08.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Kerbsets</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='col-lg-2 col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/vases/">
-                    <img src='/img/webpages/pic-09.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Flower Vases</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='col-lg-2 col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/urns/">
-                    <img src='/img/webpages/pic-10.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Urns</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='col-lg-2 col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/angel-headstone/">
-                    <img src='/img/webpages/pic-11.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Angle Headstones</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='col-lg-2  col-md-4 sliding-col'>
-              <div className='card-04'>
-                <div className='card-04-item text-center'>
-                  <a href="/memorials/childrens-headstones/">
-                    <img src='/img/webpages/pic-12.jpg' alt='About Us' className='img-fluid' />
-                    <h4>Children Memorial</h4>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* <section className='p-t-80'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-9'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Join Hands with a Reliable <span>Tombstone Supplier</span></h2>
-                <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products—but trust, consistency, and partnership.</p>
-              </div>
-              <div className='button-center-new text-center'>
-                <a href='/' className='btn btn-three'>Request a Quote</a>
-                <a href='/' className='btn btn-four'>Request Catalogue</a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> */}
-      <section className='p-b-30'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-9'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Why Choose Us?</h2>
-                <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products—but trust, consistency, and partnership.</p>
-              </div>
-
-            </div>
-          </div>
-
-          <div className='row'>
-            <div className='col-lg-12'>
-              <div className='card-05'>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-1.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Quality Craftmanship</span>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-2.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Nationwide Delivery</span>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-3.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>24*7 Customer Service</span>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-4.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Custom Designs</span>
-                </div>
-                <div className='card-05-item'>
-                  <Image src='/img/icons/icons-5.png' alt='About Us' className='img-fluid' width={58} height={76} />
-                  <span>Experienced Masons</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* <section className='faq'>
-        <div className='container'>
-          <div className='row justify-content-center'>
-            <div className='col-lg-9'>
-              <div className='heading-center p-b-40'>
-                <h2 className='m-b-30'>Frequently Asked <span>Questions</span></h2>
-              </div>
-
+                </SwiperSlide>
+                {(categories || []).map(cat => (
+                  <SwiperSlide key={cat._id}>
+                    <div
+                      className={`blog-category-card-one  ${selectedCategory === cat._id ? "active" : ""}`}
+                      onClick={() => { setSelectedCategory(cat._id); setVisiblePostsCount(6); }}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div>
+                        <Image src={getImageUrl(cat.categoryimg) || '/img/icons/icons-01.png'} alt="icon" className="mb-2" width={68} height={68} />
+                      </div>
+                      <span>{cat.title}</span>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
         </div>
       </section> */}
 
+      {/* Most Recent Section */}
+      <section className="py-4 p-t-60">
+        <div className="container">
+          <div className="row mb-1">
+            <div className="col-12">
+              <div className="blog-section-title">
+                <h2>All Blogs</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            {visiblePosts.length ? (
+              visiblePosts.map(post => (
 
 
+                <div key={post.slug} className='col-lg-4'>
+                  <div className='card-blog-02'>
+                    <div className="card-title">
+                      <Link href={`${post.slug}`}>
+                        {post.banner && (
+                          <Image src={getImageUrl(post.banner)} alt={post.title} className="img-fluid" width={400} height={300} />
+                        )}
+                        <h3>{post.title}</h3>
+                      </Link>
+                    </div>
+                    <div className='card-post-ava'>
+                      <Link href={`author/${post.author.slug || post.author._id}`}>
+                        <Image
+                          width={44}
+                          height={44}
+                          src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/icons/user-avt.png'}
+                          alt="user avatar"
+                          className='rounded-circle'
+                        />
+                        <div className='av-info'>
+                          <div className='av-name-a'>{post.author && post.author.name ? post.author.name : 'Unknown'}</div>
+                          <div className='av-date-b'>{new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'Date unknown'} <span>|</span> {post.readtimes || ''}min</div>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                // <div key={post.slug} className="col-lg-4 mb-4">
+                //   <div className="card-blog-02">
+                //     <div className="card-img-top">
+                //       {post.banner && (
+                //         <img src={getImageUrl(post.banner)} alt={post.title} className="img-fluid" />
+                //       )}
+                //     </div>
+                //     <div className="card-body">
+                //       <a href={`${post.slug}`}>
+                //         <h3 className="card-title">{limitTitle(post.title)}</h3>
+                //       </a>
+                //       <p className="card-text">{getExcerpt(post)}</p>
+                //     </div>
+                //     <div className="card-footer d-flex align-items-center">
+                //       <a href={`author/${post.author.slug || post.author._id}`}>
+                //         <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                //         <Image
+                //             width={44}
+                //             height={44}
+                //             src={post.author.profilePic ? getImageUrl(post.author.profilePic) : '/img/icons/user-avt.png'}
+                //             alt="user avatar"
+                //           />
+                //           <div className="ms-2">
+                //             <div>{post.author && post.author.name ? post.author.name : 'Unknown'}</div>
+                //           </div>
+                //         </div>
+                //       </a>
+                //       <div className="small ms-auto">
+                //         {new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'Date unknown'} | {post.readTime || ''}
+                //       </div>
+                //     </div>
+                //   </div>
+                // </div>
+              ))
+            ) : (
+              <p>No posts found for this category.</p>
+            )}
+          </div>
+          {filteredPosts.length > visiblePostsCount && (
+            <div className="text-center">
+              <button className="btn btn-primary" onClick={() => setVisiblePostsCount(visiblePostsCount + 3)}>
+                Load More
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
     </>
   );
+};
+
+export async function getStaticProps() {
+  const blogApi = process.env.NEXT_PUBLIC_BLOG_API_URL;
+  const categoryApi = process.env.NEXT_PUBLIC_CATEGORY_API_URL;
+  try {
+    const [blogRes, categoryRes] = await Promise.all([fetch(blogApi), fetch(categoryApi)]);
+    if (!blogRes.ok) throw new Error('Failed to fetch posts');
+    const posts = await blogRes.json();
+    posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    let categories = [];
+    if (categoryRes.ok) {
+      categories = await categoryRes.json();
+    }
+    return { props: { posts, categories }, revalidate: 60 };
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    return { props: { posts: [], categories: [] }, revalidate: 60 };
+  }
 }
+
+export default BlogIndex;

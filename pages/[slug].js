@@ -19,10 +19,10 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
   }
   if (!post) return <p>Post not found</p>;
 
-  // const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`;
+  // const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}${post.slug}/`;
   const canonicalUrl = post?.slug
-  ? `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`
-  : `${process.env.NEXT_PUBLIC_SITE_URL}blog/`;
+  ? `${process.env.NEXT_PUBLIC_SITE_URL}${post.slug}/`
+  : `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
   const getImageUrl = (img) => {
     if (!img) return '';
@@ -118,7 +118,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
               <li className="breadcrumb-item"><Link href="/">Home</Link></li>
               <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
               <li className="breadcrumb-item active" aria-current="page">{post.readtimes || ' '} min reading in  — {post.category && post.category.slug ? (
-                <Link href={`/blog/category/${post.category.slug}`}><span>{post.category.title}</span></Link>
+                <Link href={`/category/${post.category.slug}`}><span>{post.category.title}</span></Link>
               ) : (
                 "Uncategorized"
               )}</li>
@@ -134,7 +134,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                   <div className='combo-sect'>
                     <div className="d-flex blog-author">
                       <span>
-                        By <Link href={`/blog/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
+                        By <Link href={`/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
                       </span>
                       <span className="mx-2">|</span>
                       <span>{formatDate(post.createdAt)}</span>
@@ -174,7 +174,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                 {/* Author Profile Card */}
                 <div className="card card-avt my-5">
                   <div className="card-body">
-                    <Link href={`/blog/author/${post.author.slug || post.author._id}`}>
+                    <Link href={`/author/${post.author.slug || post.author._id}`}>
                       <Image
                         src={`${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`}
                         alt={post.author.name}
@@ -228,7 +228,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                     <ul className="list-group-tba">
                       {categories.map(cat => (
                         <li key={cat._id} className="list-group-cu">
-                          <Link href={`/blog/category/${cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                          <Link href={`/category/${cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')}`}>
                             {cat.title}
                           </Link>
                         </li>
@@ -251,7 +251,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                   <div className="card h-100 card-222">
                     <div className='card-image-p'>
                       {rp.banner && (
-                        <Link href={`/blog/${rp.slug}`}>
+                        <Link href={`/${rp.slug}`}>
                           <Image
                             src={getImageUrl(rp.banner)}
                             alt={rp.title}
@@ -264,7 +264,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                       <div className='cate-overl'>
                         {post.category && post.category.slug ? (
 
-                          <Link href={`/blog/category/${post.category.slug}`}><span>{post.category.title}</span></Link>
+                          <Link href={`/category/${post.category.slug}`}><span>{post.category.title}</span></Link>
                         ) : (
                           "Uncategorized"
                         )}
@@ -273,20 +273,20 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                     <div className="card-body">
                       <div className="d-flex blog-author">
                         <span>
-                          <Link href={`/blog/author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
+                          <Link href={`/author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
                         </span>
                         <span className="mx-2">|</span>
                         <span>{formatDate(rp.createdAt)}</span>
                         <span className="mx-2">|</span>
                         <span>{rp.readtimes || ' '}m Reading</span>
                       </div>
-                      <Link href={`/blog/${rp.slug}`}>
+                      <Link href={`/${rp.slug}`}>
                         <h5 className="card-title">{rp.title}</h5>
                       </Link>
                       <p className="card-text">
                         {rp.excerpt.slice(0, 50) + '...' || rp.content.replace(/<[^>]+>/g, '').slice(0, 50) + '...'}
                       </p>
-                      <Link href={`/blog/${rp.slug}`}>Read More</Link>
+                      <Link href={`/${rp.slug}`}>Read More</Link>
                     </div>
                   </div>
                 </div>
