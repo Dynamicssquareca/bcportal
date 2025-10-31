@@ -35,27 +35,19 @@ export default function Home() {
 
       <div className="hero-banner-one">
         <Image
-          src="/img/banner/hero-banner-three.png"
+          src="/img/banner/main-bg.jpg"
           alt="Hero Banner"
           fill
           style={{ objectFit: 'cover', objectPosition: 'bottom' }}
           priority
           className='desh-top'
         />
-        <Image
-          src="/img/banner/mobile-bg.png"
-          alt="Hero Banner"
-          fill
-          className='mobile-top'
-          style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
-          priority
-        />
 
         {/* Content over the image */}
         <div className="relative z-10">
           <div className="container">
             <div className="row align-items-center justify-content-center">
-              <div className="col-lg-9 text-center">
+              <div className="col-lg-12 text-center">
                 <div className="hero-banner-content">
                   <h1>Trusted Wholesale Granite Headstones Supplier</h1>
                   <p>A Leading Granite Monuments Manufacturer and Exporter from India </p>
@@ -66,74 +58,64 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <section className='quote-us-section'>
-        <div className='container'>
-          <div className='row align-items-center justify-content-center'>
-            <div className='col-lg-12 text-center'>
-              <div className='quote-us-content'>
-                <p>We proudly serve dealers and wholesalers across the UK, offering memorial stones in bulk quantities that are carefully designed and produced in our industries to meet the highest quality standards for the customers.</p>
+            <div className='row'>
+              <div className='col-lg-12'>
+                <div className='over-img'>
+                  <Image
+                  src="/img/banner/Granite-Headstones-Monuments.png"
+                  alt="Hero Banner"
+                  width={1024}
+                  height={368}
+                  className='mobile-new'
+                  priority
+                />
+                </div>
 
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      
 
       <section className='about-us-section p-b-40'>
         <div className='container'>
           <div className='row'>
-            <div className='col-lg-6'>
+            <div className='col-lg-6 align-self-center'>
               <div className='about-us-content'>
-                <h2>About Us</h2>
-                <p>Stone Discover UK is a trusted name in the memorial industry, dedicated to supplying memorial stones all over the United Kingdom. Whether you are looking for an Ogee, Kerb set, Heart-shaped, or Angel memorial, we have a wide range of memorials to suit all kinds of needs.</p>
-
-                <p>Our skilled professionals ensure that each piece is thoughtfully designed and crafted with care and precision, reflecting the memory of the deceased. We also do custom designs by adding memorial flower vases and graveside ornaments to add a personal touch to the memorial.</p>
-                <p>With warehouses in Liverpool and Southampton, we ensure safe packaging and prompt delivery. Please feel free to visit our showrooms for any queries or further guidance.</p>
+                <h2>The legacy of <span>Stone Discover</span></h2>
+                <p>Stone Discover is the largest manufacturer and supplier of premium quality memorial granite headstones since 1984. We offer a complete range of natural stones in various forms, including headstone monuments, gravestones, memorials, and grave markers.</p>
+                <p>Our granite monuments are carefully selected, handcrafted, and sourced from quarries and factories owned by the MPG Group India, ensuring the highest quality standards. We pride ourselves on providing exceptional customer service, timely delivery, and competitive prices.</p>
+                <div className='d-flex-grd'>
+                  <div className='grif-list'>
+                    <span>38+</span>
+                    <p>Years of Expertise</p>
+                  </div>
+                  <div className='grif-list'>
+                    <span>70+</span>
+                    <p>Countries</p>
+                  </div>
+                  <div className='grif-list'>
+                    <span>38+</span>
+                    <p>Memorial Shipped Annually</p>
+                  </div>
+                </div>
                 <a href='/about-us/' className='btn btn-four m-t-30' >Read More<span className="sr-only">about Stone Discover</span></a>
               </div>
             </div>
 
             <div className='col-lg-6'>
               <div className='about-us-image'>
-                <Image src='/img/webpages/about-us-pic.png' alt='About Us' className='img-fluid' width={553} height={545} />
+                <Image src='/img/webpages/about-main.png' alt='About Us' className='img-fluid' width={670} height={589} />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className='p-t-40 p-b-40 m-p-30'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-lg-4 d-flex'>
-              <div className='card-01'>
-                <Image src='/img/icons/add-location-alt.png' alt='Our Location' className='img-fluid' width={48} height={49} />
-                <h3>UK Presence</h3>
-                <p>We are based in Liverpool and Southampton, where we maintain a large inventory of catalog items for immediate delivery. As the largest stockist of headstones in the UK. Our manufacturing facility is located in Alinagar, Chetlapotham, Telangana, Southern India.</p>
-              </div>
-            </div>
-            <div className='col-lg-4 d-flex'>
-              <div className='card-01'>
-                <Image src='/img/icons/delivery-truck-speed.png' alt='Seamless Delivery' className='img-fluid' width={48} height={49} />
-                <h3>Quick Turnaround</h3>
-                <p>We keep standard catalogue items in stock for quick delivery. If you need special bespoke designs or made-to-order items, we have one of the fastest delivery times in the industry, taking just 7 to 8 weeks from our factory in India.</p>
-              </div>
-            </div>
-            <div className='col-lg-4 d-flex'>
-              <div className='card-01'>
-                <Image src='/img/icons/handyman.png' alt='Timeless Craftsmanship' className='img-fluid' width={48} height={49} />
-                <h3>Timeless Craftsmanship</h3>
-                <p>Our factory in India is powered by skilled craftsmen who expertly create memorials in any bespoke design you need. Every piece is made using the finest granite and detail-focused workmanship.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
+     
       <section className='products-section-one m-p-02'>
         <div className='container'>
           <div className='row'>
@@ -176,6 +158,49 @@ export default function Home() {
                     <Image src='/img/webpages/pic-05.png' alt='Balck Granite Vases' className='img-fluid' width={256} height={471} />
                     <h3>Vases</h3>
                   </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='container'>
+          <div className='row justify-content-center'>
+            <div className='col-lg-9'>
+              <div className='heading-center p-b-40'>
+                <h2 className='m-b-30'>Pillars of Strength</h2>
+                <p>Whether you’re a high-volume buyer or expanding your product line, our team is here to support your growth. We understand the B2B dynamics of the memorial industry and deliver not just products—but trust, consistency, and partnership.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div className='row'>
+            <div className='col-lg-12'>
+              <div className='card-05'>
+                <div className='card-05-item'>
+                  <Image src='/img/icons/icons-1.png' alt='About Us' className='img-fluid' width={58} height={76} />
+                  <span>Finest Quality Stones</span>
+                  <p>We ensure that each headstone is crafted with great attention to detail</p>
+                </div>
+                <div className='card-05-item'>
+                  <Image src='/img/icons/icons-2.png' alt='About Us' className='img-fluid' width={58} height={76} />
+                  <span>Competitive Prices</span>
+                  <p>Get Quality Headstones at the Best Rates!</p>
+                </div>
+                <div className='card-05-item'>
+                  <Image src='/img/icons/icons-3.png' alt='About Us' className='img-fluid' width={58} height={76} />
+                  <span>On-time Delivery</span>
+                  <p>Ensuring Your Headstones Arrive When You Need Them!</p>
+                </div>
+                <div className='card-05-item'>
+                  <Image src='/img/icons/icons-4.png' alt='About Us' className='img-fluid' width={58} height={76} />
+                  <span>Bulk Order</span>
+                  <p>Streamline Your Business with Our Premium Headstones!</p>
+                </div>
+                <div className='card-05-item'>
+                  <Image src='/img/icons/icons-5.png' alt='About Us' className='img-fluid' width={58} height={76} />
+                  <span>Shipping Worldwide</span>
+                  <p>Delivering Quality Headstones Everywhere!</p>
                 </div>
               </div>
             </div>
