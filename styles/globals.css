@@ -113,7 +113,7 @@ a {
   scroll-behavior: smooth;
   --font-mono: "Poppins", sans-serif;
   --font-sec: "Open Sans", sans-serif;
-  --primary: #aa7d4a;
+  --primary: #f68b1f;
   --primary-dark: #d95404;
   --secondary: #4a4a4a;
   --secondary-dark: #000000;
@@ -203,6 +203,9 @@ p {
   font-family: var(--font-sec);
 }
 ul li {
+}
+main{
+ margin-top: 120px;
 }
 
 /*button*/
@@ -2089,23 +2092,23 @@ border-radius: 30px;
 .categories a {
   text-decoration: none;
   color: #7a7a7a;
-  font-weight: 500;
+ padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 600;
   font-size: 15px;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .categories a:hover {
-  color: #000;
+   background-color: var(--primary);
+  color: #fff;
+ 
 }
 
-.categories .active {
-  background-color: #f68b1f;
-  color: #fff;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-}
+/* .categories .active {
+ 
+} */
 
 .divider {
   color: #cfcfcf;
@@ -2231,7 +2234,7 @@ border-radius: 30px;
 /* Hover effect for links */
 .news-section a:hover h5,
 .news-section a:hover h6 {
-  color: #f68b1f;
+  color: var(--primary);
   transition: color 0.3s ease;
 }
 .news-section .card{
@@ -2359,7 +2362,7 @@ font-size: 16px;
   font-size: 14px;
 }
 .form-subscribes .form-control{
-  padding: .775rem 1.3rem;
+  padding: 1rem 1.7rem;
   margin-bottom: 15px;
 }
 .submitscr .btn{

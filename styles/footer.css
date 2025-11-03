@@ -58,7 +58,7 @@
 }
 
 .footer .footer-top {
-  background-color: #ff8d2a;
+  background-color: var(--primary);
   padding: 200px 0 30px 0;
   background-blend-mode: hard-light;
   background-image: linear-gradient(to bottom, #777, #777);

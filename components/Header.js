@@ -26,7 +26,9 @@ const Header = () => {
 
     return (
         <>
-            <header id="header" className={`header ${isFixed ? 'fixed header-scrolled' : ''}`}>
+            {/* <header id="header" className={`header ${isFixed ? 'fixed header-scrolled' : ''}`}> */}
+              <div className='fixed-header'>
+                <header id="header" className="header">
                 <div className="container p-d-20 d-flex align-items-center justify-content-between">
                     <a href="/" className="logo d-flex align-items-center">
                         <Image src="/bc-partner-logo.png" alt="bc-partner-logo" width={198} height={44} />
@@ -36,6 +38,7 @@ const Header = () => {
                 </div>
             </header>
              <CategoryNav />
+              </div>
         </>
     );
 }
