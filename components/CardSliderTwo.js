@@ -1,6 +1,6 @@
 
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
@@ -18,6 +18,22 @@ const CardSliderTwo = () => {
 
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const [swiperInstance, setSwiperInstance] = useState(null);
+
+    // Wait until refs are ready, then attach navigation
+    useEffect(() => {
+        if (
+            swiperInstance &&
+            prevRef.current &&
+            nextRef.current &&
+            swiperInstance.params
+        ) {
+            swiperInstance.params.navigation.prevEl = prevRef.current;
+            swiperInstance.params.navigation.nextEl = nextRef.current;
+            swiperInstance.navigation.init();
+            swiperInstance.navigation.update();
+        }
+    }, [swiperInstance]);
 
 
     return (
@@ -27,15 +43,7 @@ const CardSliderTwo = () => {
                     slidesPerView={3.5}
                     spaceBetween={30}
                     modules={[Navigation]}
-                    onBeforeInit={(swiper) => {
-                        // Attach navigation dynamically
-                        swiper.params.navigation.prevEl = prevRef.current;
-                        swiper.params.navigation.nextEl = nextRef.current;
-                    }}
-                    navigation={{
-                        prevEl: prevRef.current,
-                        nextEl: nextRef.current,
-                    }}
+                    onSwiper={setSwiperInstance}
                     breakpoints={{
                         0: { slidesPerView: 1.2, spaceBetween: 15 },
                         768: { slidesPerView: 2.2, spaceBetween: 20 },
@@ -68,7 +76,7 @@ const CardSliderTwo = () => {
                                 className=""
                             >
                                 <Image
-                                    src="/img/demo-2.jpg"
+                                    src="/img/demo-3.jpg"
                                     alt="News 1"
                                     width={320}
                                     height={80}
@@ -86,7 +94,7 @@ const CardSliderTwo = () => {
                                 className=""
                             >
                                 <Image
-                                    src="/img/demo-2.jpg"
+                                    src="/img/demo-4.jpg"
                                     alt="News 1"
                                     width={320}
                                     height={80}
@@ -122,7 +130,7 @@ const CardSliderTwo = () => {
                                 className=""
                             >
                                 <Image
-                                    src="/img/demo-2.jpg"
+                                    src="/img/demo-3.jpg"
                                     alt="News 1"
                                     width={320}
                                     height={80}
@@ -140,7 +148,7 @@ const CardSliderTwo = () => {
                                 className=""
                             >
                                 <Image
-                                    src="/img/demo-2.jpg"
+                                    src="/img/demo-4.jpg"
                                     alt="News 1"
                                     width={320}
                                     height={80}
