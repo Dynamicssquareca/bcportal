@@ -31,9 +31,7 @@ const Footer = ({ faq }) => {
                        
                         <div className='col-lg-8 align-self-center'>
                             <div className='subsc-head-right'>
-                                <div className='subsc-head-right-r'>
                                     <FormSubscribe />
-                                </div>
                             </div>
                         </div>
                     </div>
