@@ -121,7 +121,25 @@ const BlogPost = () => {
 
               </div>
             </div>
-            {/* Sidebar (4 columns): Table of Contents & Categories */}
+           <div className='col-lg-4'>
+              <div className='side-blog'>
+                <div className='adv-pic'>
+                  <a href="#"><img src="/img/forber-03.png" alt="forber-03" /></a>
+                </div>
+                <div className='adv-btn'>
+                  <a href="#">Ask a Question</a>
+                </div>
+                <div className='list-se'>
+                  <h4>More from WebSan Solutions</h4>
+                  <div className='list-a'>
+                    <a href="#">Wendy Graham is the first woman Plant Manager in the 97 years of Ford’s iconic</a>
+                     <a href="#">Wendy Graham is the first woman Plant Manager in the 97 years of Ford’s iconic</a>
+                      <a href="#">Wendy Graham is the first woman Plant Manager in the 97 years of Ford’s iconic</a>
+                       <a href="#">Wendy Graham is the first woman Plant Manager in the 97 years of Ford’s iconic</a>
+                  </div>
+                </div>
+              </div>
+           </div>
 
           </div>
 

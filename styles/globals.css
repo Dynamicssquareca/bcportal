@@ -2419,3 +2419,32 @@ color: #e3e3e3;
   padding-top: 20px;
     text-decoration: underline
 }
+.adv-pic{
+  margin-bottom:20px
+}
+.adv-btn{ margin-bottom:30px}
+.adv-btn a{
+  text-align: center;
+    display: block;
+    border: 1px solid #f68b1f;
+    padding: 15px 0px;
+    font-size: 22px;
+    font-weight: 600;
+    font-size: 22px;
+}
+.list-se h4{
+  font-size: 24px;
+  font-weight: 600;
+   margin-bottom:20px
+}
+.list-a a{
+  display: block;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    color: #3f3f3f;
+    font-size: 15px;
+}
+.list-a a:last-child {
+  border: none;
+}
