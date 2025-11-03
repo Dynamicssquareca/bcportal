@@ -48,17 +48,29 @@ const Footer = ({ faq }) => {
                                 </a>
                           
                             </div>
-                         
-
+                            <div className='col-lg-8 align-self-center'>
+                                <div className='footer-nav'>
+                                    <a href="#">About The Manufacturer</a>
+                                    <span>|</span>
+                                    <a href="#">Contact Us</a>
+                                    <span>|</span>
+                                    <a href="#">Privacy Policy</a>
+                                    <span>|</span>
+                                    <a href="#">Terms of Use</a>
+                                    <span>|</span>
+                                    <a href="#">Cookies Policy</a>
+                                </div>
+                            </div>
+                        
                         </div>
                     </div>
 
                 </div>
-                {/* <div className='bottom-footer'>
+                <div className='bottom-footer'>
                     <div className="container">
                         <div className="copyright">© Copyright 2025 websitename UK, Inc. All rights reserved. Various trademarks held by their respective owners.</div>
                     </div>
-                </div> */}
+                </div>
             </footer>
             <ScrollToTopButton />
         </>

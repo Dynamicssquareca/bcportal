@@ -18,7 +18,7 @@ const BlogIndex = () => {
         />
         <link rel="canonical" />
       </Head>
-      <div className='bc-home-intro card'>
+      <div className='bc-home-intro'>
         <section className="news-section py-5 bg-white">
           <div className="container">
             <div className="row g-4 align-items-stretch">
