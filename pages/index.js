@@ -116,29 +116,58 @@ const BlogIndex = () => {
           </div>
         </section>
 
-        <section className='slider-wrapper'>
-          <div className='container cccc'>
+        <section className='slider-wrapper p-b-60'>
+          <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="#">View all</a></span></div>
                   <CardSliderOne />
                 </div>
               </div>
             </div>
           </div>
         </section>
-        {/* <section className='slider-wrapper b-colo'>
-          <div className='container cccc'>
+
+         <section className='slider-wrapper p-b-60'>
+          <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
-                <div className="fullwidth-slider">
-                  <CardSliderTwo />
+                <div className="fullwidth-slider fullwidth-slider-colo">
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Product Updates</h2> <span className=''><a style={{color:'#fff'}} href="#">View all</a></span></div>
+                   <CardSliderTwo />
                 </div>
               </div>
             </div>
           </div>
-        </section> */}
+        </section>
 
+        <section className='slider-wrapper p-b-60'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-lg-12'>
+                <div className="fullwidth-slider">
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="#">View all</a></span></div>
+                  <CardSliderOne />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+         <section className='slider-wrapper p-b-60'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-lg-12'>
+                <div className="fullwidth-slider fullwidth-slider-colo">
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{color:'#fff'}} href="#">View all</a></span></div>
+                   <CardSliderTwo />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+       
       </div>
 
     </>

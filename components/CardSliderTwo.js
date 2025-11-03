@@ -15,13 +15,16 @@ import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
 const CardSliderTwo = () => {
+
     const prevRef = useRef(null);
-  const nextRef = useRef(null);
+    const nextRef = useRef(null);
+
+
     return (
         <div>
             <>
                 <Swiper
-                    slidesPerView={4}
+                    slidesPerView={3.5}
                     spaceBetween={30}
                     modules={[Navigation]}
                     onBeforeInit={(swiper) => {
@@ -34,14 +37,14 @@ const CardSliderTwo = () => {
                         nextEl: nextRef.current,
                     }}
                     breakpoints={{
-                        0: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        992: { slidesPerView: 3 },
+                        0: { slidesPerView: 1.2, spaceBetween: 15 },
+                        768: { slidesPerView: 2.2, spaceBetween: 20 },
+                        992: { slidesPerView: 3.5, spaceBetween: 24 },
                     }}
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -59,7 +62,7 @@ const CardSliderTwo = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -77,7 +80,7 @@ const CardSliderTwo = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -95,7 +98,7 @@ const CardSliderTwo = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -107,13 +110,13 @@ const CardSliderTwo = () => {
                                     height={80}
                                     className="rounded-3 object-fit-cover flex-shrink-0"
                                 />
-                                <h5>Daily Manufacturing News Digest – the industry stories you should be aware of today</h5>
+                                <h5>New report warns skills shortages threaten circular economy progress</h5>
 
                             </Link>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -125,13 +128,13 @@ const CardSliderTwo = () => {
                                     height={80}
                                     className="rounded-3 object-fit-cover flex-shrink-0"
                                 />
-                                <h5>Daily Manufacturing News Digest – the industry stories you should be aware of today</h5>
+                                <h5>Pennine Healthcare welcomes students to explore careers in healthcare manufacturing</h5>
 
                             </Link>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className='card-2'>
+                        <div className='card-2 card-white'>
                             <Link
                                 href="#"
                                 className=""
@@ -150,8 +153,8 @@ const CardSliderTwo = () => {
                     </SwiperSlide>
 
                 </Swiper>
-                <div className="slider-nav position-absolute d-flex gap-2 myswip-n" style={{ right: 30, bottom: "10px" }}>
-                    <button ref={prevRef} className="swiper-prev btn-cc">
+                <div className="slider-nav position-absolute d-flex gap-2 myswip-n" style={{ right: 30, bottom: "30px" }}>
+                    <button ref={prevRef} className="swiper-prev btn-cc btn-cc-one">
                         <i className="bi bi-arrow-left"></i>
                     </button>
                     <button ref={nextRef} className="swiper-next  btn-cc">

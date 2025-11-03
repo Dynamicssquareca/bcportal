@@ -37,10 +37,10 @@ const CardSliderOne = () => {
                         nextEl: nextRef.current,
                     }}
                     breakpoints={{
-            0: { slidesPerView: 1.2, spaceBetween: 15 },
-            768: { slidesPerView: 2.2, spaceBetween: 20 },
-            992: { slidesPerView: 3.5, spaceBetween: 24 },
-          }}
+                        0: { slidesPerView: 1.2, spaceBetween: 15 },
+                        768: { slidesPerView: 2.2, spaceBetween: 20 },
+                        992: { slidesPerView: 3.5, spaceBetween: 24 },
+                    }}
                     className="mySwiper"
                 >
                     <SwiperSlide>
@@ -92,7 +92,7 @@ const CardSliderOne = () => {
                                     height={80}
                                     className="rounded-3 object-fit-cover flex-shrink-0"
                                 />
-                                <h5>Daily Manufacturing News Digest – the industry stories you should be aware of today</h5>
+                                <h5>New report warns skills shortages threaten circular economy progress</h5>
 
                             </Link>
                         </div>
@@ -110,7 +110,7 @@ const CardSliderOne = () => {
                                     height={80}
                                     className="rounded-3 object-fit-cover flex-shrink-0"
                                 />
-                                <h5>Daily Manufacturing News Digest – the industry stories you should be aware of today</h5>
+                                <h5>Pennine Healthcare welcomes students to explore careers in healthcare manufacturing</h5>
 
                             </Link>
                         </div>
@@ -153,7 +153,7 @@ const CardSliderOne = () => {
                     </SwiperSlide>
 
                 </Swiper>
-                <div className="slider-nav position-absolute d-flex gap-2 myswip-n" style={{ right: 30, bottom: "10px" }}>
+                <div className="slider-nav position-absolute d-flex gap-2 myswip-n" style={{ right: 30, bottom: "30px" }}>
                     <button ref={prevRef} className="swiper-prev btn-cc">
                         <i className="bi bi-arrow-left"></i>
                     </button>
