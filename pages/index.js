@@ -25,7 +25,7 @@ const BlogIndex = () => {
               {/* Left: Main Article */}
               <div className="col-lg-6 d-flex">
                 <Link
-                  href="#"
+                  href="/blog-details/"
                   className="card flex-fill"
                 >
                   <Image
@@ -54,7 +54,7 @@ const BlogIndex = () => {
               <div className="col-lg-6 d-flex flex-column gap-3">
                 {/* Article 1 */}
                 <Link
-                  href="#"
+                  href="/blog-details/"
                   className="d-flex align-items-start gap-3 text-decoration-none"
                 >
                   <Image
@@ -74,7 +74,7 @@ const BlogIndex = () => {
 
                 {/* Article 2 */}
                 <Link
-                  href="#"
+                  href="/blog-details/"
                   className="d-flex align-items-start gap-3 text-decoration-none"
                 >
                   <Image
@@ -94,7 +94,7 @@ const BlogIndex = () => {
 
                 {/* Article 3 */}
                 <Link
-                  href="#"
+                  href="/blog-details/"
                   className="d-flex align-items-start gap-3 text-decoration-none"
                 >
                   <Image
@@ -121,7 +121,7 @@ const BlogIndex = () => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="/blog-details/">View all</a></span></div>
                   <CardSliderOne />
                 </div>
               </div>
