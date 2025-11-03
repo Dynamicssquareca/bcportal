@@ -2365,7 +2365,7 @@ font-size: 16px;
   padding: 1rem 1.7rem;
   margin-bottom: 15px;
 }
-.submitscr .btn{
+.submitscr .btn,.btn-ascc{
 background-color: #ff8d2a;
     padding: .7rem 2.2rem;
     color: #fff;
@@ -2376,4 +2376,46 @@ background-color: #ff8d2a;
 }
 .subsc-head-right{
 margin-bottom: -130px;
+}
+.locked-info{
+  border-radius: 24px;
+  border: solid 0.5px #ff8d2a;
+  background-color: #3f3f3f;
+  padding:50px 40px;
+  display: flex
+;
+    align-items: start;
+    gap: 20px;
+}
+.locked-info .icons{
+  width:100px
+}
+.locked-info .icons img{
+  padding: 0;
+}
+.locked-info .info-log{
+  color: #fff;
+}
+.locked-info .info-log h4{
+  font-size: 18px;
+    margin-bottom: 10px;
+}
+.locked-info .info-log p{
+color: #e3e3e3;
+    font-size: 14px;
+}
+.gp-2{
+  gap: 30px;
+    margin-top: 20px;
+    align-items: center;
+}
+.btn-ascc{
+  border-radius:4px
+}
+.btn-ascc:hover{
+  background-color:#000000
+}
+.normal-link{
+  padding-top: 20px;
+    text-decoration: underline
 }
