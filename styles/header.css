@@ -311,7 +311,7 @@
   * Mobile Navigation 
   */
   .mobile-nav-toggle {
-    color: var(----secondary);
+    color: #ffffff;
     font-size: 28px;
     cursor: pointer;
     display: none;
@@ -444,6 +444,9 @@
     background-color: #fff;
     padding: 20px; */
   }
+  .header .logo img {
+    width: 150px;
+}
 }
 
 

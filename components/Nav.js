@@ -4,6 +4,7 @@ import { Offcanvas, OffcanvasHeader, OffcanvasBody } from 'reactstrap';
 import DropdownComponent from '@/components/DropdownComponent';
 import ModelBoxGetstatrd from './ModelBoxGetstatrd';
 import BlogSearch from './BlogSearch';
+import MobileSearchBar from './MobileSearchBar';
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggles = () => setIsOpen(!isOpen);
@@ -56,6 +57,7 @@ const Nav = () => {
         </ul>
         <div className='serc-nav'>
            <BlogSearch />
+           {/* <MobileSearchBar /> */}
         </div>
 
         <i className="bi bi-list mobile-nav-toggle" onClick={toggles}></i>
@@ -63,7 +65,7 @@ const Nav = () => {
           <Offcanvas isOpen={isOpen} toggle={toggles} className='navbar-mobile'>
             <OffcanvasHeader toggle={toggles}>
               <div className='mobile-logo'>
-                <a href="/"><img src="/stone-logo.png" width={200} alt="stone-logo" /></a>
+                <a href="/"><img img src="/log-white.png" alt="bc-partner-logo" width={150}  /></a>
               </div>
             </OffcanvasHeader>
             <OffcanvasBody>
@@ -73,7 +75,6 @@ const Nav = () => {
                 {/* <DropdownComponent id="servicesDropdown" label="Drop Down" items={servicesItems} />
                 <DropdownComponent id="solutionsDropdown" label="Drop Down" items={solutionsItems} /> */}
                 {/* <DropdownComponent label="Resources" items={resourceItems} /> */}
-                <li><a className="nav-link scrollto" href="/memorials/">Memorial Stones</a></li>
                 <li><a className="nav-link scrollto" href="/about-us/">About US</a></li>
                 <li><a className="nav-link" href="/blog/">Blogs</a></li>
                 {/* <Dropdown nav isOpen={dropdownOpen} toggle={toggles}>
