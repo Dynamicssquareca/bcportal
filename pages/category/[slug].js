@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const CategoryPage = ({ category, posts }) => {
   if (!category) return <p>Category not found</p>;
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/category/${category.slug || category.title.toLowerCase().replace(/\s+/g, '-')}/`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/category/${category.slug || category.title.toLowerCase().replace(/\s+/g, '-')}/`;
 
   const buildImageUrl = (baseUrl, img) => {
     if (!img) return '';
@@ -37,7 +37,7 @@ const CategoryPage = ({ category, posts }) => {
               <li className="breadcrumb-item"><Link href="/">Home</Link></li>
               <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
               <li className="breadcrumb-item"><a href="/blog/category">Categories</a></li>
-              <li className="breadcrumb-item active" aria-current="page">{category.title}</li>
+              <li className="breadcrumb-item active" aria-current="page">{category.name}</li>
             </ol>
           </div>
       </div>
@@ -45,7 +45,7 @@ const CategoryPage = ({ category, posts }) => {
 
 
       <div className='common-title'>
-        <h1>Category: {category.title}</h1>
+        <h1>Category: {category.name}</h1>
         </div>
         {posts.length === 0 ? (
           <p>No posts found for this category.</p>

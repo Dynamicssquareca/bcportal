@@ -48,7 +48,7 @@ const CategoryIndex = ({ categories }) => {
             <div key={cat._id} className="col-md-3">
               <div className="card card-categ h-100 text-center">
                 <div className="card-body">
-                  <Link href={`/blog/category/${cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Link href={`/category/${cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')}`}>
                     <Image src={getImageUrl(cat.categoryimg) || '/img/icons/icons-01.png'} alt="icon" className="mb-2" width={68} height={68} />
                     <h5 className="card-title">{cat.title}</h5>
                   </Link>

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import CardSliderOne from '@/components/CardSliderOne';
 import CardSliderTwo from '@/components/CardSliderTwo';
 
+
+
 const BlogIndex = ({ posts, categories }) => {
 
   // "All" is default; visiblePostsCount controls "Load More"
@@ -13,6 +15,7 @@ const BlogIndex = ({ posts, categories }) => {
 
   // Hero: first post; Most Recent: rest of posts (filtered if category selected)
   const latestPost = posts.length > 0 ? posts[0] : null;
+  const sidePosts = posts.slice(1, 4);
   const filteredPosts =
     selectedCategory === "all"
       ? posts.length > 1 ? posts.slice(1) : []
@@ -45,28 +48,15 @@ const BlogIndex = ({ posts, categories }) => {
     post.author && post.author.name ? post.author.name : 'Unknown';
 
   // Helper function to limit the title to a specific character count (default 50)
-  const limitTitle = (title, limit = 50) => {
-    return title.length > limit ? title.substring(0, limit) + '...' : title;
-  };
+  // const limitTitle = (title, limit = 50) => {
+  //   return title.length > limit ? title.substring(0, limit) + '...' : title;
+  // };
 
 
 
   const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/`;
 
-const normalizeSlug = (slug) => {
-  if (!slug) return "";
-  return slug
-    .toString()
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "-")      // Replace spaces with hyphens
-    .replace(/[^\w-]+/g, "")   // Remove invalid characters
-    .replace(/--+/g, "-")      // Collapse multiple hyphens
-    .replace(/^-+|-+$/g, "");  // Trim hyphens from start/end
-};
 
-
-  
 
   return (
     <>
@@ -88,94 +78,54 @@ const normalizeSlug = (slug) => {
 
 
               <div className="col-lg-6 d-flex">
-                 {latestPost && (
-                <Link
-                 href={`/blog/${normalizeSlug (latestPost.slug)}`}
-                  className="card flex-fill card-001"
-                >
-                  <Image
-                    src="/img/demo-1.jpg"
-                    alt="Main News"
-                    width={800}
-                    height={370}
-                    className="card-img-top object-fit-cover"
-                  />
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="fw-bold mb-2 text-dark">
-                      {limitTitle(latestPost.title, 80)}
-                    </h5>
-                    <p className="text-muted mb-0">
-                      Wendy Graham is the first woman Plant Manager in the 97 years
-                      of Ford’s iconic Dagenham site, coming 57 years after its women
-                      factory workers famously went on strike in a demand for
-                      equal...
-                    </p>
-                  </div>
-                </Link>
-                  )}
+                {latestPost && (
+                  <Link
+                    href={`${latestPost.slug}`}
+                    className="card flex-fill card-001"
+                  >
+                    <Image src={
+                      latestPost.imageUrl
+                        ? getImageUrl(latestPost.imageUrl)
+                        : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
+                    } alt={latestPost.title} className="img-fluid" width={1200} height={628} priority />
+                    <div className="card-body d-flex flex-column">
+                      <h5 className="fw-bold mb-2 text-dark">
+                        {latestPost.title}
+                      </h5>
+                      <p className="text-muted mb-0" >
+                        {latestPost.excerpt}
+                      </p>
+                    </div>
+                  </Link>
+                )}
               </div>
 
               {/* Right: Side Articles */}
               <div className="col-lg-6 d-flex flex-column gap-3">
-                {/* Article 1 */}
-                <Link
-                  href="/blog-details/"
-                  className="d-flex align-items-start gap-3 text-decoration-none card-001"
-                >
-                  <Image
-                    src="/img/demo-2.jpg"
-                    alt="News 1"
-                    width={320}
-                    height={80}
-                    className="rounded-3 object-fit-cover flex-shrink-0"
-                  />
-                  <div>
-                    <h6 className="fw-semibold mb-0 text-dark">
-                      Daily Manufacturing News Digest – the industry stories you
-                      should be aware of today
-                    </h6>
-                  </div>
-                </Link>
-
-                {/* Article 2 */}
-                <Link
-                  href="/blog-details/"
-                  className="d-flex align-items-start gap-3 text-decoration-none card-001"
-                >
-                  <Image
-                    src="/img/demo-3.jpg"
-                    alt="News 2"
-                    width={320}
-                    height={80}
-                    className="rounded-3 object-fit-cover flex-shrink-0"
-                  />
-                  <div>
-                    <h6 className="fw-semibold mb-0 text-dark">
-                      New report warns skills shortages threaten circular economy
-                      progress
-                    </h6>
-                  </div>
-                </Link>
-
-                {/* Article 3 */}
-                <Link
-                  href="/blog-details/"
-                  className="d-flex align-items-start gap-3 text-decoration-none card-001"
-                >
-                  <Image
-                    src="/img/demo-4.jpg"
-                    alt="News 3"
-                    width={320}
-                    height={80}
-                    className="rounded-3 object-fit-cover flex-shrink-0"
-                  />
-                  <div>
-                    <h6 className="fw-semibold mb-0 text-dark">
-                      Pennine Healthcare welcomes students to explore careers in
-                      healthcare manufacturing
-                    </h6>
-                  </div>
-                </Link>
+                {sidePosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="d-flex align-items-start gap-3 text-decoration-none card-001"
+                  >
+                    <Image
+                      src={
+                        post.imageUrl
+                          ? getImageUrl(post.imageUrl)
+                          : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
+                      }
+                      alt={post.title}
+                      width={320}
+                      height={80}
+                      className="rounded-3 object-fit-cover flex-shrink-0"
+                    />
+                    <div>
+                      <h6 className="fw-semibold mb-0 text-dark">
+                        {post.title}
+                      </h6>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -187,7 +137,10 @@ const normalizeSlug = (slug) => {
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
                   <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="/blog-details/">View all</a></span></div>
-                  <CardSliderOne />
+                  <CardSliderOne
+                    categoryName="Dynamics GP"
+                 
+                  />
                 </div>
               </div>
             </div>
