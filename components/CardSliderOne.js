@@ -28,6 +28,7 @@ function CardSliderOne({
 }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
 
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -81,6 +82,63 @@ function CardSliderOne({
     return limit ? f.slice(0, limit) : f;
   }, [blogs, limit, categoryId, categoryName]);
 
+  // store swiper instance via onSwiper
+  const handleOnSwiper = (s) => {
+    swiperRef.current = s;
+  };
+
+  // Safe navigation init: retry until swiper & refs are attached
+  useEffect(() => {
+    let mounted = true;
+    let attempts = 0;
+    const maxAttempts = 12; // ~1.2s with retryDelay 100ms
+    const retryDelay = 100;
+
+    const tryInitNavigation = () => {
+      attempts += 1;
+      if (!mounted) return;
+      const s = swiperRef.current;
+
+      // retry if swiper or its params not ready
+      if (!s || !s.params) {
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+        return;
+      }
+
+      // retry if refs not attached yet
+      if (!prevRef.current || !nextRef.current) {
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+        return;
+      }
+
+      try {
+        s.params.navigation = s.params.navigation || {};
+        s.params.navigation.prevEl = prevRef.current;
+        s.params.navigation.nextEl = nextRef.current;
+
+        // defensive checks before calling navigation methods
+        if (s.navigation) {
+          try {
+            if (typeof s.navigation.destroy === "function") {
+              s.navigation.destroy();
+            }
+          } catch (err) {
+            // ignore destroy errors
+          }
+          if (typeof s.navigation.init === "function") s.navigation.init();
+          if (typeof s.navigation.update === "function") s.navigation.update();
+        }
+      } catch (err) {
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+      }
+    };
+
+    // start attempts after a tick so refs/onSwiper have a chance to run
+    setTimeout(tryInitNavigation, 0);
+
+    return () => { mounted = false; };
+  }, []); // run once after mount
+
   return (
     <div className={className}>
       <div className="relative">
@@ -88,19 +146,7 @@ function CardSliderOne({
           slidesPerView={slidesPerView}
           spaceBetween={30}
           modules={[Navigation]}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation = {
-              ...(swiper.params.navigation || {}),
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            };
-          }}
-          onInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
-          }}
+          onSwiper={handleOnSwiper}
           breakpoints={{
             0: { slidesPerView: 1.2, spaceBetween: 15 },
             768: { slidesPerView: 2.2, spaceBetween: 20 },
