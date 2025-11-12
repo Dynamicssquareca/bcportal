@@ -30,7 +30,6 @@ const AuthorPage = ({ author, posts }) => {
             <div className="breadcrumb-list">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-                <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li className="breadcrumb-item"><a href="/blog/author">Authors</a></li>
                 <li className="breadcrumb-item active" aria-current="page">{author.name}</li>
               </ol>

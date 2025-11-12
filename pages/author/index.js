@@ -20,7 +20,6 @@ const AuthorIndex = ({ authors }) => {
             <div className="breadcrumb-list">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-                <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li className="breadcrumb-item active" aria-current="page">Authors</li>
               </ol>
             </div>
@@ -40,7 +39,7 @@ const AuthorIndex = ({ authors }) => {
             <div key={author._id} className="col-md-3">
               <div className="card card-categ h-100 text-center">
                 <div className="card-body">
-                <Link href={`/blog/author/${author.slug || author._id}`}>
+                <Link href={`author/${author.slug || author._id}`}>
                   <Image
                     src={`${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${author.profilePic}`}
                     alt={author.name}

@@ -85,7 +85,7 @@ const CategoryPage = ({ category, posts }) => {
                     <Image
                       width={44}
                       height={44}
-                      src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/author-defult-pic'}
+                      src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/author-defult-pic.png'}
                       alt="user avatar"
                        className='rounded-circle'
                     />
