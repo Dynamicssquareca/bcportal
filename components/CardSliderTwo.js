@@ -17,10 +17,10 @@ const API = "https://businesscentralapi.onrender.com/api/frontend/blogs";
  * or
  * <CardSliderOne categoryName="Dynamics GP" assetBase="https://businesscentralapi.onrender.com/uploads" />
  */
-function CardSliderOne({
-  categoryId,        // e.g. "69119a6ba5cd4d830e58a2ff"
-  categoryName,      // e.g. "Dynamics GP"
-  assetBase = "https://businesscentralapi.onrender.com/uploads",    // e.g. "https://businesscentralapi.onrender.com/uploads"
+export default function CardSliderOne({
+  categoryId,
+  categoryName,
+  assetBase = "https://businesscentralapi.onrender.com/uploads",
   limit = 12,
   slidesPerView = 3.5,
   showNav = true,
@@ -28,11 +28,13 @@ function CardSliderOne({
 }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
 
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch blogs
   useEffect(() => {
     let ignore = false;
     const controller = new AbortController();
@@ -53,23 +55,24 @@ function CardSliderOne({
       }
     })();
 
-    return () => { ignore = true; controller.abort(); };
+    return () => {
+      ignore = true;
+      controller.abort();
+    };
   }, []);
 
-  // --- helpers bound to your shape -------------------------------------------
+  // helpers
   const matchCategory = (b) => {
     const cat = b?.category;
     if (!cat) return false;
-
     if (categoryId != null) return String(cat._id) === String(categoryId);
     if (categoryName) return (cat.name || "").toLowerCase() === String(categoryName).toLowerCase();
-    return true; // no filter provided -> include all
+    return true;
   };
 
   const getImage = (b) => {
     const file = b?.imageUrl;
     if (!file) return "/img/demo-2.jpg";
-    // Build absolute URL if needed
     return file.startsWith("http") ? file : (assetBase ? `${assetBase}/${file}` : `/${file}`);
   };
 
@@ -81,6 +84,72 @@ function CardSliderOne({
     return limit ? f.slice(0, limit) : f;
   }, [blogs, limit, categoryId, categoryName]);
 
+  // store swiper instance via onSwiper
+  const handleOnSwiper = (s) => {
+    swiperRef.current = s;
+  };
+
+  // Safe navigation init: retry until swiper & refs are attached
+  useEffect(() => {
+    let mounted = true;
+    const swiper = () => swiperRef.current;
+    if (!swiperRef.current) {
+      // wait until swiperRef is set by onSwiper
+    }
+
+    let attempts = 0;
+    const maxAttempts = 12; // ~1.2s with retryDelay 100ms
+    const retryDelay = 100;
+
+    const tryInitNavigation = () => {
+      attempts += 1;
+      if (!mounted) return;
+      const s = swiperRef.current;
+      // if swiper instance not ready, retry
+      if (!s || !s.params) {
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+        return;
+      }
+
+      // ensure prev/next element refs are ready
+      if (!prevRef.current || !nextRef.current) {
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+        return;
+      }
+
+      // attach and safely init navigation
+      try {
+        s.params.navigation = s.params.navigation || {};
+        s.params.navigation.prevEl = prevRef.current;
+        s.params.navigation.nextEl = nextRef.current;
+
+        if (s.navigation) {
+          // destroy only if available & already initialised
+          try {
+            if (typeof s.navigation.destroy === "function") {
+              s.navigation.destroy();
+            }
+          } catch (err) {
+            // ignore destroy errors
+          }
+
+          if (typeof s.navigation.init === "function") s.navigation.init();
+          if (typeof s.navigation.update === "function") s.navigation.update();
+        }
+      } catch (initErr) {
+        // if something unexpected happens, retry a few times
+        if (attempts < maxAttempts) return setTimeout(tryInitNavigation, retryDelay);
+      }
+    };
+
+    // start attempts after a tick
+    setTimeout(tryInitNavigation, 0);
+
+    return () => {
+      mounted = false;
+    };
+  }, []); // run once after mount (onSwiper will set swiperRef asynchronously)
+
   return (
     <div className={className}>
       <div className="relative">
@@ -88,19 +157,7 @@ function CardSliderOne({
           slidesPerView={slidesPerView}
           spaceBetween={30}
           modules={[Navigation]}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation = {
-              ...(swiper.params.navigation || {}),
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            };
-          }}
-          onInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-            swiper.navigation.init();
-            swiper.navigation.update();
-          }}
+          onSwiper={handleOnSwiper}
           breakpoints={{
             0: { slidesPerView: 1.2, spaceBetween: 15 },
             768: { slidesPerView: 2.2, spaceBetween: 20 },
@@ -144,7 +201,6 @@ function CardSliderOne({
                         height={360}
                         className="rounded-3 object-cover w-full h-auto"
                         priority={idx < 2}
-                        // If img is relative (starts with "/"), keep unoptimized to avoid domain issues
                         unoptimized={!img.startsWith("http")}
                       />
                       <h5 className="mt-2">{getTitle(b)}</h5>
@@ -157,10 +213,11 @@ function CardSliderOne({
 
         {showNav && (
           <div className="slider-nav position-absolute d-flex gap-2 myswip-n" style={{ right: 30, bottom: "30px" }}>
+            {/* keep buttons always in DOM so refs attach reliably */}
             <button ref={prevRef} className="swiper-prev btn-cc btn-cc-one" aria-label="Previous">
               <i className="bi bi-arrow-left" />
             </button>
-            <button ref={nextRef} className="swiper-next  btn-cc" aria-label="Next">
+            <button ref={nextRef} className="swiper-next btn-cc" aria-label="Next">
               <i className="bi bi-arrow-right" />
             </button>
           </div>
@@ -179,5 +236,3 @@ CardSliderOne.propTypes = {
   showNav: PropTypes.bool,
   className: PropTypes.string,
 };
-
-export default CardSliderOne;
