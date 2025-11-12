@@ -190,6 +190,7 @@ const BlogSearch = () => {
                   )}
                 </>
               )}
+              
 
               {!loading && visibleResults.length === 0 && (
                 <p>No blog found for "{query}"</p>
