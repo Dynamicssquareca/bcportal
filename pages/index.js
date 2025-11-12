@@ -193,7 +193,7 @@ const BlogIndex = ({ posts, categories }) => {
                 <div className='cta-left'>
                   <h3>Subscribe to</h3>
                   <p>Latest industry news, analysis  and valuable insights</p>
-                  <a href="" className='my-btn'>Subscribe Now</a>
+                  <a href="#subscribe" className='my-btn'>Subscribe Now</a>
                 </div>
               </div>
               <div className='col-lg-8'>

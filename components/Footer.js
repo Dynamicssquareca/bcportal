@@ -25,7 +25,7 @@ const Footer = ({ faq }) => {
     return (
         <>
             {/* <FooterContactForm faq={faq} /> */}
-            <div className='m-t-80'>
+            <div id="subscribe" className='m-t-80'>
                 <div className='container'>
                     <div className='row justify-content-center'>
                        
