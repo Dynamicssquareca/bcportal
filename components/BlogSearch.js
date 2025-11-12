@@ -42,7 +42,7 @@ const BlogSearch = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://blognew.dynamicssquare.co.uk/api/blogsearch/${encodeURIComponent(searchTerm)}`
+        `https://businesscentralapi.onrender.com/api/frontend/blogsearch/${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       const results = data || [];
@@ -108,10 +108,10 @@ const BlogSearch = () => {
 
             {!loading && visibleResults.length > 0 && (
               <>
-                {visibleResults.map((blog, index) => (
+                {visibleResults.map((post, index) => (
                   <div key={index} className="car-ll-01 mb-2">
-                    <a href={`/blog/${blog.title_slug}`}>
-                      <h5>{blog.title}</h5>
+                    <a href={`${post.slug}`}>
+                      <h5>{post.title}</h5>
                     </a>
                   </div>
                 ))}
@@ -174,10 +174,10 @@ const BlogSearch = () => {
 
               {!loading && visibleResults.length > 0 && (
                 <>
-                  {visibleResults.map((blog, index) => (
+                  {visibleResults.map((post, index) => (
                     <div key={index} className="car-ll-01 mb-2">
-                      <a href={`/blog/${blog.title_slug}`}>
-                        <h5>{blog.title}</h5>
+                      <a href={`${post.slug}`}>
+                        <h5>{post.title}</h5>
                       </a>
                     </div>
                   ))}
