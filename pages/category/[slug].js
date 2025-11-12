@@ -81,17 +81,17 @@ const CategoryPage = ({ category, posts }) => {
                   </Link>
                 </div>
                 <div className='card-post-ava'>
-                  <Link href={`/blog/author/${post.author.slug || post.author._id}`}>
+                  <Link href={`/author/${post.author.slug || post.author._id}`}>
                     <Image
                       width={44}
                       height={44}
-                      src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/icons/user-avt.png'}
+                      src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/author-defult-pic'}
                       alt="user avatar"
                        className='rounded-circle'
                     />
                     <div className='av-info'>
                       <div className='av-name-a'>{post.author && post.author.name ? post.author.name : 'Unknown'}</div>
-                      <div className='av-date-b'>{new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'Date unknown'} <span>|</span> {post.readtimes || ''}min</div>
+                      {/* <div className='av-date-b'>{new Date(post.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'Date unknown'} <span>|</span> {post.readtimes || ''}min</div> */}
                     </div>
                   </Link>
                 </div>

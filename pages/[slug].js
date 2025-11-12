@@ -21,8 +21,8 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
 
   // const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`;
   const canonicalUrl = post?.slug
-  ? `${process.env.NEXT_PUBLIC_SITE_URL}/${post.slug}/`
-  : `${process.env.NEXT_PUBLIC_SITE_URL}`;
+    ? `${process.env.NEXT_PUBLIC_SITE_URL}/${post.slug}/`
+    : `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
   const getImageUrl = (img) => {
     if (!img) return '';
@@ -181,13 +181,18 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                   <div className="card-body">
                     <Link href={`/blog/author/${post.author.slug || post.author._id}`}>
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`}
-                        alt={post.author.name}
+                        src={
+                          post?.author?.profilePic
+                            ? `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`
+                            : '/img/author-defult-pic.png' 
+                        }
+                        alt={post?.author?.name || 'Author'}
                         className="rounded-circle me-3"
                         style={{ width: '60px', height: '60px', objectFit: 'cover' }}
                         width={60}
                         height={60}
                       />
+                      
                       <div className='card-avt-det'>
                         <h4>{post.author.name}</h4>
                         <p>{post.author.aboutus}</p>
@@ -205,9 +210,9 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
             <div className="col-lg-4">
               <div className='po-sticky'>
                 <div className="sidebars">
-                   <div className='adv-pic'>
-                  <a href="#"><img src="/img/forber-03.png" alt="forber-03" /></a>
-                </div>
+                  <div className='adv-pic'>
+                    <a href="#"><img src="/img/forber-03.png" alt="forber-03" /></a>
+                  </div>
                   {tableOfContents.length >= 3 && (
                     <>
                       <h3>Table of Contents</h3>
@@ -317,7 +322,7 @@ export async function getStaticPaths() {
     const paths = posts.map(post => ({
       params: { slug: post.slug }
     }));
-     // fallback: 'blocking' ensures page waits for data before rendering (better SEO)
+    // fallback: 'blocking' ensures page waits for data before rendering (better SEO)
     return { paths, fallback: 'blocking' };
   } catch (err) {
     console.error(err);
