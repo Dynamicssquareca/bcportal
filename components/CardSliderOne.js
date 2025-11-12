@@ -73,7 +73,7 @@ function CardSliderOne({
     return file.startsWith("http") ? file : (assetBase ? `${assetBase}/${file}` : `/${file}`);
   };
 
-  const getHref = (b) => (b?.slug ? `/blog/${b.slug}` : "#");
+  const getHref = (b) => (b?.slug ? `${b.slug}` : "#");
   const getTitle = (b) => b?.title || "Untitled";
 
   const filtered = useMemo(() => {

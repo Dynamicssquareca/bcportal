@@ -105,7 +105,7 @@ const BlogIndex = ({ posts, categories }) => {
                 {sidePosts.map((post) => (
                   <Link
                     key={post.slug}
-                    href={`/blog/${post.slug}`}
+                    href={post.slug}
                     className="d-flex align-items-start gap-3 text-decoration-none card-001"
                   >
                     <Image
@@ -166,7 +166,7 @@ const BlogIndex = ({ posts, categories }) => {
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
                   <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="#">View all</a></span></div>
-                  <CardSliderOne />
+                  <CardSliderOne  categoryName="Dynamics GP" />
                 </div>
               </div>
             </div>

@@ -35,8 +35,7 @@ const CategoryPage = ({ category, posts }) => {
       <div className="breadcrumb-list">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-              <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
-              <li className="breadcrumb-item"><a href="/blog/category">Categories</a></li>
+              <li className="breadcrumb-item"><a href="/category">Categories</a></li>
               <li className="breadcrumb-item active" aria-current="page">{category.name}</li>
             </ol>
           </div>
@@ -54,9 +53,9 @@ const CategoryPage = ({ category, posts }) => {
             {posts.map(post => (
               // <div key={post.slug} className="col-md-4 mb-4">
               //   <div className="card h-100">
-              //     {post.banner && (
+              //     {post.imageUrl && (
               //       <img
-              //         src={`${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${post.banner.replace(/^\//, '')}`}
+              //         src={`${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${post.imageUrl.replace(/^\//, '')}`}
               //         alt={post.title}
               //         className="card-img-top"
               //       />
@@ -75,8 +74,8 @@ const CategoryPage = ({ category, posts }) => {
               <div className='card-blog-02'>
                 <div className="card-title">
                   <Link href={`/blog/${post.slug}`}>
-                    {post.banner && (
-                      <Image src={getImageUrl(post.banner)} alt={post.title} className="img-fluid" width={400} height={300} />
+                    {post.imageUrl && (
+                      <Image src={getImageUrl(post.imageUrl)} alt={post.title} className="img-fluid" width={400} height={300} />
                     )}
                     <h3>{post.title}</h3>
                   </Link>

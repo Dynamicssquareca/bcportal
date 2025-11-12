@@ -21,8 +21,8 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
 
   // const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`;
   const canonicalUrl = post?.slug
-  ? `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`
-  : `${process.env.NEXT_PUBLIC_SITE_URL}blog/`;
+  ? `${process.env.NEXT_PUBLIC_SITE_URL}/${post.slug}/`
+  : `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
   const getImageUrl = (img) => {
     if (!img) return '';
@@ -93,7 +93,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
           property="og:image"
           content={
             post.metaimage
-              ? getImageUrl(post.banner)
+              ? getImageUrl(post.imageUrl)
               : `${process.env.NEXT_PUBLIC_SITE_URL}img/banner/home-main-banner.png`
           }
         />
@@ -117,7 +117,12 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><Link href="/">Home</Link></li>
               <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
-              <li className="breadcrumb-item active" aria-current="page">{post.readtimes || ' '} min reading in  — {post.category && post.category.slug ? (
+              {/* <li className="breadcrumb-item active" aria-current="page">{post.readtimes || ' '} min reading in  — {post.category && post.category.slug ? (
+                <Link href={`/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
+              ) : (
+                "Uncategorized"
+              )}</li> */}
+              <li className="breadcrumb-item active" aria-current="page"> {post.category && post.category.slug ? (
                 <Link href={`/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
               ) : (
                 "Uncategorized"
@@ -149,10 +154,10 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                     </div>
                   </div>
                 </div>
-                {post.banner && (
+                {post.imageUrl && (
                   <div className='post-feture-image'>
                     <Image
-                      src={getImageUrl(post.banner)}
+                      src={getImageUrl(post.imageUrl)}
                       alt={post.title}
                       width={800}
                       height={400}
@@ -200,6 +205,9 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
             <div className="col-lg-4">
               <div className='po-sticky'>
                 <div className="sidebars">
+                   <div className='adv-pic'>
+                  <a href="#"><img src="/img/forber-03.png" alt="forber-03" /></a>
+                </div>
                   {tableOfContents.length >= 3 && (
                     <>
                       <h3>Table of Contents</h3>
@@ -228,8 +236,8 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                     <ul className="list-group-tba">
                       {categories.map(cat => (
                         <li key={cat._id} className="list-group-cu">
-                          <Link href={`/blog/category/${cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                            {cat.title}
+                          <Link href={`/blog/category/${cat.slug || cat.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                            {cat.name}
                           </Link>
                         </li>
                       ))}
@@ -250,10 +258,10 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                 <div key={rp.slug} className="col-lg-4 mb-4">
                   <div className="card h-100 card-222">
                     <div className='card-image-p'>
-                      {rp.banner && (
+                      {rp.imageUrl && (
                         <Link href={`/blog/${rp.slug}`}>
                           <Image
-                            src={getImageUrl(rp.banner)}
+                            src={getImageUrl(rp.imageUrl)}
                             alt={rp.title}
                             className="card-img-top"
                             width={768}
@@ -277,8 +285,8 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                         </span>
                         <span className="mx-2">|</span>
                         <span>{formatDate(rp.createdAt)}</span>
-                        <span className="mx-2">|</span>
-                        <span>{rp.readtimes || ' '}m Reading</span>
+                        {/* <span className="mx-2">|</span>
+                        <span>{rp.readtimes || ' '}m Reading</span> */}
                       </div>
                       <Link href={`/blog/${rp.slug}`}>
                         <h5 className="card-title">{rp.title}</h5>
