@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import "@/styles/header.css"
 import "@/styles/footer.css"
 import Layout from '@/components/Layout'; // Import your custom layout component
-import Head from "next/head";
+import CookieConsentBanner from "../components/CookieConsentBanner";
 
 // export default function App({ Component, pageProps }) {
 //   return <Component {...pageProps} />;
@@ -20,6 +20,7 @@ function MyAppWithLayout({ Component, pageProps }) {
       <Layout faq={pageProps.faq}>
         <Component {...pageProps} />
       </Layout>
+       <CookieConsentBanner />
       </>
     );
   }

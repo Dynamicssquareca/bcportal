@@ -46,7 +46,7 @@ const Footer = ({ faq }) => {
                                     <span>|</span>
                                     <a href="/terms-of-use/">Terms of Use</a>
                                     <span>|</span>
-                                    <a href="/cookie-policy/">Cookies Policy</a>
+                                    <a href="/cookie/">Cookies</a>
                                 </div>
                             </div>
 
