@@ -25,18 +25,8 @@ const Footer = ({ faq }) => {
     return (
         <>
             {/* <FooterContactForm faq={faq} /> */}
-            <div id="subscribe" className='m-t-80'>
-                <div className='container'>
-                    <div className='row justify-content-center'>
-                       
-                        <div className='col-lg-8 align-self-center'>
-                            <div className='subsc-head-right'>
-                                    <FormSubscribe />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* <FormSubscribe /> */}
+          
             <footer id="footer" className="footer">
                 <div className={`footer-top ${footerClass}`}>
                     <div className='container'>
@@ -46,7 +36,7 @@ const Footer = ({ faq }) => {
                                     <img src="/log-white.png" alt="bc-partner-logo" />
                                     {/* <span>FlexStart</span> */}
                                 </a>
-                          
+
                             </div>
                             <div className='col-lg-8 align-self-center'>
                                 <div className='footer-nav'>
@@ -59,7 +49,7 @@ const Footer = ({ faq }) => {
                                     <a href="/cookie-policy/">Cookies Policy</a>
                                 </div>
                             </div>
-                        
+
                         </div>
                     </div>
 

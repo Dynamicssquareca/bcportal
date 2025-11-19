@@ -61,7 +61,7 @@ const Form = ({ onSubmit }) => {
     }
 
     // Send email using EmailJS
-    emailjs.send('service_62cljjq', 'template_pq4kco7', {
+    emailjs.send('service_62cljjq', 'template_h9tgog1', {
       from_name: name,
       from_email: email,
       to_name: 'YOUR_EMAIL_ADDRESS', // Replace with your own email address

@@ -35,15 +35,17 @@ export default function SubscribeForm() {
       return;
     }
 
+
+
     if (!validateEmail(email)) {
       setError('Please enter a valid email address');
       setLoading(false);
       return;
     }
 
-    const serviceID = 'service_fg00l58';
-    const templateID = 'template_25hm17g';
-    const userID = 'QyvWavOKod6guRB-s';
+    const serviceID = 'service_62cljjq';
+    const templateID = 'template_h9tgog1';
+    const userID = 'W7xNQXQ68tmQ-oKz0';
 
     const templateParams = {
       from_name: name,
@@ -99,7 +101,7 @@ export default function SubscribeForm() {
 
     // Final response handling
     if (emailSuccess && apiSuccess) {
-      setSuccess('Thank you for subscribing!');
+      // setSuccess('Thank you for subscribing!');
       setEmail('');
       setName('');
       setSubmitted(true);
@@ -114,64 +116,75 @@ export default function SubscribeForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="form-subscribes">
-          <div className="row g-3">
-            <div className="col">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Full Name"
-                aria-label="Enter Your Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+       <div id="subscribe" className='m-t-80'>
+                <div className='container'>
+                    <div className='row justify-content-center'>
 
-            <div className="col">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Enter Your Email"
-                aria-label="Enter Your Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            
-            <div className="col-12">
-              <div className='submitscr'>
-                <p>After submitting this form your data will be processed by Nineteen Group in accordance with our privacy policy. If you would like to prevent your personal data from being processed in this way, please contact us on data@nineteengroup.com to update your preferences.</p>
-              <button
-                type="submit"
-                id="subscribe-button"
-                className="btn"
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    Subscribing... <Spinner size="sm" color="light" />
-                  </>
-                ) : (
-                  <>
-                    Subscribe Now
-                  </>
-                )}
-              </button>
-              </div>
-            </div>
-          </div>
+                        <div className='col-lg-8 align-self-center'>
+                            <div className='subsc-head-right'>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-subscribes">
+                                        <div className="row g-3">
+                                            <div className="col">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    placeholder="Full Name"
+                                                    aria-label="Enter Your Full Name"
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                            </div>
 
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
-          {success && <div className="alert alert-success mt-3">{success}</div>}
-        </div>
-      </form>
+                                            <div className="col">
+                                                <input
+                                                    type="email"
+                                                    className="form-control"
+                                                    placeholder="Enter Your Email"
+                                                    aria-label="Enter Your Email"
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
+                                            </div>
 
-      {submitted && (
-        <div className="thank-you-message text-success mt-4">
-          Thank you for subscribing!
-        </div>
-      )}
+                                            <div className="col-12">
+                                                <div className='submitscr'>
+                                                    <p>After submitting this form your data will be processed by Nineteen Group in accordance with our privacy policy. If you would like to prevent your personal data from being processed in this way, please contact us on data@nineteengroup.com to update your preferences.</p>
+                                                    <button
+                                                        type="submit"
+                                                        id="subscribe-button"
+                                                        className="btn"
+                                                        disabled={loading}
+                                                    >
+                                                        {loading ? (
+                                                            <>
+                                                                Subscribing... <Spinner size="sm" color="light" />
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Subscribe Now
+                                                            </>
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {error && <div className="alert alert-danger mt-3">{error}</div>}
+                                        {success && <div className="alert alert-success mt-3">{success}</div>}
+                                    </div>
+                                </form>
+
+                                {submitted && (
+                                    <div className="thank-you-message text-success mt-4">
+                                        Thank you for subscribing!
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </>
   );
 }
