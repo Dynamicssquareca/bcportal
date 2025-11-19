@@ -44,7 +44,7 @@ const Nav = () => {
 
     <>
       <nav id="navbar" className="navbar">
-        <ul>
+        {/* <ul>
           
           <li className="dropdown"><a href="/memorials/"><span>Log In</span> <i className="bi bi-chevron-down"></i></a>
             <ul>
@@ -54,7 +54,7 @@ const Nav = () => {
               <li><a href="/memorials/urns/">Sign Out</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> */}
         <div className='serc-nav'>
            <BlogSearch />
            {/* <MobileSearchBar /> */}

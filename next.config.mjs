@@ -5,7 +5,7 @@ const nextConfig = {
   trailingSlash: true,
   output: "standalone",
   env: {
-    NEXT_PUBLIC_SITE_URL:'https://bcportal.vercel.app/',
+    NEXT_PUBLIC_SITE_URL:'https://www.businesscentralpartners.com/',
     NEXT_PUBLIC_DETSILS_URL:'https://businesscentralapi.onrender.com/api/frontend/categorydetails',
     NEXT_PUBLIC_IMAGE:'https://businesscentralapi.onrender.com/uploads',
     NEXT_PUBLIC_BLOG_API_URL:'https://businesscentralapi.onrender.com/api/frontend/blogs',
@@ -23,7 +23,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",  
-        hostname: "bcportal.vercel.app",
+        hostname: "businesscentralpartners.com",
         port: "",
         pathname: "/**",
       },

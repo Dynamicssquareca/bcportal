@@ -211,37 +211,37 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
               <div className='po-sticky'>
                 <div className="sidebars">
                   <div className='adv-pic'>
-                    <a href="#"><img src="/img/forber-03.png" alt="forber-03" /></a>
+                    <a href="#"><img src="/img/blog-side-pic-top.png" alt="forber-03" /></a>
                   </div>
-                  {tableOfContents.length >= 3 && (
+                  {/* {tableOfContents.length >= 3 && (
                     <>
                       <h3>Table of Contents</h3>
                       <ol className="list-group-tb mb-4">
                         {tableOfContents.map(item => (
                           <li key={item.id} className={` ${activeHeading === item.id ? 'active' : ''}`}>
-                            <a
+                            <a dangerouslySetInnerHTML={{ __html: item.title }}
                               href={`#${item.id}`}
                               onClick={e => {
                                 e.preventDefault();
                                 const element = document.getElementById(item.id);
                                 if (element) {
-                                  const yOffset = -250; // adjust offset value as needed
+                                  const yOffset = -250; 
                                   const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
                                   window.scrollTo({ top: y, behavior: 'smooth' });
                                 }
                               }}
-                            >{item.title}</a>
+                            ></a>
                           </li>
                         ))}
                       </ol>
                     </>
-                  )}
+                  )} */}
                   <h3>Categories</h3>
                   {categories && categories.length > 0 ? (
                     <ul className="list-group-tba">
                       {categories.map(cat => (
                         <li key={cat._id} className="list-group-cu">
-                          <Link href={`/blog/category/${cat.slug || cat.name.toLowerCase().replace(/\s+/g, '-')}`}>
+                          <Link href={`category/${cat.slug || cat.name.toLowerCase().replace(/\s+/g, '-')}`}>
                             {cat.name}
                           </Link>
                         </li>

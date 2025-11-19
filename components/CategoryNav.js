@@ -5,7 +5,7 @@ import Link from "next/link";
 const API = "https://businesscentralapi.onrender.com/api/frontend/categories";
 
 // ✅ List of category names (or slugs) you want to show
-const ALLOWED_CATEGORIES = ["Business Central", "Dynamics NAV", "Dynamics GP","Copilot","Saas","Industries","Digital Transformation"];
+const ALLOWED_CATEGORIES = ["Business Central", "Dynamics NAV", "Dynamics GP","Copilot","SMBs","Industries","Digital Transformation"];
 
 export default function CategoryNavClient({ limit = 7 }) {
   const [categories, setCategories] = useState([]);

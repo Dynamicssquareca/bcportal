@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const CategoryIndex = ({ categories }) => {
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/category`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/category`;
   const buildImageUrl = (baseUrl, img) => {
     if (!img) return '';
     if (img.startsWith('http')) return img;
@@ -31,7 +31,6 @@ const CategoryIndex = ({ categories }) => {
             <div className="breadcrumb-list">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-                <li className="breadcrumb-item"><a href="/blog">Blog</a></li>
                 <li className="breadcrumb-item active" aria-current="page">Categories</li>
               </ol>
             </div>

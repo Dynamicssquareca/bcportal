@@ -50,15 +50,13 @@ const Footer = ({ faq }) => {
                             </div>
                             <div className='col-lg-8 align-self-center'>
                                 <div className='footer-nav'>
-                                    <a href="#">About The Manufacturer</a>
+                                    <a href="/contact-us/">Contact Us</a>
                                     <span>|</span>
-                                    <a href="#">Contact Us</a>
+                                    <a href="/privacy-policy/">Privacy Policy</a>
                                     <span>|</span>
-                                    <a href="#">Privacy Policy</a>
+                                    <a href="/terms-of-use/">Terms of Use</a>
                                     <span>|</span>
-                                    <a href="#">Terms of Use</a>
-                                    <span>|</span>
-                                    <a href="#">Cookies Policy</a>
+                                    <a href="/cookie-policy/">Cookies Policy</a>
                                 </div>
                             </div>
                         
@@ -68,7 +66,7 @@ const Footer = ({ faq }) => {
                 </div>
                 <div className='bottom-footer'>
                     <div className="container">
-                        <div className="copyright">© Copyright 2025 websitename UK, Inc. All rights reserved. Various trademarks held by their respective owners.</div>
+                        <div className="copyright">© Copyright 2025 businesscentralpartners. All rights reserved. Various trademarks held by their respective owners.</div>
                     </div>
                 </div>
             </footer>

@@ -73,7 +73,7 @@ const CategoryPage = ({ category, posts }) => {
               <div key={post.slug} className='col-lg-4'>
               <div className='card-blog-02'>
                 <div className="card-title">
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/${post.slug}`}>
                     {post.imageUrl && (
                       <Image src={getImageUrl(post.imageUrl)} alt={post.title} className="img-fluid" width={400} height={300} />
                     )}
