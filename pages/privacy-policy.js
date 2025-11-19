@@ -29,8 +29,6 @@ const PrivacyPolicy = () => {
 
 
                                 <div class="privacy-policy">
-                                    <p><b>Last updated:</b> [insert date]</p>
-
                                     <p><b>1. Overview</b></p>
                                     <p>Business Central Partners and its affiliated services (collectively “Business Central Partners,” “we,” “us,” or “our”) respect your privacy. This policy explains what information we collect, why we collect it, how we use it, and the choices you have. It applies to information collected through our websites, applications, and other online properties we operate (the “Sites”).</p>
                                     <p>Unless otherwise stated, Business Central Partners is the data controller for the information described in this policy. We may update this policy periodically; the “Last updated” date above shows when it was last revised. Please check this page regularly.</p>
