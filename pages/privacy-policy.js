@@ -25,9 +25,6 @@ const PrivacyPolicy = () => {
                         <div className='col-lg-12'>
                             <div className='common-wraper-one-info'>
                                 <h2>Business Central Partners — Privacy Policy </h2>
-
-
-
                                 <div class="privacy-policy">
                                     <p><b>1. Overview</b></p>
                                     <p>Business Central Partners and its affiliated services (collectively “Business Central Partners,” “we,” “us,” or “our”) respect your privacy. This policy explains what information we collect, why we collect it, how we use it, and the choices you have. It applies to information collected through our websites, applications, and other online properties we operate (the “Sites”).</p>
