@@ -135,13 +135,23 @@ export async function getStaticProps({ params }) {
     }
     const category = categories.find(cat => (cat.slug || cat.title.toLowerCase().replace(/\s+/g, '-')) === slug) || null;
     if (!category) return { notFound: true };
-
+    
     const postRes = await fetch(blogApi);
     let posts = [];
     if (postRes.ok) {
       posts = await postRes.json();
     }
-    const filteredPosts = posts.filter(post => post.category && post.category._id === category._id);
+    // const filteredPosts = posts.filter(post => post.category && post.category._id === category._id);
+    const filteredPosts = posts.filter(post => {
+    if (!post.category) return false;
+
+    if (Array.isArray(post.category)) {
+      return post.category.some(c => c._id === category._id);
+    }
+
+    return post.category._id === category._id;
+  });
+
     return { props: { category, posts: filteredPosts }, revalidate: 10 };
   } catch (err) {
     console.error(err);

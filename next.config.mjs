@@ -23,7 +23,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",  
-        hostname: "businesscentralpartners.com",
+        hostname: "www.businesscentralpartners.com",
         port: "",
         pathname: "/**",
       },

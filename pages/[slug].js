@@ -122,8 +122,8 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
               ) : (
                 "Uncategorized"
               )}</li> */}
-              <li className="breadcrumb-item active" aria-current="page"> {post.category && post.category.slug ? (
-                <Link href={`/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
+              <li className="breadcrumb-item active" aria-current="page"> {post.category[0].slug ? (
+                <Link href={`/category/${post.category[0].slug}`}><span>{post.category[0].name}</span></Link>
               ) : (
                 "Uncategorized"
               )}</li>
@@ -274,14 +274,14 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                           />
                         </Link>
                       )}
-                      <div className='cate-overl'>
+                      {/* <div className='cate-overl'>
                         {post.category && post.category.slug ? (
 
                           <Link href={`/blog/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
                         ) : (
                           "Uncategorized"
                         )}
-                      </div>
+                      </div> */}
                     </div>
                     <div className="card-body">
                       <div className="d-flex blog-author">

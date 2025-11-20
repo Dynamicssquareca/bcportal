@@ -138,7 +138,7 @@ const BlogIndex = ({ posts, categories }) => {
                 <div className="fullwidth-slider">
                   <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="/blog-details/">View all</a></span></div>
                   <CardSliderOne
-                    categoryName="Dynamics GP"
+                    categoryName="Business Central"
                  
                   />
                 </div>

@@ -57,15 +57,34 @@ function CardSliderOne({
     return () => { ignore = true; controller.abort(); };
   }, []);
 
-  // --- helpers bound to your shape -------------------------------------------
-  const matchCategory = (b) => {
-    const cat = b?.category;
-    if (!cat) return false;
+// --- helpers bound to your shape -------------------------------------------
 
-    if (categoryId != null) return String(cat._id) === String(categoryId);
-    if (categoryName) return (cat.name || "").toLowerCase() === String(categoryName).toLowerCase();
-    return true; // no filter provided -> include all
-  };
+const matchCategory = (b) => {
+  // category can be an array or a single object
+  const cats = Array.isArray(b?.category)
+    ? b.category
+    : b?.category
+    ? [b.category]
+    : [];
+
+  if (!cats.length) return false;
+
+  // Filter by categoryId → match any _id inside array
+  if (categoryId != null) {
+    return cats.some((c) => String(c._id) === String(categoryId));
+  }
+
+  // Filter by categoryName → match any name inside array
+  if (categoryName) {
+    const target = String(categoryName).toLowerCase().trim();
+    return cats.some((c) => String(c.name).toLowerCase().trim() === target);
+  }
+
+  // No filter → show all posts
+  return true;
+};
+
+
 
   const getImage = (b) => {
     const file = b?.imageUrl;
