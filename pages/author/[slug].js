@@ -69,12 +69,12 @@ const AuthorPage = ({ author, posts }) => {
         ) : (
           <div className="row">
             {posts.map(post => (
-              <div key={post.slug} className='col-lg-4'>
+              <div key={post.slug} className='col-lg-4 d-flex'>
               <div className='card-blog-02'>
                 <div className="card-title">
                   <Link href={`/${post.slug}`}>
-                    {post.banner && (
-                      <Image src={getImageUrl(post.banner)} alt={post.title} className="img-fluid" width={400} height={300} />
+                    {post.imageUrl && (
+                      <Image src={getImageUrl(post.imageUrl)} alt={post.title} className="img-fluid" width={400} height={300} />
                     )}
                     <h3>{post.title}</h3>
                   </Link>
@@ -82,8 +82,8 @@ const AuthorPage = ({ author, posts }) => {
                 <div className='card-post-ava'>
                   <Link href={`/author/${post.author.slug || post.author._id}`}>
                     <Image
-                      width={40}
-                      height={40}
+                      width={42}
+                      height={42}
                        src={author ? getImageUrl(author.image) : "/img/author-defult-pic.png"}
                       alt="user avatar"
                        className='rounded-circle'
