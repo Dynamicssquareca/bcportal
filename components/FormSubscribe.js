@@ -125,7 +125,7 @@ export default function SubscribeForm() {
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-subscribes">
                                         <div className="row g-3">
-                                            <div className="col">
+                                            <div className="col-12 col-sm-6">
                                                 <input
                                                     type="text"
                                                     className="form-control"
@@ -136,7 +136,7 @@ export default function SubscribeForm() {
                                                 />
                                             </div>
 
-                                            <div className="col">
+                                            <div className="col-12 col-sm-6">
                                                 <input
                                                     type="email"
                                                     className="form-control"

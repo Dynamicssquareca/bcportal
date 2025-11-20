@@ -485,6 +485,7 @@ font-size:48px
   font-size: 40px;
   font-weight: bold;
   color: #ff8d2a;
+  margin-bottom:0px
 }
 /*card*/
 .card-01 {
@@ -1826,8 +1827,18 @@ padding-right: 20px;
   .heading-center h2,
   .heading-center span,
   .heading-left h2,.addre-left h2 {
-    font-size: 28px;
+    font-size: 28px !important;
   }
+    .heading-left h2{
+      margin-bottom: 0px !important;
+      font-size: 22px !important;
+    }
+    .fullwidth-slider {
+    padding: 40px 15px 80px;
+}
+    .heading-flex{
+      padding-bottom:30px !important
+    }
   .hero-banner-two-head {
     padding-bottom: 20px;
     text-align: center;
@@ -2209,6 +2220,7 @@ border-radius: 30px;
     width: 100px;
     height: 70px;
   }
+  
 }
 
 
@@ -2297,6 +2309,7 @@ padding: 40px 40px 80px;
   font-size: 40px;
   font-weight: bold;
   color: #ff8d2a;
+    margin-bottom:0px
 }
 .heading-flex{
   display: flex
@@ -2499,6 +2512,9 @@ color: #e3e3e3;
 .footer .footer-top .footer-info {
     margin-bottom: 20px;
 }
+.fullwidth-slider {
+        padding: 40px 15px 80px;
+    }
 }
 @media (max-width: 778px) {
   .card-001{
