@@ -136,7 +136,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">SaaS Startups</h2> <span><a href="/blog-details/">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Business Central</h2> <span><a href="/category/">View all</a></span></div>
                   <CardSliderOne
                     categoryName="Business Central"
                  
@@ -152,7 +152,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider fullwidth-slider-colo">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Product Updates</h2> <span className=''><a style={{ color: '#fff' }} href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Product Updates</h2> <span className=''><a style={{ color: '#fff' }} href="/category/">View all</a></span></div>
                   <CardSliderTwo />
                 </div>
               </div>
@@ -165,7 +165,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="/category/">View all</a></span></div>
                   <CardSliderOne  categoryName="Business Central" />
                 </div>
               </div>
@@ -178,7 +178,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider fullwidth-slider-colo">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{ color: '#fff' }} href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{ color: '#fff' }} href="/category/">View all</a></span></div>
                   <CardSliderTwo />
                 </div>
               </div>
@@ -210,7 +210,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Enterprise SaaS</h2> <span><a href="/category/">View all</a></span></div>
                   <CardSliderOne />
                 </div>
               </div>
@@ -223,7 +223,7 @@ const BlogIndex = ({ posts, categories }) => {
             <div className='row'>
               <div className='col-lg-12'>
                 <div className="fullwidth-slider fullwidth-slider-colo">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{ color: '#fff' }} href="#">View all</a></span></div>
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{ color: '#fff' }} href="/category/">View all</a></span></div>
                   <CardSliderTwo />
                 </div>
               </div>
