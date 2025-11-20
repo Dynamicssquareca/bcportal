@@ -86,7 +86,7 @@ const BlogIndex = ({ posts, categories }) => {
                     <Image src={
                       latestPost.imageUrl
                         ? getImageUrl(latestPost.imageUrl)
-                        : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
+                        : `${process.env.NEXT_PUBLIC_SITE_URL}img/erp-f-im.jpg`
                     } alt={latestPost.title} className="img-fluid" width={1200} height={628} priority />
                     <div className="card-body d-flex flex-column">
                       <h5 className="fw-bold mb-2 text-dark">
@@ -112,7 +112,7 @@ const BlogIndex = ({ posts, categories }) => {
                       src={
                         post.imageUrl
                           ? getImageUrl(post.imageUrl)
-                          : `${process.env.NEXT_PUBLIC_SITE_URL}img/sdie-pop.png`
+                          : `${process.env.NEXT_PUBLIC_SITE_URL}img/erp-f-im.jpg`
                       }
                       alt={post.title}
                       width={320}
