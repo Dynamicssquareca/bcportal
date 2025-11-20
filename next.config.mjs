@@ -13,8 +13,8 @@ const nextConfig = {
     NEXT_PUBLIC_BLOG_PREVIEW_API_URL:'https://businesscentralapi.onrender.com/api/frontend/blogs/preview',
     NEXT_PUBLIC_CATEGORY_API_URL:'https://businesscentralapi.onrender.com/api/frontend/categories',
     NEXT_PUBLIC_CATEGORYDETAILS_API_URL:'https://businesscentralapi.onrender.com/api/frontend/categorydetails',
-    NEXT_PUBLIC_AUTHOR_API_URL:'https://businesscentralapi.onrender.com/api/frontend/blog/authors',
-    NEXT_PUBLIC_AUTHOR_BLOG_API_URL:'https://businesscentralapi.onrender.com/api/frontend/blogs/author/',
+    NEXT_PUBLIC_AUTHOR_API_URL:'https://businesscentralapi.onrender.com/api/frontend/authors',
+    NEXT_PUBLIC_AUTHOR_BLOG_API_URL:'https://businesscentralapi.onrender.com/api/frontend/author/',
     NEXT_PUBLIC_BLOG_API_Image:'https://businesscentralapi.onrender.com/uploads',
     NEXT_PUBLIC_BLOG_API_Image_profilePics:'https://businesscentralapi.onrender.com/uploads'
   },

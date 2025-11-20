@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const AuthorPage = ({ author, posts }) => {
   if (!author) return <p>Author not found</p>;
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/author/${author.slug}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/author/${author.slug}`;
   const buildImageUrl = (baseUrl, img) => {
     if (!img) return '';
     if (img.startsWith('http')) return img;
@@ -30,7 +30,7 @@ const AuthorPage = ({ author, posts }) => {
             <div className="breadcrumb-list">
               <ol className="breadcrumb">
                 <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-                <li className="breadcrumb-item"><a href="/blog/author">Authors</a></li>
+                <li className="breadcrumb-item"><a href="/author">Authors</a></li>
                 <li className="breadcrumb-item active" aria-current="page">{author.name}</li>
               </ol>
             </div>
@@ -45,7 +45,7 @@ const AuthorPage = ({ author, posts }) => {
               src={
                 author.profilePic
                   ? `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${author.profilePic.replace(/^\//, '')}`
-                  : '/img/icons/user-avt.png'
+                  : '/img/author-defult-pic.png'
               }
               width={100}
               height={100}
@@ -72,7 +72,7 @@ const AuthorPage = ({ author, posts }) => {
               <div key={post.slug} className='col-lg-4'>
               <div className='card-blog-02'>
                 <div className="card-title">
-                  <Link href={`/blog/${post.slug}`}>
+                  <Link href={`/${post.slug}`}>
                     {post.banner && (
                       <Image src={getImageUrl(post.banner)} alt={post.title} className="img-fluid" width={400} height={300} />
                     )}
@@ -80,11 +80,11 @@ const AuthorPage = ({ author, posts }) => {
                   </Link>
                 </div>
                 <div className='card-post-ava'>
-                  <Link href={`/blog/author/${post.author.slug || post.author._id}`}>
+                  <Link href={`/author/${post.author.slug || post.author._id}`}>
                     <Image
-                      width={44}
-                      height={44}
-                      src={post.author.profilePic ? getProfileImageUrl(post.author.profilePic) : '/img/icons/user-avt.png'}
+                      width={40}
+                      height={40}
+                       src={author ? getImageUrl(author.image) : "/img/author-defult-pic.png"}
                       alt="user avatar"
                        className='rounded-circle'
                     />

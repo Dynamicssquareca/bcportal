@@ -139,7 +139,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                   <div className='combo-sect'>
                     <div className="d-flex blog-author">
                       <span>
-                        By <Link href={`/blog/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
+                        By <Link href={`/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
                       </span>
                       <span className="mx-2">|</span>
                       <span>{formatDate(post.createdAt)}</span>
@@ -179,13 +179,14 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                 {/* Author Profile Card */}
                 <div className="card card-avt my-5">
                   <div className="card-body">
-                    <Link href={`/blog/author/${post.author.slug || post.author._id}`}>
+                    <Link href={`/author/${post.author.slug || post.author._id}`}>
                       <Image
-                        src={
-                          post?.author?.profilePic
-                            ? `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`
-                            : '/img/author-defult-pic.png' 
-                        }
+                        // src={
+                        //   post?.author?.profilePic
+                        //     ? `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`
+                        //     : '/img/author-defult-pic.png' 
+                        // }
+                        src={post.author ? getImageUrl(post.author.image) : "/img/author-defult-pic.png"}
                         alt={post?.author?.name || 'Author'}
                         className="rounded-circle me-3"
                         style={{ width: '60px', height: '60px', objectFit: 'cover' }}

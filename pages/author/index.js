@@ -4,8 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const AuthorIndex = ({ authors }) => {
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/author`;
-
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/author`;
+ const getImageUrl = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) return img;
+    return `${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
+  };
   return (
     <>
       <Head>
@@ -15,7 +19,7 @@ const AuthorIndex = ({ authors }) => {
       </Head>
       <div className="container pb-80">
 
-      <div className='row'>
+        <div className='row'>
           <div className='col-lg-12'>
             <div className="breadcrumb-list">
               <ol className="breadcrumb">
@@ -28,27 +32,27 @@ const AuthorIndex = ({ authors }) => {
 
 
 
-  
+
         <div className="row">
-        <div className='col-lg-12'>
+          <div className='col-lg-12'>
             <div className='common-title'>
-            <h1>Authors</h1>
+              <h1>Authors</h1>
             </div>
           </div>
           {authors.map(author => (
             <div key={author._id} className="col-md-3">
               <div className="card card-categ h-100 text-center">
                 <div className="card-body">
-                <Link href={`author/${author.slug || author._id}`}>
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${author.profilePic}`}
-                    alt={author.name}
-                    width={60}
-                    height={60}
-                    className="img-fluid rounded-circle mb-2"
-                    style={{ width: '60px', height: '60px', objectFit: 'cover' }}
-                  />
-                  <h5 className="card-title">{author.name}</h5>
+                  <Link href={`author/${author.slug || author._id}`}>
+                    <Image
+                       src={author ? getImageUrl(author.image) : "/img/author-defult-pic.png"}
+                      alt={author.name}
+                      width={60}
+                      height={60}
+                      className="img-fluid rounded-circle mb-2"
+                      style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                    />
+                    <h5 className="card-title">{author.name}</h5>
                   </Link>
                 </div>
               </div>
@@ -68,7 +72,7 @@ export async function getStaticProps() {
     if (res.ok) {
       authors = await res.json();
     }
-    return { props: { authors }, revalidate: 10};
+    return { props: { authors }, revalidate: 10 };
   } catch (err) {
     console.error(err);
     return { props: { authors: [] }, revalidate: 10 };
