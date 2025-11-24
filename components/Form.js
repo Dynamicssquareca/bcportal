@@ -61,7 +61,7 @@ const Form = ({ onSubmit }) => {
     }
 
     // Send email using EmailJS
-    emailjs.send('service_62cljjq', 'template_h9tgog1', {
+    emailjs.send('service_wg43hnh', 'template_eukiujp', {
       from_name: name,
       from_email: email,
       to_name: 'YOUR_EMAIL_ADDRESS', // Replace with your own email address
@@ -69,7 +69,7 @@ const Form = ({ onSubmit }) => {
       company_name: company,
       message: message,
       page_url: pageUrl
-    }, 'W7xNQXQ68tmQ-oKz0')
+    }, 'tM-L9poaHjGY70sQI')
       .then((response) => {
         console.log('Email sent successfully:', response);
       })

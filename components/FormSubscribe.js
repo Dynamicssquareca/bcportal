@@ -43,9 +43,9 @@ export default function SubscribeForm() {
       return;
     }
 
-    const serviceID = 'service_62cljjq';
-    const templateID = 'template_h9tgog1';
-    const userID = 'W7xNQXQ68tmQ-oKz0';
+    const serviceID = 'service_wg43hnh';
+    const templateID = 'template_1xd4x75';
+    const userID = 'tM-L9poaHjGY70sQI';
 
     const templateParams = {
       from_name: name,
