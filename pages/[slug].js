@@ -287,20 +287,20 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                     <div className="card-body">
                       <div className="d-flex blog-author">
                         <span>
-                          <Link href={`/blog/author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
+                          <Link href={`author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
                         </span>
                         <span className="mx-2">|</span>
                         <span>{formatDate(rp.createdAt)}</span>
                         {/* <span className="mx-2">|</span>
                         <span>{rp.readtimes || ' '}m Reading</span> */}
                       </div>
-                      <Link href={`/blog/${rp.slug}`}>
+                      <Link href={`${rp.slug}`}>
                         <h5 className="card-title">{rp.title}</h5>
                       </Link>
                       <p className="card-text">
                         {rp.excerpt.slice(0, 50) + '...' || rp.content.replace(/<[^>]+>/g, '').slice(0, 50) + '...'}
                       </p>
-                      <Link href={`/blog/${rp.slug}`}>Read More</Link>
+                      <Link href={`${rp.slug}`}>Read More</Link>
                     </div>
                   </div>
                 </div>
