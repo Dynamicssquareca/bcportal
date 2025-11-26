@@ -14,6 +14,18 @@ const BlogSearch = () => {
 
   const searchRef = useRef(null);
 
+  // Normalize slug / build href
+  const getHref = (slug) => {
+    if (!slug) return '/';
+    const str = String(slug).trim();
+
+    // if it's an absolute URL (http:// or https://), return as-is
+    if (/^https?:\/\//i.test(str)) return str;
+
+    // remove leading slashes then add a single leading slash
+    return `/${str.replace(/^\/+/, '')}`;
+  };
+
   // Debounce search
   useEffect(() => {
     const delay = setTimeout(() => {
@@ -42,7 +54,9 @@ const BlogSearch = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://businesscentralapi.onrender.com/api/frontend/blogsearch/${encodeURIComponent(searchTerm)}`
+        `https://businesscentralapi.onrender.com/api/frontend/blogsearch/${encodeURIComponent(
+          searchTerm
+        )}`
       );
       const data = await res.json();
       const results = data || [];
@@ -74,6 +88,11 @@ const BlogSearch = () => {
     if (query.trim().length > 2 && allResults.length > 0) {
       setShowDropdown(true);
     }
+  };
+
+  const handleResultClick = () => {
+    setShowDropdown(false);
+    setIsMobileSearchOpen(false);
   };
 
   return (
@@ -108,13 +127,23 @@ const BlogSearch = () => {
 
             {!loading && visibleResults.length > 0 && (
               <>
-                {visibleResults.map((post, index) => (
-                  <div key={index} className="car-ll-01 mb-2">
-                    <a href={`${post.slug}`}>
-                      <h5>{post.title}</h5>
-                    </a>
-                  </div>
-                ))}
+                {visibleResults.map((post, index) => {
+                  const href = getHref(post.slug ?? post.url ?? '');
+                  const key = post._id || post.slug || `${href}-${index}`;
+                  const isAbsolute = /^https?:\/\//i.test(href);
+
+                  return (
+                    <div key={key} className="car-ll-01 mb-2">
+                      <a
+                        href={href}
+                        onClick={handleResultClick}
+                        {...(isAbsolute ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      >
+                        <h5>{post.title}</h5>
+                      </a>
+                    </div>
+                  );
+                })}
                 {visibleResults.length < allResults.length && (
                   <div className="text-center">
                     <button className="btn btn-outline-secondary" onClick={handleLoadMore}>
@@ -145,7 +174,10 @@ const BlogSearch = () => {
 
       {/* ---------------- Mobile Search Box ---------------- */}
       {isMobileSearchOpen && (
-        <div className="mobile-search position-fixed start-0 w-100 bg-dark p-3" style={{ top: '65px', zIndex: 1050 }}>
+        <div
+          className="mobile-search position-fixed start-0 w-100 bg-dark p-3"
+          style={{ top: '65px', zIndex: 1050 }}
+        >
           <div className="input-group">
             <input
               type="text"
@@ -174,13 +206,23 @@ const BlogSearch = () => {
 
               {!loading && visibleResults.length > 0 && (
                 <>
-                  {visibleResults.map((post, index) => (
-                    <div key={index} className="car-ll-01 mb-2">
-                      <a href={`${post.slug}`}>
-                        <h5>{post.title}</h5>
-                      </a>
-                    </div>
-                  ))}
+                  {visibleResults.map((post, index) => {
+                    const href = getHref(post.slug ?? post.url ?? '');
+                    const key = post._id || post.slug || `${href}-${index}`;
+                    const isAbsolute = /^https?:\/\//i.test(href);
+
+                    return (
+                      <div key={key} className="car-ll-01 mb-2">
+                        <a
+                          href={href}
+                          onClick={handleResultClick}
+                          {...(isAbsolute ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          <h5>{post.title}</h5>
+                        </a>
+                      </div>
+                    );
+                  })}
                   {visibleResults.length < allResults.length && (
                     <div className="text-center">
                       <button className="btn btn-outline-secondary" onClick={handleLoadMore}>
@@ -190,7 +232,6 @@ const BlogSearch = () => {
                   )}
                 </>
               )}
-              
 
               {!loading && visibleResults.length === 0 && (
                 <p>No blog found for "{query}"</p>
@@ -218,10 +259,11 @@ const BlogSearch = () => {
           border-color: #bb2b36;
         }
         .search-results {
-          width: 100%;
+          width: 450px;
           max-height: 300px;
           overflow-y: auto;
           border-radius: 6px;
+          left:-210px
         }
 
         /* ---------- Mobile ---------- */
