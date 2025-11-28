@@ -282,7 +282,7 @@ export default function About() {
                 </div>
             </section>
 
-<iframe src='https://outlook.office.com/book/DemoBooking@dynamicssquare.com/' width='100%' height='1400px' scrolling='yes' ></iframe>
+    <iframe src='https://outlook.office.com/book/DemoBooking@dynamicssquare.com/' width='100%' height='1400px' scrolling='yes' ></iframe>
 
         </>
     );
