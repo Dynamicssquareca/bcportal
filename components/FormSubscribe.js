@@ -202,6 +202,7 @@ export default function SubscribeForm() {
 
       // Redirect user to thank-you page (per your request)
       window.location.href = '/thank-you/';
+      // window.open('/thank-you/', '_blank');
       return;
     }
 
