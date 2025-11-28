@@ -5,26 +5,29 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 /**
- * Form.jsx
- * - Business-email only validation (client-side)
- * - Name heuristics to block placeholders/gibberish
- * - Honeypot field
- * - If EmailJS OR API succeeds -> redirect to /thank-you/
- * - Errors from network/server calls are only logged to console (not shown to user)
+ * Full form component:
+ * - Honeypot (name="website")
+ * - Business-email-only + disposable/free domain blocklist
+ * - Name heuristics (no placeholders/gibberish)
+ * - Improved timer logic and safe error handling
+ * - Sends via EmailJS and posts to your API endpoint
  *
- * NOTE: You MUST also enforce server-side validation (server may still accept spam if not hardened).
- * Replace EmailJS IDs if required.
+ * NOTE: Client-side checks are UX improvements. Always enforce same checks server-side.
  */
 
 const BLOCKED_EMAIL_DOMAINS = new Set([
+  // common free providers
   'gmail.com','googlemail.com','yahoo.com','yahoo.co.in','ymail.com','hotmail.com',
   'outlook.com','live.com','aol.com','icloud.com','me.com','msn.com','hotmail.co.uk',
   'hotmail.co.in','mail.com','gmx.com','gmx.co.uk','qq.com','126.com','163.com',
+  // privacy / freemail
   'protonmail.com','protonmail.ch','tutanota.com','fastmail.com','hushmail.com',
+  // disposable / very common throwaway services
   'mailinator.com','yopmail.com','10minutemail.com','temp-mail.org','tempmail.net',
   'guerrillamail.com','trashmail.com','getnada.com','maildrop.cc','dispostable.com',
   'mailnesia.com','throwawaymail.com','spamgourmet.com','mintemail.com',
   'mailcatch.com','mytemp.email','sharklasers.com','disposablemail.com','spamtrap.io',
+  // other commonly abused/free providers you might want to block
   'zoho.com','zoho.in','inbox.com','inbox.lv','aim.com','posteo.de','prodigy.net.mx',
   'mail.ru','yandex.com','yandex.ru','mail.ee','runbox.com','laposte.net',
   'safe-mail.net','email.com','mailbox.org','lavabit.com'
@@ -41,7 +44,7 @@ const COMMON_PLACEHOLDER_NAMES = new Set([
   'test company','test name','name','firstname','lastname'
 ]);
 
-/* ---------- helpers ---------- */
+/* -------------------- Helpers -------------------- */
 
 const domainLooksDisposableOrFree = (domain) => {
   if (!domain) return true;
@@ -50,16 +53,18 @@ const domainLooksDisposableOrFree = (domain) => {
   for (const kw of DISPOSABLE_KEYWORDS) {
     if (lc.includes(kw)) return true;
   }
-  // company domains normally contain a dot
+  // domain must contain a dot (company domains normally do)
   if (!lc.includes('.')) return true;
   return false;
 };
 
 const isValidBusinessEmail = (email) => {
   if (!email || typeof email !== 'string') return false;
+  // basic format
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
   if (!regex.test(email)) return false;
   const domain = email.trim().toLowerCase().split('@').pop();
+  // block obvious free/disposable/known providers
   if (domainLooksDisposableOrFree(domain)) return false;
   return true;
 };
@@ -68,16 +73,21 @@ const isValidName = (name) => {
   if (!name || typeof name !== 'string') return false;
   const cleaned = name.trim();
   if (cleaned.length < 3) return false;
+  // block common placeholders
   if (COMMON_PLACEHOLDER_NAMES.has(cleaned.toLowerCase())) return false;
+  // allowed characters (letters, spaces, hyphens, apostrophes, dots)
   const allowedRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ'’.\- ]+$/u;
   if (!allowedRegex.test(cleaned)) return false;
-  if (!/[aeiouAEIOU]/.test(cleaned)) return false; // require a vowel
+  // require at least one vowel to avoid nonsense like "qwrty"
+  if (!/[aeiouAEIOU]/.test(cleaned)) return false;
+  // multi-word heuristic: ensure words aren't too short
   const parts = cleaned.split(/\s+/).filter(Boolean);
   if (parts.length >= 2) {
     if (parts.some(p => p.length < 2)) return false;
   } else {
     if (cleaned.length < 3) return false;
   }
+  // avoid mostly-consonant long strings
   if (cleaned.length > 6) {
     const lettersOnly = cleaned.replace(/[^A-Za-z]/g, '');
     const consonants = lettersOnly.replace(/[aeiouAEIOU]/g, '');
@@ -87,12 +97,12 @@ const isValidName = (name) => {
 };
 
 const isValidPhoneNumber = (phone) => {
-  if (!phone || phone.trim() === '') return true; // phone optional
+  if (!phone || phone.trim() === '') return true; // keep optional behavior
   const cleaned = phone.replace(/\D/g, '');
   return /^\d{7,18}$/.test(cleaned);
 };
 
-/* ---------- component ---------- */
+/* -------------------- Component -------------------- */
 
 const Form = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -117,10 +127,10 @@ const Form = ({ onSubmit }) => {
   }, []);
 
   const fetchCountryCodeByIP = () => {
-    // optional: get country code for phone input
+    // optional IP-to-country service; handle failures gracefully
     fetch(`https://api.ipdata.co?api-key=c87ef34a2d0cd830649eec9a8b2395698490a7baaf414bf95516a3b8`)
       .then(res => {
-        if (!res.ok) throw new Error('IP fetch failed');
+        if (!res.ok) throw new Error('Failed to fetch IP info');
         return res.json();
       })
       .then(data => {
@@ -162,7 +172,8 @@ const Form = ({ onSubmit }) => {
       newErrors.company = 'Company name is required';
     }
 
-    // message optional
+    // message optional; uncomment if required
+    // if (!message.trim()) newErrors.message = 'Message is required';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -180,16 +191,14 @@ const Form = ({ onSubmit }) => {
 
     if (!validateForm()) return;
 
+    // client-side passed — mark submitted state
     setSubmitted(true);
 
-    let emailJsSuccess = false;
-    let apiSuccess = false;
-
-    // Try EmailJS first
+    // Send EmailJS (use your service/template/user ids)
     try {
-      const res = await emailjs.send(
-        'service_wg43hnh',     // keep your current IDs or change
-        'template_eukiujp',
+      await emailjs.send(
+        'service_wg43hnh',          // service id (from your original code)
+        'template_eukiujp',         // template id
         {
           from_name: name,
           from_email: email,
@@ -197,32 +206,20 @@ const Form = ({ onSubmit }) => {
           phone_number: phone,
           company_name: company,
           message: message,
-          page_url: pageUrl,
+          page_url: pageUrl
         },
-        'tM-L9poaHjGY70sQI'
+        'tM-L9poaHjGY70sQI'        // user id / public key
       );
-      console.log('EmailJS SUCCESS:', res);
-      emailJsSuccess = true;
+      console.log('EmailJS: sent');
     } catch (err) {
-      console.error('EmailJS ERROR:', err);
+      console.error('EmailJS send error:', err);
+      // continue — still post to your API
     }
 
-    // If EmailJS succeeded, redirect immediately
-    if (emailJsSuccess) {
-      // redirect to thank-you page
-      window.location.href = '/thank-you/';
-      // window.open('/thank-you/', '_blank');
-      return;
-    }
-
-    // Try server API next
+    // Post to backend API (server must re-validate)
     try {
-      const apiUrl = 'https://www.minimallyyours.com/api/';
-      const response = await fetch(apiUrl, {
+      const response = await fetch('https://www.minimallyyours.com/api/', {
         method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'omit', // change to 'include' if your server relies on cookies
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formName: 'Main Form',
@@ -237,31 +234,42 @@ const Form = ({ onSubmit }) => {
         }),
       });
 
-      const text = await response.text();
-      // try parsing JSON if possible
-      let data;
-      try { data = JSON.parse(text); } catch (e) { data = { raw: text }; }
-      console.log('API RESPONSE:', response.status, data);
-
-      if (response.ok) {
-        apiSuccess = true;
-      } else {
-        // log the server rejection (console only)
-        console.error('API returned non-OK status', response.status, data);
+      const apiData = await response.json();
+      if (!response.ok) {
+        setSubmitted(false);
+        setErrors(prev => ({ ...prev, server: apiData.error || 'Server validation failed' }));
+        return;
       }
+      console.log('Server accepted submission:', apiData);
     } catch (err) {
-      console.error('API ERROR:', err);
-    }
-
-    if (apiSuccess) {
-      window.location.href = '/thank-you/';
+      console.error('Error posting to server API:', err);
+      setSubmitted(false);
+      setErrors(prev => ({ ...prev, server: 'Failed to submit. Please try again later.' }));
       return;
     }
 
-    // If we reach here, both failed — log and re-enable submit.
-    console.error('Both EmailJS and API failed. See logs above.');
-    setSubmitted(false);
-    // Do NOT show server errors to user (by design per your instruction).
+    // Clear form fields on success
+    setName('');
+    setEmail('');
+    setPhone('');
+    setCompany('');
+    setMessage('');
+    setErrors({});
+
+    // Start redirect timer with safe id reference
+    setRedirectTimer(3);
+    const id = setInterval(() => {
+      setRedirectTimer(prev => {
+        if (prev <= 1) {
+          clearInterval(id);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    setTimerId(id);
+
+    if (typeof onSubmit === 'function') onSubmit();
   };
 
   return (
@@ -280,7 +288,7 @@ const Form = ({ onSubmit }) => {
         {errors.name && <div className="text-danger">{errors.name}</div>}
       </div>
 
-      {/* Honeypot */}
+      {/* honeypot */}
       <div style={{ display: 'none' }}>
         <input type="text" name="website" autoComplete="off" onChange={() => {}} />
       </div>
@@ -305,7 +313,8 @@ const Form = ({ onSubmit }) => {
           value={phone}
           onChange={(value, data) => {
             setPhone(value);
-            const cc = (data && (data.countryCode || data?.name || '')) || defaultCountryCode;
+            // data.countryCode (ISO2) is common; fallback to value or 'us'
+            const cc = (data && (data.countryCode || data?.name || '') ) || defaultCountryCode;
             if (cc) setDefaultCountryCode(cc.toLowerCase());
             if (errors.phone) safeSetErrorsDelete('phone');
           }}
@@ -363,11 +372,13 @@ const Form = ({ onSubmit }) => {
 
       <div className="m-t-30">
         <button className='btn btn-three' type="submit" disabled={submitted}>
-          {submitted ? `Submitting...` : 'Submit'}
+          {submitted ? `Submitting (${redirectTimer})` : 'Submit'}
         </button>
       </div>
 
-      {submitted && <p className="text-muted">Submitting — please wait...</p>}
+      {errors.server && <div className="text-danger mt-2">{errors.server}</div>}
+      {submitted && redirectTimer === 0 && <p className="text-success">Your form has been submitted!</p>}
+      {submitted && redirectTimer > 0 && <p className="text-muted">Submitted — redirecting in {redirectTimer}s...</p>}
     </form>
   );
 };
