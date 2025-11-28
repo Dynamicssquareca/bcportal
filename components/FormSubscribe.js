@@ -143,7 +143,7 @@ export default function SubscribeForm() {
     // Kick off both calls in parallel, don't short-circuit — we want whichever succeeds
     const emailPromise = emailjs.send(serviceID, templateID, templateParams, userID);
 
-    const apiPromise = fetch('https://www.minimallyyours.com/api/zohocrmforceplus', {
+    const apiPromise = fetch('https://www.minimallyyours.com/api/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

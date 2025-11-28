@@ -227,7 +227,7 @@ const FormCta = ({ onSubmit }) => {
 
     // 2) Try server API using axios
     try {
-      const apiUrl = 'https://www.minimallyyours.com/api/zohocrmforceplus';
+      const apiUrl = 'https://www.minimallyyours.com/api/';
       const axiosResp = await axios.post(apiUrl, {
         formName: 'Main Form',
         name,
