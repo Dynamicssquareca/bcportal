@@ -17,27 +17,27 @@ const ContactUs = () => {
     return (
         <>
             <Head>
-                <title>Contact Stone Discover UK: Memorial Headstones Supplier in UK</title>
+                <title>Contact Us</title>
                 <meta
                     name="description"
-                    content="Contact Stone Discover UK for premium wholesale memorial headstones. Trusted by UK funeral homes and retailers for quality and custom options."
+                    content=""
                 />
-                <link rel="canonical" href="https://www.businesscentralpartners.co.uk/contact-us/" />
+                <link rel="canonical" href="https://www.businesscentralpartners.com/contact-us/" />
                 <meta property="og:locale" content="US" />
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="Contact Stone Discover UK: Memorial Headstones Supplier in UK" />
-                <meta property="og:description" content="Contact Stone Discover UK for premium wholesale memorial headstones. Trusted by UK funeral homes and retailers for quality and custom options." />
-                <meta property="og:url" content="https://www.businesscentralpartners.co.uk/contact-us/" />
+                <meta property="og:title" content="Contact Us" />
+                <meta property="og:description" content="" />
+                <meta property="og:url" content="https://www.businesscentralpartners.com/contact-us/" />
                 <meta property="og:site_name" content="Stone Discover UK" />
-                <meta property="og:image" content="https://www.businesscentralpartners.co.uk/img/stone-home-o.jpeg" />
+                <meta property="og:image" content="https://www.businesscentralpartners.com/img/stone-home-o.jpeg" />
                 <meta property="og:image:width" content="200" />
                 <meta property="og:image:height" content="200" />
                 <meta property="og:image:type" content="image/jpeg" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@Stone Discover UK" />
-                <meta name="twitter:title" content="Contact Stone Discover UK: Memorial Headstones Supplier in UK" />
-                <meta name="twitter:description" content="Contact Stone Discover UK for premium wholesale memorial headstones. Trusted by UK funeral homes and retailers for quality and custom options." />
-                <meta name="twitter:image" content="https://www.businesscentralpartners.co.uk/img/stone-home-o.jpeg" />
+                <meta name="twitter:title" content="Contact Us" />
+                <meta name="twitter:description" content="" />
+                <meta name="twitter:image" content="https://www.businesscentralpartners.com/img/stone-home-o.jpeg" />
             </Head>
 
             <div className='common-header-banner'>

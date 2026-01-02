@@ -63,12 +63,27 @@ const BlogIndex = ({ posts, categories }) => {
   return (
     <>
       <Head>
-        <title>Wholesale Memorial Headstones Guides | Stone Discover UK</title>
+        <title>Your Trusted Source for Microsoft Dynamics News and Insights</title>
         <meta
           name="description"
-          content="Explore wholesale memorial headstone guides with Stone Discover UK. Resources for funeral trade, stonemasons & retailers to choose the best."
+          content="Stay updated with the latest Microsoft Dynamics news, expert insights, and in-depth analysis from a trusted independent source."
         />
-        <link rel="canonical" />
+        <link rel="canonical" href='https://www.businesscentralpartners.com/' />
+        <meta property="og:locale" content="US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Your Trusted Source for Microsoft Dynamics News and Insights" />
+        <meta property="og:description" content="Stay updated with the latest Microsoft Dynamics news, expert insights, and in-depth analysis from a trusted independent source." />
+        <meta property="og:url" content="https://www.businesscentralpartners.com/about-us/" />
+        <meta property="og:site_name" content="Businesscentral" />
+        <meta property="og:image" content="https://businesscentralapi.onrender.com/uploads/1763642573840.png" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@businesscentral" />
+        <meta name="twitter:title" content="Your Trusted Source for Microsoft Dynamics News and Insights" />
+        <meta name="twitter:description" content="Stay updated with the latest Microsoft Dynamics news, expert insights, and in-depth analysis from a trusted independent source." />
+        <meta name="twitter:image" content="hhttps://businesscentralapi.onrender.com/uploads/1763642573840.png" />
       </Head>
       <div className='bc-home-intro'>
         <section className="news-section py-5 bg-white">
@@ -143,14 +158,14 @@ const BlogIndex = ({ posts, categories }) => {
                     categoryName="Business Central"
                  
                   /> */}
-                    <CardOne categoryName="Business Central" />
+                  <CardOne categoryName="Business Central" />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-      
+
 
         <section className='slider-wrapper p-b-60'>
           <div className='container'>

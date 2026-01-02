@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
     return (
         <>
             <Head>
-                <title></title>
+                <title>P rivacy Policy</title>
             </Head>
             <div className='common-header-banner'>
                 <div className='container'>

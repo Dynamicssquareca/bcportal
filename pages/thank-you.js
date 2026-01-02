@@ -4,12 +4,12 @@ const ThankYou = () => {
     return (
         <>
         <Head>
-            <title>Thank You | CRM Frontier</title>
+            <title>Thank You </title>
             <meta
                     name="description"
                     content=""
                 />
-            <link rel="canonical" href="https://www.crmfrontier.com/thank-you/" />
+            <link rel="canonical" href="https://www.businesscentralpartners.com/thank-you/" />
         </Head>
 
         <section className="hero">
