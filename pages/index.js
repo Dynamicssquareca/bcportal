@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CardSliderOne from '@/components/CardSliderOne';
 import CardSliderTwo from '@/components/CardSliderTwo';
+import CardOne from '@/components/CardOne';
+import CardTwo from '@/components/CardTwo';
 
 
 
@@ -135,17 +137,20 @@ const BlogIndex = ({ posts, categories }) => {
           <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
-                <div className="fullwidth-slider">
-                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Business Central</h2> <span><a href="/category/">View all</a></span></div>
-                  <CardSliderOne
+                <div className="fullwidth-slider-card">
+                  <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Business Central</h2> <span><a href="/category/business-central/">View all</a></span></div>
+                  {/* <CardSliderOne
                     categoryName="Business Central"
                  
-                  />
+                  /> */}
+                    <CardOne categoryName="Business Central" />
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+      
 
         <section className='slider-wrapper p-b-60'>
           <div className='container'>
@@ -160,7 +165,7 @@ const BlogIndex = ({ posts, categories }) => {
           </div>
         </section>
 
-        <section className='slider-wrapper p-b-60'>
+        {/* <section className='slider-wrapper p-b-60'>
           <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
@@ -171,9 +176,9 @@ const BlogIndex = ({ posts, categories }) => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section className='slider-wrapper p-b-60'>
+        {/* <section className='slider-wrapper p-b-60'>
           <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
@@ -184,7 +189,7 @@ const BlogIndex = ({ posts, categories }) => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className='new-cta m-b-60'>
           <div className='container'>
@@ -205,7 +210,7 @@ const BlogIndex = ({ posts, categories }) => {
           </div>
         </section>
 
-        <section className='slider-wrapper p-b-60'>
+        {/* <section className='slider-wrapper p-b-60'>
           <div className='container'>
             <div className='row'>
               <div className='col-lg-12'>
@@ -216,7 +221,7 @@ const BlogIndex = ({ posts, categories }) => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className='slider-wrapper p-b-60'>
           <div className='container'>
@@ -224,7 +229,8 @@ const BlogIndex = ({ posts, categories }) => {
               <div className='col-lg-12'>
                 <div className="fullwidth-slider fullwidth-slider-colo">
                   <div className="heading-left p-b-20 heading-flex"><h2 className="m-b-30">Cloud & AI</h2> <span className=''><a style={{ color: '#fff' }} href="/category/">View all</a></span></div>
-                  <CardSliderTwo />
+                  {/* <CardSliderTwo /> */}
+                  <CardTwo />
                 </div>
               </div>
             </div>

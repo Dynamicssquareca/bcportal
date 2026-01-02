@@ -31,7 +31,7 @@ const Header = () => {
                 <header id="header" className="header">
                 <div className="container p-d-20 d-flex align-items-center justify-content-between">
                     <a href="/" className="logo d-flex align-items-center">
-                        <Image src="/bc-partner-logo.png" alt="bc-partner-logo" width={198} height={44} />
+                        <Image src="/bc-partner-logo.png" alt="bc-partner-logo" width={180} height={49} />
                     </a>
                     <Nav />
                    

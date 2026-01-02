@@ -56,7 +56,7 @@ const Footer = ({ faq }) => {
                 </div>
                 <div className='bottom-footer'>
                     <div className="container">
-                        <div className="copyright">© Copyright 2025 businesscentralpartners. All rights reserved. Various trademarks held by their respective owners.</div>
+                        <div className="copyright">© Copyright 2026 businesscentralpartners. All rights reserved. Various trademarks held by their respective owners.</div>
                     </div>
                 </div>
             </footer>
