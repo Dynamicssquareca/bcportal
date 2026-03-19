@@ -196,7 +196,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                       
                       <div className='card-avt-det'>
                         <h4>{post.author.name}</h4>
-                        <p>{post.author.aboutus}</p>
+                        <p>{post.author.about}</p>
 
                       </div>
                     </Link>

@@ -2548,6 +2548,16 @@ color: #e3e3e3;
     .card-single-list{
       margin-bottom:20px
     }
+    .auther-inner {
+    text-align: left;
+    margin-bottom: 25px;
+}
+.common-titles h1 {
+    font-size: 24px;
+}
+.common-titles p {
+    padding-right: 0;
+}
 }
 @media (max-width: 778px) {
   .card-001{

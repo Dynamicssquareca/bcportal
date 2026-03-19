@@ -58,7 +58,7 @@ const AuthorPage = ({ author, posts }) => {
           <div className="col-md-10">
            <div className='common-titles'>
            <h1>{author.name}</h1>
-           <p>{author.aboutus}</p>
+           <p>{author.about}</p>
            </div>
           </div>
         </div>
