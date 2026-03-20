@@ -265,7 +265,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                   <div className="card h-100 card-222">
                     <div className='card-image-p'>
                       {rp.imageUrl && (
-                        <Link href={`/blog/${rp.slug}`}>
+                        <Link href={`${rp.slug}`}>
                           <Image
                             src={getImageUrl(rp.imageUrl)}
                             alt={rp.title}
