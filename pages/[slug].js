@@ -142,7 +142,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                         By <Link href={`/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
                       </span>
                       <span className="mx-2">|</span>
-                      <span>{formatDate(post.createdAt)}</span>
+                      <span>{formatDate(post.updatedAt)}</span>
                     </div>
                     <div className="mb-4 post-sharing">
                       <span>Share: </span>
@@ -290,7 +290,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                           <Link href={`author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
                         </span>
                         <span className="mx-2">|</span>
-                        <span>{formatDate(rp.createdAt)}</span>
+                        <span>{formatDate(rp.updatedAt)}</span>
                         {/* <span className="mx-2">|</span>
                         <span>{rp.readtimes || ' '}m Reading</span> */}
                       </div>
