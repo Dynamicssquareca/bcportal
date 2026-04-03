@@ -7,7 +7,13 @@ import parse from 'html-react-parser';
 
 function formatDate(dateStr) {
   const date = new Date(dateStr);
-  return date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+  return date.toLocaleDateString('en-IN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone: 'UTC' 
+  });
 }
 
 const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => {
@@ -143,11 +149,11 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                       </span>
                      
                       {/* <span>{formatDate(post.updatedAt)}</span> */}
-                      {(post?.updatedAt || post?.updatedAt) && (
+                      {(post?.scheduleDate || post?.updatedAt) && (
                         <>
                          <span className="mx-2">|</span>
                         <span>
-                          {formatDate(post.updatedAt || post.updatedAt)}
+                          {formatDate(post.scheduleDate || post.updatedAt)}
                         </span>
                         </>
                       )}
