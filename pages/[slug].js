@@ -141,8 +141,16 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                       <span>
                         By <Link href={`/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
                       </span>
-                      <span className="mx-2">|</span>
-                      <span>{formatDate(post.updatedAt)}</span>
+                     
+                      {/* <span>{formatDate(post.updatedAt)}</span> */}
+                      {(post?.updatedAt || post?.updatedAt) && (
+                        <>
+                         <span className="mx-2">|</span>
+                        <span>
+                          {formatDate(post.updatedAt || post.updatedAt)}
+                        </span>
+                        </>
+                      )}
                     </div>
                     <div className="mb-4 post-sharing">
                       <span>Share: </span>
@@ -193,7 +201,7 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                         width={60}
                         height={60}
                       />
-                      
+
                       <div className='card-avt-det'>
                         <h4>{post.author.name}</h4>
                         <p>{post.author.about}</p>
@@ -289,8 +297,16 @@ const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => 
                         <span>
                           <Link href={`author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
                         </span>
-                        <span className="mx-2">|</span>
-                        <span>{formatDate(rp.updatedAt)}</span>
+                        
+                        {/* <span>{formatDate(rp.updatedAt)}</span> */}
+                        {(rp?.scheduleDate || rp?.updatedAt) && (
+                          <>
+                          <span className="mx-2">|</span>
+                          <span>
+                            {formatDate(rp.scheduleDate || rp.updatedAt)}
+                          </span>
+                          </>
+                        )}
                         {/* <span className="mx-2">|</span>
                         <span>{rp.readtimes || ' '}m Reading</span> */}
                       </div>
