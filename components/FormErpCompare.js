@@ -124,7 +124,7 @@ const FormErpCompare = ({ onSuccess }) => {
           'GOr8q7p52Z3BisMM4'
         );
 
-        await fetch('https://blognew.dynamicssquare.com/api/formData', {
+        await fetch('https://www.minimallyyours.com/api/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData),
