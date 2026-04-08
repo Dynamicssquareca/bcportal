@@ -2555,8 +2555,12 @@ font-size: 40px;
  .mm-si .modal-content{
 padding:30px}
  .mm-si .modal-content input.form-control{
-  padding: .475rem .75rem;
+  padding: .475rem .95rem;
   height: auto;
+  font-size:14px
+ }
+  .mm-si  label{
+  font-size:14px
  }
 .mm-si .modal-title {
     font-size: 18px;
@@ -2565,6 +2569,19 @@ padding:30px}
 }
 .mm-si form{
 padding: 15px 0px;
+}
+.mm-si .text-danger{
+}
+.mm-si form .form-control::placeholder{
+  font-size:12px
+}
+.mm-si .spiner-wrper{
+  display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.mm-si  .spiner-wrper .spinner-border{
+margin-top: 13px;
 }
 /* Equal height columns */
 @media (min-width: 992px) {
@@ -2608,6 +2625,9 @@ padding: 15px 0px;
 }
 }
 @media (max-width: 778px) {
+  .mm-si .modal-content {
+    padding: 7px;
+}
   .card-001{
 flex-wrap: wrap;
 margin-bottom: 15px;
