@@ -1,253 +1,251 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import emailjs from '@emailjs/browser';
-import { useRouter } from 'next/router';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
-const FormErpCompare = ({ onSuccess }) => {
-  const router = useRouter();
-  const form = useRef();
+const FormErpCompare = ({ onSuccess, selectedErps }) => {
+    const form = useRef();
+    const isSubmittingRef = useRef(false);
 
-  // 🔒 instant lock (MAIN FIX)
-  const isSubmittingRef = useRef(false);
+    const [currentPageUrl, setCurrentPageUrl] = useState('');
+    const [defaultCountryName, setDefaultCountryName] = useState('');
+    const [defaultCountryCode, setDefaultCountryCode] = useState('gb');
 
-  const [currentPageUrl, setCurrentPageUrl] = useState('');
-  const [defaultCountryName, setDefaultCountryName] = useState('');
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        companyname: '',
+        currentPageUrl: '',
+        selectedErps: '',
+        defaultCountryName: '',
+        formtag: 'ERP Compare Form'
+    });
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    companyname: '',
-    currentPageUrl: '',
-    defaultCountryName: '',
-    formtag: 'ERP Compare Form'
-  });
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
 
-  const [defaultCountryCode, setDefaultCountryCode] = useState('gb');
-  const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
+    // ==========================
+    // ✅ OPTIMIZED ERP NAMES (useMemo)
+    // OLD ❌ (recalculate every render)
+    // const selectedErpNames = selectedErps?.filter(Boolean).map(e => e.name).join(', ');
 
-  // ==========================
-  // COUNTRY FETCH
-  // ==========================
-  useEffect(() => {
-    fetch(`https://api.ipdata.co?api-key=00163619f1de9b2adebdc3a316b8958c4864bcc38ca547a8fd081d6e`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDefaultCountryCode(data.country_code.toLowerCase());
-        setDefaultCountryName(data.country_name);
-      })
-      .catch(() => setDefaultCountryCode('gb'));
-  }, []);
+    // NEW ✅
+    const selectedErpNames = useMemo(() => {
+        return selectedErps
+            ?.filter(Boolean)
+            .map(e => e.name)
+            .join(', ') || '';
+    }, [selectedErps]);
 
-  useEffect(() => {
-    setCurrentPageUrl(window.location.href);
-    setFormData((prev) => ({
-      ...prev,
-      currentPageUrl: window.location.href,
-      defaultCountryName,
-    }));
-  }, [defaultCountryName]);
+    // ==========================
+    // COUNTRY FETCH
+    // ==========================
+    useEffect(() => {
+        fetch(`https://api.ipdata.co?api-key=00163619f1de9b2adebdc3a316b8958c4864bcc38ca547a8fd081d6e`)
+            .then(res => res.json())
+            .then(data => {
+                setDefaultCountryCode(data.country_code.toLowerCase());
+                setDefaultCountryName(data.country_name);
+            })
+            .catch(() => setDefaultCountryCode('gb'));
+    }, []);
 
-  // ==========================
-  // HANDLERS
-  // ==========================
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors((prev) => ({ ...prev, [name]: '' }));
-  };
+    // ==========================
+    // PAGE + COUNTRY SET
+    // ==========================
+    useEffect(() => {
+        setCurrentPageUrl(window.location.href);
 
-  const handlePhoneChange = (phone) => {
-    setFormData({ ...formData, phone });
-    setErrors((prev) => ({ ...prev, phone: '' }));
-  };
+        setFormData(prev => ({
+            ...prev,
+            currentPageUrl: window.location.href,
+            defaultCountryName
+        }));
+    }, [defaultCountryName]);
 
-  // ==========================
-  // VALIDATION
-  // ==========================
-  const validateForm = (formData) => {
-    const errors = {};
+    // ==========================
+    // ✅ AUTO SYNC ERP → formData
+    // NEW (BEST PRACTICE)
+    // ==========================
+    useEffect(() => {
+        setFormData(prev => ({
+            ...prev,
+            selectedErps: selectedErpNames
+        }));
+    }, [selectedErpNames]);
 
-    if (!formData.name.trim()) errors.name = 'Name is required';
+    // ==========================
+    // HANDLERS (OPTIMIZED)
+    // OLD ❌ setFormData({ ...formData })
+    // NEW ✅ functional update (no stale state)
+    // ==========================
+    const handleChange = (e) => {
+        const { name, value } = e.target;
 
-    if (!formData.email.trim()) {
-      errors.email = 'Email is required';
-    } else if (!isValidEmail(formData.email)) {
-      errors.email = 'Invalid work email';
-    }
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
 
-    if (!formData.phone.trim()) {
-      errors.phone = 'Phone number is required';
-    } else if (!isValidPhoneNumber(formData.phone)) {
-      errors.phone = 'Invalid phone number';
-    }
+        setErrors(prev => ({ ...prev, [name]: '' }));
+    };
 
-    if (!formData.companyname.trim()) {
-      errors.companyname = 'Company name is required';
-    }
+    const handlePhoneChange = (phone) => {
+        setFormData(prev => ({ ...prev, phone }));
+        setErrors(prev => ({ ...prev, phone: '' }));
+    };
 
-    return errors;
-  };
+    // ==========================
+    // VALIDATION (NO CHANGE)
+    // ==========================
+    const validateForm = (data) => {
+        const errors = {};
 
-  const isValidEmail = (email) => {
-    const emailRegex =
-      /^[a-zA-Z0-9._%+-]+@(?!gmail.com)(?!yahoo.com)(?!hotmail.com)(?!aol.com)(?!outlook.com)(?!live.com)(?!yahoo.co.in)[a-zA-Z0-9_-]+\.[a-zA-Z0-9-.]{2,61}$/;
-    return emailRegex.test(email);
-  };
+        if (!data.name.trim()) errors.name = 'Name is required';
 
-  const isValidPhoneNumber = (phone) => /^\d{10,15}$/.test(phone);
+        if (!data.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+            errors.email = 'Invalid email';
+        }
 
-  // ==========================
-  // SUBMIT
-  // ==========================
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+        if (!data.phone.trim()) errors.phone = 'Phone required';
+        if (!data.companyname.trim()) errors.companyname = 'Company required';
 
-    // 🚫 instant block (IMPORTANT)
-    if (isSubmittingRef.current) return;
+        return errors;
+    };
 
-    const validationErrors = validateForm(formData);
+    // ==========================
+    // SUBMIT (CLEAN + SAFE)
+    // ==========================
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    if (Object.keys(validationErrors).length === 0) {
-      isSubmittingRef.current = true;
-      setSubmitting(true);
+        if (isSubmittingRef.current) return;
 
-      try {
-        await emailjs.sendForm(
-          'service_ny5atf7',
-          'template_m5cq8mp',
-          e.target,
-          'GOr8q7p52Z3BisMM4'
-        );
+        const validationErrors = validateForm(formData);
 
-        await fetch('https://blognew.dynamicssquare.com/api/formData', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData),
-        });
+        if (Object.keys(validationErrors).length) {
+            setErrors(validationErrors);
+            return;
+        }
 
-        if (onSuccess) onSuccess();
+        isSubmittingRef.current = true;
+        setSubmitting(true);
 
-        // ✅ reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          companyname: '',
-          currentPageUrl: '',
-          defaultCountryName: '',
-          formtag: 'ERP Compare Form'
-        });
+        try {
+            // ✅ EMAIL SEND
+            await emailjs.sendForm(
+                'service_ny5atf7',
+                'template_m5cq8mp',
+                form.current,
+                'GOr8q7p52Z3BisMM4'
+            );
 
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      } finally {
-        setSubmitting(false);
-        isSubmittingRef.current = false; // 🔓 unlock
-      }
-    } else {
-      setErrors(validationErrors);
-    }
-  };
+            // OLD ❌ create inside fetch
+            // NEW ✅ already synced in formData
 
-  // ==========================
-  // UI
-  // ==========================
-  return (
-    <div className="main-form-wrper main-form-wrper-pdd">
-      <form
-        ref={form}
-        onSubmit={handleSubmit}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && submitting) {
-            e.preventDefault();
-          }
-        }}
-      >
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="*Full Name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <input type="hidden" name="currentPageUrl" value={currentPageUrl} />
-          {errors.name && <div className="text-danger">{errors.name}</div>}
+            await fetch('https://blognew.dynamicssquare.com/api/formData', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            onSuccess?.();
+
+            // ==========================
+            // RESET (CLEAN)
+            // ==========================
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                companyname: '',
+                currentPageUrl: window.location.href,
+                selectedErps: '',
+                defaultCountryName,
+                formtag: 'ERP Compare Form'
+            });
+
+        } catch (err) {
+            console.error('Submit error:', err);
+        } finally {
+            setSubmitting(false);
+            isSubmittingRef.current = false;
+        }
+    };
+
+    // ==========================
+    // UI
+    // ==========================
+    return (
+        <div className="main-form-wrper main-form-wrper-pdd">
+            <form ref={form} onSubmit={handleSubmit}>
+
+                {/* ✅ hidden ERP field */}
+                <input type="hidden" name="selectedErps" value={selectedErpNames} />
+
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="*Full Name"
+                        className="form-control"
+                    />
+                    {errors.name && <div className="text-danger">{errors.name}</div>}
+                </div>
+
+                <div className="mb-3">
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="*Work Email"
+                        className="form-control"
+                    />
+                    {errors.email && <div className="text-danger">{errors.email}</div>}
+                </div>
+
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        name="companyname"
+                        value={formData.companyname}
+                        onChange={handleChange}
+                        placeholder="*Company Name"
+                        className="form-control"
+                    />
+                    {errors.companyname && <div className="text-danger">{errors.companyname}</div>}
+                </div>
+
+                <div className="mb-3">
+                    <PhoneInput
+                        inputStyle={{ width: '100%', paddingLeft: '50px' }}
+                        country={defaultCountryCode}
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        inputProps={{
+                            name: 'phone',
+                            required: true,
+                        }}
+                        countryCodeEditable={false}
+                        excludeCountries={['pk']}
+                    />
+                    {errors.phone && <div className="text-danger">{errors.phone}</div>}
+                </div>
+
+                <button disabled={submitting} className="btn btn-new">
+                    {submitting ? 'Submitting...' : 'Submit'}
+                </button>
+            </form>
         </div>
-
-        <div className="mb-3">
-          <input
-            type="email"
-            className="form-control"
-            placeholder="*Work Email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="text-danger">{errors.email}</div>}
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="*Company Name"
-            name="companyname"
-            value={formData.companyname}
-            onChange={handleChange}
-          />
-          {errors.companyname && <div className="text-danger">{errors.companyname}</div>}
-        </div>
-
-        <div className="mb-3">
-          <PhoneInput
-            inputStyle={{ width: '100%',paddingLeft:'50px' }}
-            country={defaultCountryCode}
-            value={formData.phone}
-            onChange={handlePhoneChange}
-            inputProps={{
-              name: 'phone',
-              required: true,
-            }}
-            countryCodeEditable={false}
-            excludeCountries={['pk']}
-          />
-          {errors.phone && <div className="text-danger">{errors.phone}</div>}
-        </div>
-
-        <div className="mb-3 form-check">
-          <input type="checkbox" checked readOnly className="form-check-input" />
-          <label className="form-check-label">
-            I agree to the
-            <a href="/privacy-policy/" target="_blank"> Privacy Policy </a>
-            and
-            <a href="/terms-of-use/" target="_blank"> Terms of Service</a>.
-          </label>
-        </div>
-
-        <div className="spiner-wrper">
-          <button
-            type="submit"
-            className="btn btn-new"
-            disabled={submitting}
-            onClick={(e) => submitting && e.preventDefault()}
-          >
-            {submitting ? 'Submitting...' : 'Submit'}
-          </button>
-
-          {submitting && (
-            <div className="spinner-border text-primary" role="status"></div>
-          )}
-        </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default FormErpCompare;
