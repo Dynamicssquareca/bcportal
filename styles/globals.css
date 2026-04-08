@@ -2517,7 +2517,55 @@ color: #e3e3e3;
     flex: inherit !important;
     font-size: 12px;
 }
+.solution-new-banner{
+  text-align: center;
+  padding: 30px 0px;
+}
+.solution-new-banner h1{
+font-size: 40px;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #2baba0;
+}
+.solution-faq{
+  padding:80px 0px
+}
+.solution-sub-head{
+  padding-bottom:30px
+}
+.solution-sub-head h2{
+  font-size: 36px;
+  font-weight:600;
+  margin-bottom:20px
+}
+.solution-new-banner p{}
+.btn-new{
+  background-color: #2baba0;
+    padding: .6rem 3.2rem;
+    color: #fff;
+    margin-top: 15px;
+    border-color:transparent
+}
+.btn-new:hover{
+  background-color: #3f3f3f;
+      border-color:transparent;
+      color:#fff
 
+}
+ .mm-si .modal-content{
+padding:30px}
+ .mm-si .modal-content input.form-control{
+  padding: .475rem .75rem;
+  height: auto;
+ }
+.mm-si .modal-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #2baba0;
+}
+.mm-si form{
+padding: 15px 0px;
+}
 /* Equal height columns */
 @media (min-width: 992px) {
   .news-section .row {

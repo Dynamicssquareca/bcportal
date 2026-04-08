@@ -71,6 +71,7 @@ export default function CategoryNavClient({ limit = 7 }) {
           ) : (
             <div>No categories found</div>
           )}
+            <Link href="/top-erp-systems-comparison/">ERP Comparison</Link>
         </div>
       </div>
     </nav>
