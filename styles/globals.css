@@ -111,8 +111,8 @@ a {
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
-  --font-mono: "Poppins", sans-serif;
-  --font-sec: "Open Sans", sans-serif;
+  /* --font-mono: var(--font-poppins);
+  --font-sec: var(--font-open-sans); */
   --primary: #2baba0;
   --primary-dark: #d95404;
   --secondary: #4a4a4a;
@@ -150,6 +150,7 @@ a {
     GradientType=1
   );
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -162,15 +163,16 @@ body {
 }
 
 body {
-  font-family: var(--font-sec) !important;
   color: #444444;
   font-size: 16px;
 }
-
+#__next {
+  font-family: var(--font-open-sans);
+}
 a {
   color: var(--primary);
   text-decoration: none;
-  font-family: var(--font-sec) !important;
+  font-family: var(--font-open-sans) !important;
   transition: all 0.5s ease-in-out !important;
 }
 
@@ -185,7 +187,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-mono) !important;
+  font-family: var(--font-poppins) !important;
   /* text-wrap:balance */
 }
 img {
@@ -200,7 +202,7 @@ p {
   font-size: 16px;
   color: var(--secondary);
   line-height: 1.5;
-  font-family: var(--font-sec);
+  font-family: var(--font-open-sans);
 }
 ul li {
 }
@@ -518,7 +520,7 @@ font-size:48px
 }
 .card-02-item h3 {
   position: absolute;
-  font-family: var(--font-sec) !important;
+  font-family: var(--font-open-sans) !important;
   bottom: 15px;
   text-align: center;
   width: 100%;
@@ -665,7 +667,7 @@ font-size:48px
   font-size: 32px;
   font-weight: 500;
   padding: 0px 100px;
-  font-family: var(--font-mono) !important;
+  font-family: var(--font-poppins) !important;
   letter-spacing: -0.32px;
 }
 .about-us-content {
@@ -775,7 +777,7 @@ font-size:48px
   right: 0;
 }
 .form-one .react-tel-input {
-  font-family: var(--font-mono);
+  font-family: var(--font-poppins);
 }
 .form-one .form-check-label {
   font-size: 14px;
@@ -789,7 +791,7 @@ font-size:48px
   border-bottom: 1px solid #727272;
   border-radius: 0;
   font-size: 14px;
-  font-family: var(--font-sec) !important;
+  font-family: var(--font-open-sans) !important;
 }
 .form-one .react-tel-input .flag-dropdown {
   background: transparent;
@@ -948,7 +950,7 @@ font-size:48px
 .accordion-one .accordion-header h3 {
   font-size: 16px;
   font-weight: 600;
-  font-family: var(--font-sec) !important;
+  font-family: var(--font-open-sans) !important;
   margin-bottom: 0;
 }
 .accordion-one .accordion-button:not(.collapsed) {
