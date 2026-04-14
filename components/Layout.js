@@ -23,8 +23,7 @@ function Layout({ children, faq }) {
   return (
     <>
       <Header />
-      <main>{children}</main>
-
+      {children}
       {/* Only show FormSubscribe if not hidden */}
       {!shouldHideForm && <FormSubscribe />}
 
