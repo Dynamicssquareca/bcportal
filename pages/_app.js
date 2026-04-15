@@ -26,7 +26,7 @@ function MyAppWithLayout({ Component, pageProps }) {
       </Script>
 
       <Layout faq={pageProps.faq}>
-        <Component {...pageProps} />
+       <main><Component {...pageProps} /></main>
       </Layout>
 
       <CookieConsentBanner />
