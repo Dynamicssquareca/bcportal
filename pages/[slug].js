@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import parse from 'html-react-parser';
 
 function formatDate(dateStr) {
   const date = new Date(dateStr);
@@ -12,440 +11,914 @@ function formatDate(dateStr) {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
-    timeZone: 'UTC' 
+    timeZone: 'UTC'
   });
 }
 
-const BlogPost = ({ post, relatedPosts, relatedHeading, categories, error }) => {
+const BlogPost = ({
+  post,
+  relatedPosts,
+  relatedHeading,
+  categories,
+  error
+}) => {
+
   const router = useRouter();
-  const [activeHeading, setActiveHeading] = useState(null);
+
+  const [activeHeading, setActiveHeading] =
+    useState(null);
 
   if (router.isFallback) {
-    return <div className="container py-5">Loading...</div>;
+    return (
+      <div className="container py-5">
+        Loading...
+      </div>
+    );
   }
-  if (!post) return <p>Post not found</p>;
 
-  // const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}blog/${post.slug}/`;
+  if (!post) {
+    return <p>Post not found</p>;
+  }
+
+  // CANONICAL URL
   const canonicalUrl = post?.slug
     ? `${process.env.NEXT_PUBLIC_SITE_URL}/${post.slug}/`
     : `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
+  // IMAGE URL
   const getImageUrl = (img) => {
+
     if (!img) return '';
-    if (img.startsWith('http')) return img;
+
+    if (img.startsWith('http')) {
+      return img;
+    }
+
     return `${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
   };
 
-  // Build modified content with injected h2 IDs and construct TOC using custom ID format (tb-XX)
-  const { modifiedContent, tableOfContents } = useMemo(() => {
+  // TOC + ADD IDS
+  const {
+    modifiedContent,
+    tableOfContents
+  } = useMemo(() => {
+
     let toc = [];
+
     let count = 0;
-    const contentWithIds = post.content.replace(/<h2>(.*?)<\/h2>/g, (match, p1) => {
-      count++;
-      const id = `tb-${count.toString().padStart(2, '0')}`; // e.g. tb-01, tb-02...
-      toc.push({ id, title: p1 });
-      return `<h2 id="${id}">${p1}</h2>`;
-    });
-    return { modifiedContent: contentWithIds, tableOfContents: toc };
-  }, [post.content]);
 
-  // Use IntersectionObserver to update the active heading in TOC
-  useEffect(() => {
-    const headings = document.querySelectorAll('h2[id^="tb-"]');
-    if (!headings.length) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveHeading(entry.target.id);
+    const contentWithIds =
+      post.content.replace(
+        /<h2>(.*?)<\/h2>/g,
+        (match, p1) => {
+
+          count++;
+
+          const id =
+            `tb-${count
+              .toString()
+              .padStart(2, '0')}`;
+
+          toc.push({
+            id,
+            title: p1
+          });
+
+          return `<h2 id="${id}">${p1}</h2>`;
         }
-      });
-    }, { rootMargin: '0px 0px -80% 0px' });
-    headings.forEach(heading => observer.observe(heading));
-    return () => {
-      headings.forEach(heading => observer.unobserve(heading));
+      );
+
+    return {
+      modifiedContent: contentWithIds,
+      tableOfContents: toc
     };
+
+  }, [post?._id]);
+
+  // ACTIVE TOC
+  useEffect(() => {
+
+    const headings =
+      document.querySelectorAll(
+        'h2[id^="tb-"]'
+      );
+
+    if (!headings.length) return;
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+              setActiveHeading(
+                entry.target.id
+              );
+            }
+
+          });
+
+        },
+        {
+          rootMargin:
+            '0px 0px -80% 0px'
+        }
+      );
+
+    headings.forEach(heading =>
+      observer.observe(heading)
+    );
+
+    return () => {
+
+      headings.forEach(heading =>
+        observer.unobserve(heading)
+      );
+
+    };
+
   }, [modifiedContent]);
-
-
-  // Use html-react-parser to convert <img> tags inside post content to Next.js <Image> components.
-  const options = {
-    replace: domNode => {
-      if (domNode.name === 'img') {
-        const { src, alt, width, height } = domNode.attribs;
-        return (
-          <Image
-            src={getImageUrl(src)}
-            alt={alt || 'Post image'}
-            width={width ? parseInt(width) : 800}
-            height={height ? parseInt(height) : 400}
-            layout="responsive"
-          />
-        );
-      }
-    }
-  };
-
 
   return (
     <>
       <Head>
-        <title>{post.metaTitle || post.title}</title>
-        <meta name="description" content={post.metaDescription || post.excerpt || ''} />
-        <link rel="canonical" href={canonicalUrl} />
-        {post.metaKeywords && <meta name="keywords" content={post.metaKeywords} />}
-        <meta property="og:title" content={post.metaTitle || post.title} />
-        <meta property="og:description" content={post.metaDescription || post.excerpt || ''} />
+
+        <title>
+          {post.metaTitle || post.title}
+        </title>
+
+        <meta
+          name="description"
+          content={
+            post.metaDescription ||
+            post.excerpt ||
+            ''
+          }
+        />
+
+        <link
+          rel="canonical"
+          href={canonicalUrl}
+        />
+
+        {post.metaKeywords && (
+          <meta
+            name="keywords"
+            content={post.metaKeywords}
+          />
+        )}
+
+        <meta
+          property="og:title"
+          content={
+            post.metaTitle || post.title
+          }
+        />
+
+        <meta
+          property="og:description"
+          content={
+            post.metaDescription ||
+            post.excerpt ||
+            ''
+          }
+        />
+
         <meta
           property="og:image"
           content={
-            post.metaimage
+            post.imageUrl
               ? getImageUrl(post.imageUrl)
               : `${process.env.NEXT_PUBLIC_SITE_URL}img/banner/home-main-banner.png`
           }
         />
+
+        {/* SCHEMA */}
         {post.schema &&
-          post.schema.map((scriptContent, index) => (
-            <script
-              key={index}
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: scriptContent }}
-            />
-          ))}
+          post.schema.map(
+            (scriptContent, index) => (
+              <script
+                key={index}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: scriptContent
+                }}
+              />
+            )
+          )}
+
       </Head>
 
-
-
-
       <section className='bg--bb'>
+
         <div className="container crm-blog-head">
-          {/* Breadcrumb */}
+
+          {/* BREADCRUMB */}
           <div className="breadcrumb-list">
+
             <ol className="breadcrumb">
-              <li className="breadcrumb-item"><Link href="/">Home</Link></li>
-              {/* <li className="breadcrumb-item"><a href="/blog">Blog</a></li> */}
-              {/* <li className="breadcrumb-item active" aria-current="page">{post.readtimes || ' '} min reading in  — {post.category && post.category.slug ? (
-                <Link href={`/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
-              ) : (
-                "Uncategorized"
-              )}</li> */}
-              <li className="breadcrumb-item active" aria-current="page"> {post.category[0].slug ? (
-                <Link href={`/category/${post.category[0].slug}`}><span>{post.category[0].name}</span></Link>
-              ) : (
-                "Uncategorized"
-              )}</li>
+
+              <li className="breadcrumb-item">
+                <Link href="/">
+                  Home
+                </Link>
+              </li>
+
+              <li
+                className="breadcrumb-item active"
+                aria-current="page"
+              >
+
+                {post.category?.[0]?.slug ? (
+
+                  <Link
+                    href={`/category/${post.category[0].slug}`}
+                  >
+                    <span>
+                      {post.category[0].name}
+                    </span>
+                  </Link>
+
+                ) : (
+                  "Uncategorized"
+                )}
+
+              </li>
+
             </ol>
+
           </div>
+
           <div className="row">
-            {/* Main Content (8 columns) */}
+
+            {/* MAIN CONTENT */}
             <div className="col-lg-8">
+
               <div className='main-section p-30'>
-                {/* Post Header */}
+
+                {/* HEADER */}
                 <div className='blog-head'>
+
                   <h1>{post.title}</h1>
+
                   <div className='combo-sect'>
+
                     <div className="d-flex blog-author">
+
                       <span>
-                        By <Link href={`/author/${post.author.slug || post.author._id}`}>{post.author.name}</Link>
+                        By{" "}
+                        <Link
+                          href={`/author/${post.author.slug || post.author._id}`}
+                        >
+                          {post.author.name}
+                        </Link>
                       </span>
-                     
-                      {/* <span>{formatDate(post.updatedAt)}</span> */}
-                      {(post?.scheduleDate || post?.updatedAt) && (
+
+                      {(post?.scheduleDate ||
+                        post?.updatedAt) && (
                         <>
-                         <span className="mx-2">|</span>
-                        <span>
-                          {formatDate(post.scheduleDate || post.updatedAt)}
-                        </span>
+                          <span className="mx-2">
+                            |
+                          </span>
+
+                          <span>
+                            {formatDate(
+                              post.scheduleDate ||
+                              post.updatedAt
+                            )}
+                          </span>
                         </>
                       )}
+
                     </div>
+
+                    {/* SHARE */}
                     <div className="mb-4 post-sharing">
-                      <span>Share: </span>
-                      <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}>Facebook</Link>
+
+                      <span>
+                        Share:
+                      </span>
+
+                      <Link
+                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(canonicalUrl)}`}
+                      >
+                        Facebook
+                      </Link>
+
                       {" | "}
-                      <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}`}>Twitter</Link>
+
+                      <Link
+                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl)}`}
+                      >
+                        Twitter
+                      </Link>
+
                       {" | "}
-                      <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(canonicalUrl)}`}>LinkedIn</Link>
+
+                      <Link
+                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(canonicalUrl)}`}
+                      >
+                        LinkedIn
+                      </Link>
+
                     </div>
+
                   </div>
+
                 </div>
+
+                {/* FEATURE IMAGE */}
                 {post.imageUrl && (
+
                   <div className='post-feture-image'>
+
                     <Image
                       src={getImageUrl(post.imageUrl)}
                       alt={post.title}
                       width={800}
                       height={400}
-                      priority // Ensures faster loading for LCP
-                      quality={75} // Reduce image size
-                      loading="eager" // Load immediately
+                      priority
+                      quality={60}
+                      loading="eager"
                       sizes="(max-width: 768px) 100vw, 800px"
                     />
+
                   </div>
+
                 )}
-                {/* <div className="mt-3 post-content-main">
-                  {parse(modifiedContent, options)}
-                </div> */}
+
+                {/* CONTENT */}
                 <div
                   className="mt-3 post-content-main"
-                  dangerouslySetInnerHTML={{ __html: modifiedContent }}
+                  dangerouslySetInnerHTML={{
+                    __html: modifiedContent
+                  }}
                   suppressHydrationWarning={true}
                 />
-                {/* Author Profile Card */}
+
+                {/* AUTHOR CARD */}
                 <div className="card card-avt my-5">
+
                   <div className="card-body">
-                    <Link href={`/author/${post.author.slug || post.author._id}`}>
+
+                    <Link
+                      href={`/author/${post.author.slug || post.author._id}`}
+                    >
+
                       <Image
-                        // src={
-                        //   post?.author?.profilePic
-                        //     ? `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${post.author.profilePic}`
-                        //     : '/img/author-defult-pic.png' 
-                        // }
-                        src={post.author ? getImageUrl(post.author.image) : "/img/author-defult-pic.png"}
-                        alt={post?.author?.name || 'Author'}
+                        src={
+                          post.author?.image
+                            ? getImageUrl(
+                                post.author.image
+                              )
+                            : "/img/author-defult-pic.png"
+                        }
+                        alt={
+                          post?.author?.name ||
+                          'Author'
+                        }
                         className="rounded-circle me-3"
-                        style={{ width: '60px', height: '60px', objectFit: 'cover' }}
                         width={60}
                         height={60}
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          objectFit: 'cover'
+                        }}
                       />
 
                       <div className='card-avt-det'>
-                        <h4>{post.author.name}</h4>
-                        <p>{post.author.about}</p>
+
+                        <h4>
+                          {post.author.name}
+                        </h4>
+
+                        <p>
+                          {post.author.about}
+                        </p>
 
                       </div>
+
                     </Link>
 
                   </div>
+
                 </div>
-                {/* Related Posts Section */}
 
               </div>
+
             </div>
-            {/* Sidebar (4 columns): Table of Contents & Categories */}
+
+            {/* SIDEBAR */}
             <div className="col-lg-4">
+
               <div className='po-sticky'>
+
                 <div className="sidebars">
-                  <div className='adv-pic'>
-                    <a href="#"><img src="/img/blog-side-pic-top.png" alt="forber-03" /></a>
-                  </div>
-                  {/* {tableOfContents.length >= 3 && (
+
+                  {/* AD */}
+                  {/* <div className='adv-pic'>
+
+                    <a href="#">
+                      <img
+                        src="/img/blog-side-pic-top.png"
+                        alt="sidebar"
+                      />
+                    </a>
+
+                  </div> */}
+
+                  {/* TOC */}
+                  {tableOfContents.length >= 1 && (
                     <>
-                      <h3>Table of Contents</h3>
+                      <h3>
+                        Table of Contents
+                      </h3>
+
                       <ol className="list-group-tb mb-4">
-                        {tableOfContents.map(item => (
-                          <li key={item.id} className={` ${activeHeading === item.id ? 'active' : ''}`}>
-                            <a dangerouslySetInnerHTML={{ __html: item.title }}
-                              href={`#${item.id}`}
-                              onClick={e => {
-                                e.preventDefault();
-                                const element = document.getElementById(item.id);
-                                if (element) {
-                                  const yOffset = -250; 
-                                  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                                  window.scrollTo({ top: y, behavior: 'smooth' });
-                                }
-                              }}
-                            ></a>
-                          </li>
-                        ))}
+
+                        {tableOfContents.map(
+                          item => (
+
+                            <li
+                              key={item.id}
+                              className={
+                                activeHeading ===
+                                item.id
+                                  ? 'active'
+                                  : ''
+                              }
+                            >
+
+                              <a
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    item.title
+                                }}
+                                href={`#${item.id}`}
+                                onClick={e => {
+
+                                  e.preventDefault();
+
+                                  const element =
+                                    document.getElementById(
+                                      item.id
+                                    );
+
+                                  if (element) {
+
+                                    const yOffset =
+                                      -250;
+
+                                    const y =
+                                      element.getBoundingClientRect().top +
+                                      window.pageYOffset +
+                                      yOffset;
+
+                                    window.scrollTo({
+                                      top: y,
+                                      behavior:
+                                        'smooth'
+                                    });
+
+                                  }
+
+                                }}
+                              />
+
+                            </li>
+
+                          )
+                        )}
+
                       </ol>
                     </>
-                  )} */}
-                  <h3>Categories</h3>
-                  {categories && categories.length > 0 ? (
+                  )}
+
+                  {/* CATEGORIES */}
+                  <h3>
+                    Categories
+                  </h3>
+
+                  {categories &&
+                  categories.length > 0 ? (
+
                     <ul className="list-group-tba">
+
                       {categories.map(cat => (
-                        <li key={cat._id} className="list-group-cu">
-                          <Link href={`category/${cat.slug || cat.name.toLowerCase().replace(/\s+/g, '-')}`}>
+
+                        <li
+                          key={cat._id}
+                          className="list-group-cu"
+                        >
+
+                          <Link
+                            href={`/category/${cat.slug}`}
+                          >
                             {cat.name}
                           </Link>
+
                         </li>
+
                       ))}
+
                     </ul>
+
                   ) : (
-                    <p>No categories available.</p>
+                    <p>
+                      No categories available.
+                    </p>
                   )}
+
                 </div>
+
               </div>
+
             </div>
+
           </div>
+
+          {/* RELATED POSTS */}
           <div className="row">
+
             <div className="col-lg-12">
-              <h3 className='relted-head'>{relatedHeading}</h3>
+
+              <h3 className='relted-head'>
+                {relatedHeading}
+              </h3>
+
             </div>
-            {relatedPosts && relatedPosts.length > 0 ? (
+
+            {relatedPosts &&
+            relatedPosts.length > 0 ? (
+
               relatedPosts.map(rp => (
-                <div key={rp.slug} className="col-lg-4 mb-4">
+
+                <div
+                  key={rp.slug}
+                  className="col-lg-4 mb-4"
+                >
+
                   <div className="card h-100 card-222">
+
                     <div className='card-image-p'>
+
                       {rp.imageUrl && (
-                        <Link href={`${rp.slug}`}>
+
+                        <Link href={`/${rp.slug}`}>
+
                           <Image
                             src={getImageUrl(rp.imageUrl)}
                             alt={rp.title}
                             className="card-img-top"
                             width={768}
                             height={402}
+                            quality={60}
+                            loading="lazy"
                           />
-                        </Link>
-                      )}
-                      {/* <div className='cate-overl'>
-                        {post.category && post.category.slug ? (
 
-                          <Link href={`/blog/category/${post.category.slug}`}><span>{post.category.name}</span></Link>
-                        ) : (
-                          "Uncategorized"
-                        )}
-                      </div> */}
+                        </Link>
+
+                      )}
+
                     </div>
+
                     <div className="card-body">
+
                       <div className="d-flex blog-author">
+
                         <span>
-                          <Link href={`author/${rp.author.slug || rp.author._id}`}>{rp.author.name}</Link>
+
+                          <Link
+                            href={`/author/${rp.author.slug || rp.author._id}`}
+                          >
+                            {rp.author.name}
+                          </Link>
+
                         </span>
-                        
-                        {/* <span>{formatDate(rp.updatedAt)}</span> */}
-                        {(rp?.scheduleDate || rp?.updatedAt) && (
+
+                        {(rp?.scheduleDate ||
+                          rp?.updatedAt) && (
                           <>
-                          <span className="mx-2">|</span>
-                          <span>
-                            {formatDate(rp.scheduleDate || rp.updatedAt)}
-                          </span>
+                            <span className="mx-2">
+                              |
+                            </span>
+
+                            <span>
+                              {formatDate(
+                                rp.scheduleDate ||
+                                rp.updatedAt
+                              )}
+                            </span>
                           </>
                         )}
-                        {/* <span className="mx-2">|</span>
-                        <span>{rp.readtimes || ' '}m Reading</span> */}
+
                       </div>
-                      <Link href={`${rp.slug}`}>
-                        <h5 className="card-title">{rp.title}</h5>
+
+                      <Link
+                        href={`/${rp.slug}`}
+                      >
+
+                        <h5 className="card-title">
+                          {rp.title}
+                        </h5>
+
                       </Link>
+
                       <p className="card-text">
-                        {rp.excerpt.slice(0, 50) + '...' || rp.content.replace(/<[^>]+>/g, '').slice(0, 50) + '...'}
+
+                        {rp.excerpt
+                          ? rp.excerpt.slice(
+                              0,
+                              80
+                            ) + '...'
+                          : ''}
+
                       </p>
-                      <Link href={`${rp.slug}`}>Read More</Link>
+
+                      <Link
+                        href={`/${rp.slug}`}
+                      >
+                        Read More
+                      </Link>
+
                     </div>
+
                   </div>
+
                 </div>
+
               ))
+
             ) : (
-              <p>No related posts found. Check out some random posts instead.</p>
+              <p>
+                No related posts found.
+                Check out some random posts
+                instead.
+              </p>
             )}
+
           </div>
+
         </div>
+
       </section>
     </>
   );
 };
 
+// STATIC PATHS
 export async function getStaticPaths() {
-  const blogApi = process.env.NEXT_PUBLIC_BLOG_API_URL;
+
+  const blogApi =
+    process.env.NEXT_PUBLIC_BLOG_API_URL;
+
   try {
-    const res = await fetch(blogApi);
-    const posts = await res.json();
+
+    const res =
+      await fetch(blogApi);
+
+    const posts =
+      await res.json();
+
     const paths = posts.map(post => ({
-      params: { slug: post.slug }
+      params: {
+        slug: post.slug
+      }
     }));
-    // fallback: 'blocking' ensures page waits for data before rendering (better SEO)
-    return { paths, fallback: 'blocking' };
+
+    return {
+      paths,
+      fallback: 'blocking'
+    };
+
   } catch (err) {
+
     console.error(err);
-    return { paths: [], fallback: 'blocking' };
+
+    return {
+      paths: [],
+      fallback: 'blocking'
+    };
+
   }
 }
 
-// export async function getStaticProps({ params }) {
-//   const { slug } = params;
-//   const blogApi = process.env.NEXT_PUBLIC_BLOG_API_URL;
-//   const categoryApi = process.env.NEXT_PUBLIC_CATEGORY_API_URL;
-//   try {
-//     const postRes = await fetch(`${blogApi}/${slug}`);
-//     if (!postRes.ok) throw new Error('Failed to fetch post');
-//     const post = await postRes.json();
+// STATIC PROPS
+export async function getStaticProps({
+  params
+}) {
 
-//     const allRes = await fetch(blogApi);
-//     let allPosts = [];
-//     if (allRes.ok) {
-//       allPosts = await allRes.json();
-//     }
-//     const sameCategoryPosts = allPosts.filter(
-//       p => p.category._id === post.category._id && p._id !== post._id
-//     );
-//     let relatedPosts = [];
-//     let relatedHeading = '';
-//     if (sameCategoryPosts.length > 0) {
-//       relatedHeading = 'Related Posts';
-//       relatedPosts = sameCategoryPosts.slice(0, 3);
-//     } else {
-//       relatedHeading = 'Random Posts';
-//       const randomPosts = allPosts.filter(p => p._id !== post._id);
-//       relatedPosts = randomPosts.slice(0, 3);
-//     }
-
-//     const catRes = await fetch(categoryApi);
-//     let categories = [];
-//     if (catRes.ok) {
-//       categories = await catRes.json();
-//     }
-
-//     return { props: { post, relatedPosts, relatedHeading, categories }, revalidate: 60 };
-//   } catch (err) {
-//     console.error(err);
-//     return { props: { post: null, error: true, relatedPosts: [], categories: [] }, revalidate: 60 };
-//   }
-// }
-
-// export default BlogPost;
-export async function getStaticProps({ params }) {
   const { slug } = params;
-  const blogApi = process.env.NEXT_PUBLIC_BLOG_API_URL;
-  const categoryApi = process.env.NEXT_PUBLIC_CATEGORY_API_URL;
+
+  const blogApi =
+    process.env.NEXT_PUBLIC_BLOG_API_URL;
+
+  const categoryApi =
+    process.env.NEXT_PUBLIC_CATEGORY_API_URL;
 
   try {
-    // Fetch the post by slug
-    const postRes = await fetch(`${blogApi}/${slug}`);
+
+    // SINGLE POST
+    const postRes =
+      await fetch(`${blogApi}/${slug}`);
+
     if (!postRes.ok) {
-      return { notFound: true }; // Return 404 if post doesn't exist
-    }
-    const post = await postRes.json();
-    if (!post || Object.keys(post).length === 0) {
-      return { notFound: true };
+      return {
+        notFound: true
+      };
     }
 
-    // Fetch all posts
-    const allRes = await fetch(blogApi);
+    const post =
+      await postRes.json();
+
+    if (
+      !post ||
+      Object.keys(post).length === 0
+    ) {
+      return {
+        notFound: true
+      };
+    }
+
+    // ALL POSTS
+    const allRes =
+      await fetch(blogApi);
+
     let allPosts = [];
+
     if (allRes.ok) {
-      allPosts = await allRes.json();
+      allPosts =
+        await allRes.json();
     }
 
-    // Determine related posts
-    const sameCategoryPosts = allPosts.filter(
-      p => p.category?._id === post.category?._id && p._id !== post._id
-    );
+    // RELATED POSTS
+    const sameCategoryPosts =
+      allPosts.filter(
+        p =>
+          p.category?.[0]?._id ===
+            post.category?.[0]?._id &&
+          p._id !== post._id
+      );
+
     let relatedPosts = [];
+
     let relatedHeading = '';
-    if (sameCategoryPosts.length > 0) {
-      relatedHeading = 'Related Posts';
-      relatedPosts = sameCategoryPosts.slice(0, 3);
+
+    if (
+      sameCategoryPosts.length > 0
+    ) {
+
+      relatedHeading =
+        'Related Posts';
+
+      relatedPosts =
+        sameCategoryPosts
+          .slice(0, 3)
+          .map(p => ({
+            slug: p.slug,
+            title: p.title,
+            excerpt: p.excerpt,
+            imageUrl: p.imageUrl,
+            updatedAt: p.updatedAt,
+            scheduleDate:
+              p.scheduleDate,
+
+            author: {
+              name:
+                p.author?.name || '',
+              slug:
+                p.author?.slug || '',
+            }
+          }));
+
     } else {
-      relatedHeading = 'Random Posts';
-      relatedPosts = allPosts.filter(p => p._id !== post._id).slice(0, 3);
+
+      relatedHeading =
+        'Random Posts';
+
+      relatedPosts =
+        allPosts
+          .filter(
+            p =>
+              p._id !== post._id
+          )
+          .slice(0, 3)
+          .map(p => ({
+            slug: p.slug,
+            title: p.title,
+            excerpt: p.excerpt,
+            imageUrl: p.imageUrl,
+            updatedAt: p.updatedAt,
+            scheduleDate:
+              p.scheduleDate,
+
+            author: {
+              name:
+                p.author?.name || '',
+              slug:
+                p.author?.slug || '',
+            }
+          }));
+
     }
 
-    // Fetch categories
-    const catRes = await fetch(categoryApi);
+    // CATEGORIES
+    const catRes =
+      await fetch(categoryApi);
+
     let categories = [];
+
     if (catRes.ok) {
-      categories = await catRes.json();
+
+      categories =
+        (
+          await catRes.json()
+        ).map(cat => ({
+          _id: cat._id,
+          name: cat.name,
+          slug: cat.slug
+        }));
+
     }
+
+    // CLEAN POST
+    const cleanPost = {
+
+      _id: post._id,
+
+      slug: post.slug,
+
+      title: post.title,
+
+      content: post.content,
+
+      excerpt: post.excerpt,
+
+      imageUrl: post.imageUrl,
+
+      metaTitle: post.metaTitle,
+
+      metaDescription:
+        post.metaDescription,
+
+      metaKeywords:
+        post.metaKeywords,
+
+      updatedAt: post.updatedAt,
+
+      scheduleDate:
+        post.scheduleDate,
+
+      schema:
+        post.schema || [],
+
+      author: {
+        name:
+          post.author?.name || '',
+
+        slug:
+          post.author?.slug || '',
+
+        image:
+          post.author?.image || '',
+
+        about:
+          post.author?.about || '',
+      },
+
+      category:
+        (post.category || []).map(
+          cat => ({
+            _id: cat._id,
+            name: cat.name,
+            slug: cat.slug,
+          })
+        )
+    };
 
     return {
-      props: { post, relatedPosts, relatedHeading, categories },
+
+      props: {
+        post: cleanPost,
+        relatedPosts,
+        relatedHeading,
+        categories
+      },
+
       revalidate: 60
+
     };
+
   } catch (err) {
+
     console.error(err);
-    return { notFound: true }; // Return 404 if there’s an error
+
+    return {
+      notFound: true
+    };
+
   }
 }
 
