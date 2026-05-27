@@ -69,7 +69,7 @@ const BlogPost = ({
 
     const contentWithIds =
       post.content.replace(
-        /<h2>(.*?)<\/h2>/g,
+        /<h2[^>]*>(.*?)<\/h2>/g,
         (match, p1) => {
 
           count++;

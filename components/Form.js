@@ -1,6 +1,6 @@
 // Form.jsx
 import React, { useState, useEffect } from 'react';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
