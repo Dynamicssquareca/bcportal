@@ -5,10 +5,17 @@ import Image from 'next/image';
 
 const AuthorIndex = ({ authors }) => {
   const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/author`;
+  const defaultImage = '/img/author-defult-pic.png';
+  const authorList = Array.isArray(authors) ? authors : [];
  const getImageUrl = (img) => {
     if (!img) return '';
     if (img.startsWith('http')) return img;
     return `${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
+  };
+
+  const getAuthorAvatarUrl = (author) => {
+    const avatar = String(author?.profilePic || author?.image || '').trim();
+    return avatar ? getImageUrl(avatar) : defaultImage;
   };
   return (
     <>
@@ -39,18 +46,17 @@ const AuthorIndex = ({ authors }) => {
               <h1>Authors</h1>
             </div>
           </div>
-          {authors.map(author => (
+          {authorList.map(author => (
             <div key={author._id} className="col-md-3">
               <div className="card card-categ h-100 text-center">
                 <div className="card-body">
                   <Link href={`author/${author.slug || author._id}`}>
                     <Image
-                       src={author ? getImageUrl(author.image) : "/img/author-defult-pic.png"}
+                       src={getAuthorAvatarUrl(author)}
                       alt={author.name}
                       width={60}
                       height={60}
-                      className="img-fluid rounded-circle mb-2"
-                      style={{ width: '60px', height: '60px', objectFit: 'cover' }}
+                      className="author-avatar mb-2"
                     />
                     <h5 className="card-title">{author.name}</h5>
                   </Link>

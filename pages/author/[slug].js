@@ -12,6 +12,10 @@ const AuthorPage = ({ author, posts }) => {
   const canonicalUrl =
     `${process.env.NEXT_PUBLIC_SITE_URL}/author/${author.slug}`;
 
+  const defaultImage = '/img/erp-f-im.jpg';
+  const defaultAuthorImage = '/img/author-defult-pic.png';
+  const authorAvatar = String(author.profilePic || author.image || '').trim();
+
   // IMAGE URL
   const buildImageUrl = (
     baseUrl,
@@ -40,6 +44,25 @@ const AuthorPage = ({ author, posts }) => {
       process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics,
       img
     );
+
+  const formatPostDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return String(dateStr);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  const formatPostMeta = (dateStr, readtimes) => {
+    const formattedDate = formatPostDate(dateStr);
+    const parts = [];
+    if (formattedDate) parts.push(formattedDate);
+    if (readtimes > 0) parts.push(`${readtimes} min`);
+    return parts.length ? parts.join(' | ') : 'Date unknown';
+  };
 
   return (
     <>
@@ -114,16 +137,14 @@ const AuthorPage = ({ author, posts }) => {
 
               <Image
                 src={
-                  author.profilePic
-                    ? getProfileImageUrl(
-                        author.profilePic
-                      )
-                    : '/img/author-defult-pic.png'
+                  authorAvatar
+                    ? getProfileImageUrl(authorAvatar)
+                    : defaultAuthorImage
                 }
                 width={100}
                 height={100}
                 alt={author.name}
-                className="img-fluid rounded-circle"
+                className="author-avatar"
               />
 
             </div>
@@ -180,19 +201,19 @@ const AuthorPage = ({ author, posts }) => {
 
                     <Link href={`/${post.slug}`}>
 
-                      {post.imageUrl && (
-
-                        <Image
-                          src={getImageUrl(post.imageUrl)}
-                          alt={post.title}
-                          className="img-fluid"
-                          width={400}
-                          height={300}
-                          quality={60}
-                          loading="lazy"
-                        />
-
-                      )}
+                      <Image
+                        src={
+                          post.imageUrl
+                            ? getImageUrl(post.imageUrl)
+                            : defaultImage
+                        }
+                        alt={post.title}
+                        className="img-fluid"
+                        width={400}
+                        height={300}
+                        quality={60}
+                        loading="lazy"
+                      />
 
                       <h3>
                         {post.title}
@@ -212,11 +233,9 @@ const AuthorPage = ({ author, posts }) => {
                         width={42}
                         height={42}
                         src={
-                          author?.image
-                            ? getImageUrl(
-                                author.image
-                              )
-                            : "/img/author-defult-pic.png"
+                          authorAvatar
+                            ? getProfileImageUrl(authorAvatar)
+                            : defaultAuthorImage
                         }
                         alt="user avatar"
                         className='rounded-circle'
@@ -231,24 +250,7 @@ const AuthorPage = ({ author, posts }) => {
                         </div>
 
                         <div className='av-date-b'>
-
-                          {post.createdAt
-                            ? new Date(
-                                post.createdAt
-                              ).toLocaleDateString(
-                                'en-GB',
-                                {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric'
-                                }
-                              )
-                            : 'Date unknown'}
-
-                          <span>|</span>
-
-                          {post.readtimes || 0} min
-
+                          {formatPostMeta(post.createdAt, post.readtimes)}
                         </div>
 
                       </div>
@@ -351,22 +353,22 @@ export async function getStaticProps({
     const author = {
 
       _id:
-        rawAuthor._id || null,
+        rawAuthor._id ?? null,
 
       name:
-        rawAuthor.name || '',
+        rawAuthor.name ?? '',
 
       slug:
-        rawAuthor.slug || '',
+        rawAuthor.slug ?? '',
 
       about:
-        rawAuthor.about || '',
+        rawAuthor.about ?? '',
 
       image:
-        rawAuthor.image || '',
+        rawAuthor.image ?? '',
 
       profilePic:
-        rawAuthor.profilePic || '',
+        rawAuthor.profilePic ?? '',
     };
 
     // POSTS
@@ -386,29 +388,29 @@ export async function getStaticProps({
         .map(post => ({
 
           _id:
-            post._id || null,
+            post._id ?? null,
 
           slug:
-            post.slug || '',
+            post.slug ?? '',
 
           title:
-            post.title || '',
+            post.title ?? '',
 
           imageUrl:
-            post.imageUrl || '',
+            post.imageUrl ?? null,
 
           createdAt:
-            post.createdAt || null,
+            post.createdAt ?? null,
 
           readtimes:
-            post.readtimes || 0,
+            post.readtimes ?? 0,
 
           author: {
             name:
-              post.author?.name || '',
+              post.author?.name ?? '',
 
             slug:
-              post.author?.slug || '',
+              post.author?.slug ?? '',
           }
 
         }));

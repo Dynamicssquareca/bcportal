@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 const CategoryIndex = ({ categories }) => {
   const canonicalUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/category`;
+  const categoryList = Array.isArray(categories) ? categories : [];
   const buildImageUrl = (baseUrl, img) => {
     if (!img) return '';
     if (img.startsWith('http')) return img;
@@ -19,11 +20,11 @@ const CategoryIndex = ({ categories }) => {
         {/* <title>Categories - My App</title>
         <link rel="canonical" href={canonicalUrl} /> */}
         <title>Categories</title>
-        <meta name="description" content={categories.metaDescription || categories.excerpt || ''} />
+        <meta name="description" content={categoryList[0]?.metaDescription || categoryList[0]?.excerpt || ''} />
         <link rel="canonical" href={canonicalUrl} />
-        {categories.metaKeywords && <meta name="keywords" content={categories.metaKeywords} />}
-        <meta property="og:title" content={categories.metaTitle || categories.title} />
-        <meta property="og:description" content={categories.metaDescription || categories.excerpt || ''} />
+        {categoryList[0]?.metaKeywords && <meta name="keywords" content={categoryList[0].metaKeywords} />}
+        <meta property="og:title" content={categoryList[0]?.metaTitle || categoryList[0]?.title || 'Categories'} />
+        <meta property="og:description" content={categoryList[0]?.metaDescription || categoryList[0]?.excerpt || ''} />
       </Head>
       <div className="container pb-80">
         <div className='row'>
@@ -43,7 +44,7 @@ const CategoryIndex = ({ categories }) => {
               <h1>Categories</h1>
             </div>
           </div>
-          {categories.map(cat => (
+          {categoryList.map(cat => (
             <div key={cat._id} className="col-md-3">
               <div className="card card-categ h-100 text-center">
                 <div className="card-body">

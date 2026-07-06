@@ -6,10 +6,11 @@ import Image from 'next/image';
 
 function formatDate(dateStr) {
   const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return String(dateStr);
 
-  return date.toLocaleDateString('en-IN', {
+  return date.toLocaleDateString('en-GB', {
     day: '2-digit',
-    month: '2-digit',
+    month: 'long',
     year: 'numeric',
     timeZone: 'UTC'
   });
@@ -45,6 +46,9 @@ const BlogPost = ({
     ? `${process.env.NEXT_PUBLIC_SITE_URL}/${post.slug}/`
     : `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
+  const defaultImage = '/img/erp-f-im.jpg';
+  const defaultAuthorImage = '/img/author-defult-pic.png';
+
   // IMAGE URL
   const getImageUrl = (img) => {
 
@@ -55,6 +59,20 @@ const BlogPost = ({
     }
 
     return `${process.env.NEXT_PUBLIC_BLOG_API_Image.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
+  };
+
+  // PROFILE IMAGE URL
+  const getProfileImageUrl = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) {
+      return img;
+    }
+    return `${process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics.replace(/\/$/, '')}/${img.replace(/^\//, '')}`;
+  };
+
+  const getAuthorAvatarUrl = (author) => {
+    const avatar = String(author?.profilePic || author?.image || '').trim();
+    return avatar ? getProfileImageUrl(avatar) : defaultAuthorImage;
   };
 
   // TOC + ADD IDS
@@ -329,24 +347,24 @@ const BlogPost = ({
                 </div>
 
                 {/* FEATURE IMAGE */}
-                {post.imageUrl && (
+                <div className='post-feture-image'>
 
-                  <div className='post-feture-image'>
+                  <Image
+                    src={
+                      post.imageUrl
+                        ? getImageUrl(post.imageUrl)
+                        : defaultImage
+                    }
+                    alt={post.title}
+                    width={800}
+                    height={400}
+                    priority
+                    quality={60}
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
 
-                    <Image
-                      src={getImageUrl(post.imageUrl)}
-                      alt={post.title}
-                      width={800}
-                      height={400}
-                      priority
-                      quality={60}
-                      loading="eager"
-                      sizes="(max-width: 768px) 100vw, 800px"
-                    />
-
-                  </div>
-
-                )}
+                </div>
 
                 {/* CONTENT */}
                 <div
@@ -367,18 +385,12 @@ const BlogPost = ({
                     >
 
                       <Image
-                        src={
-                          post.author?.image
-                            ? getImageUrl(
-                                post.author.image
-                              )
-                            : "/img/author-defult-pic.png"
-                        }
+                        src={getAuthorAvatarUrl(post.author)}
                         alt={
                           post?.author?.name ||
                           'Author'
                         }
-                        className="rounded-circle me-3"
+                        className="author-avatar me-3"
                         width={60}
                         height={60}
                         style={{
@@ -777,19 +789,19 @@ export async function getStaticProps({
         sameCategoryPosts
           .slice(0, 3)
           .map(p => ({
-            slug: p.slug,
-            title: p.title,
-            excerpt: p.excerpt,
-            imageUrl: p.imageUrl,
-            updatedAt: p.updatedAt,
+            slug: p.slug ?? '',
+            title: p.title ?? '',
+            excerpt: p.excerpt ?? '',
+            imageUrl: p.imageUrl ?? null,
+            updatedAt: p.updatedAt ?? null,
             scheduleDate:
-              p.scheduleDate,
+              p.scheduleDate ?? null,
 
             author: {
               name:
-                p.author?.name || '',
+                p.author?.name ?? '',
               slug:
-                p.author?.slug || '',
+                p.author?.slug ?? '',
             }
           }));
 
@@ -806,19 +818,19 @@ export async function getStaticProps({
           )
           .slice(0, 3)
           .map(p => ({
-            slug: p.slug,
-            title: p.title,
-            excerpt: p.excerpt,
-            imageUrl: p.imageUrl,
-            updatedAt: p.updatedAt,
+            slug: p.slug ?? '',
+            title: p.title ?? '',
+            excerpt: p.excerpt ?? '',
+            imageUrl: p.imageUrl ?? null,
+            updatedAt: p.updatedAt ?? null,
             scheduleDate:
-              p.scheduleDate,
+              p.scheduleDate ?? null,
 
             author: {
               name:
-                p.author?.name || '',
+                p.author?.name ?? '',
               slug:
-                p.author?.slug || '',
+                p.author?.slug ?? '',
             }
           }));
 
@@ -846,54 +858,54 @@ export async function getStaticProps({
     // CLEAN POST
     const cleanPost = {
 
-      _id: post._id,
+      _id: post._id ?? null,
 
-      slug: post.slug,
+      slug: post.slug ?? '',
 
-      title: post.title,
+      title: post.title ?? '',
 
-      content: post.content,
+      content: post.content ?? '',
 
-      excerpt: post.excerpt,
+      excerpt: post.excerpt ?? '',
 
-      imageUrl: post.imageUrl,
+      imageUrl: post.imageUrl ?? null,
 
-      metaTitle: post.metaTitle,
+      metaTitle: post.metaTitle ?? '',
 
       metaDescription:
-        post.metaDescription,
+        post.metaDescription ?? '',
 
       metaKeywords:
-        post.metaKeywords,
+        post.metaKeywords ?? '',
 
-      updatedAt: post.updatedAt,
+      updatedAt: post.updatedAt ?? null,
 
       scheduleDate:
-        post.scheduleDate,
+        post.scheduleDate ?? null,
 
       schema:
         post.schema || [],
 
       author: {
         name:
-          post.author?.name || '',
+          post.author?.name ?? '',
 
         slug:
-          post.author?.slug || '',
+          post.author?.slug ?? '',
 
         image:
-          post.author?.image || '',
+          post.author?.image ?? '',
 
         about:
-          post.author?.about || '',
+          post.author?.about ?? '',
       },
 
       category:
         (post.category || []).map(
           cat => ({
-            _id: cat._id,
-            name: cat.name,
-            slug: cat.slug,
+            _id: cat._id ?? null,
+            name: cat.name ?? '',
+            slug: cat.slug ?? '',
           })
         )
     };

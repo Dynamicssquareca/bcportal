@@ -15,6 +15,8 @@ const CategoryPage = ({
   const canonicalUrl =
     `${process.env.NEXT_PUBLIC_SITE_URL}/category/${category.slug}/`;
 
+  const defaultImage = '/img/erp-f-im.jpg';
+
   // IMAGE URL
   const buildImageUrl = (
     baseUrl,
@@ -43,6 +45,30 @@ const CategoryPage = ({
       process.env.NEXT_PUBLIC_BLOG_API_Image_profilePics,
       img
     );
+
+  const getAuthorAvatarUrl = (author) => {
+    const avatar = String(author?.profilePic || author?.image || '').trim();
+    return avatar ? getProfileImageUrl(avatar) : '/img/author-defult-pic.png';
+  };
+
+  const formatPostDate = (dateStr) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return String(dateStr);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
+
+  const formatPostMeta = (dateStr, readtimes) => {
+    const formattedDate = formatPostDate(dateStr);
+    const parts = [];
+    if (formattedDate) parts.push(formattedDate);
+    if (readtimes > 0) parts.push(`${readtimes} min`);
+    return parts.length ? parts.join(' | ') : 'Date unknown';
+  };
 
   return (
     <>
@@ -171,19 +197,19 @@ const CategoryPage = ({
 
                     <Link href={`/${post.slug}`}>
 
-                      {post.imageUrl && (
-
-                        <Image
-                          src={getImageUrl(post.imageUrl)}
-                          alt={post.title}
-                          className="img-fluid"
-                          width={400}
-                          height={300}
-                          quality={60}
-                          loading="lazy"
-                        />
-
-                      )}
+                      <Image
+                        src={
+                          post.imageUrl
+                            ? getImageUrl(post.imageUrl)
+                            : defaultImage
+                        }
+                        alt={post.title}
+                        className="img-fluid"
+                        width={400}
+                        height={300}
+                        quality={60}
+                        loading="lazy"
+                      />
 
                       <h3>
                         {post.title}
@@ -203,15 +229,9 @@ const CategoryPage = ({
                       <Image
                         width={44}
                         height={44}
-                        src={
-                          post.author?.profilePic
-                            ? getProfileImageUrl(
-                                post.author.profilePic
-                              )
-                            : '/img/author-defult-pic.png'
-                        }
+                        src={getAuthorAvatarUrl(post.author)}
                         alt="user avatar"
-                        className='rounded-circle'
+                        className='author-avatar'
                       />
 
                       <div className='av-info'>
@@ -224,24 +244,7 @@ const CategoryPage = ({
                         </div>
 
                         <div className='av-date-b'>
-
-                          {post.createdAt
-                            ? new Date(
-                                post.createdAt
-                              ).toLocaleDateString(
-                                'en-GB',
-                                {
-                                  day: '2-digit',
-                                  month: '2-digit',
-                                  year: 'numeric'
-                                }
-                              )
-                            : 'Date unknown'}
-
-                          <span>|</span>
-
-                          {post.readtimes || 0} min
-
+                          {formatPostMeta(post.createdAt, post.readtimes)}
                         </div>
 
                       </div>
@@ -358,28 +361,28 @@ export async function getStaticProps({
     const category = {
 
       _id:
-        rawCategory._id || null,
+        rawCategory._id ?? null,
 
       name:
-        rawCategory.name || '',
+        rawCategory.name ?? '',
 
       title:
-        rawCategory.title || '',
+        rawCategory.title ?? '',
 
       slug:
-        rawCategory.slug || '',
+        rawCategory.slug ?? '',
 
       excerpt:
-        rawCategory.excerpt || '',
+        rawCategory.excerpt ?? '',
 
       metaTitle:
-        rawCategory.metaTitle || '',
+        rawCategory.metaTitle ?? '',
 
       metaDescription:
-        rawCategory.metaDescription || '',
+        rawCategory.metaDescription ?? '',
 
       metaKeywords:
-        rawCategory.metaKeywords || '',
+        rawCategory.metaKeywords ?? '',
     };
 
     // POSTS
@@ -423,33 +426,36 @@ export async function getStaticProps({
         .map(post => ({
 
           _id:
-            post._id || null,
+            post._id ?? null,
 
           slug:
-            post.slug || '',
+            post.slug ?? '',
 
           title:
-            post.title || '',
+            post.title ?? '',
 
           imageUrl:
-            post.imageUrl || '',
+            post.imageUrl ?? null,
 
           createdAt:
-            post.createdAt || null,
+            post.createdAt ?? null,
 
           readtimes:
-            post.readtimes || 0,
+            post.readtimes ?? 0,
 
           author: {
 
             name:
-              post.author?.name || '',
+              post.author?.name ?? '',
 
             slug:
-              post.author?.slug || '',
+              post.author?.slug ?? '',
 
             profilePic:
-              post.author?.profilePic || '',
+              post.author?.profilePic ?? '',
+
+            image:
+              post.author?.image ?? '',
           }
 
         }));

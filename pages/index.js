@@ -497,35 +497,35 @@ export async function getStaticProps() {
     const posts = rawPosts
       .map(post => ({
 
-        _id: post._id,
+        _id: post._id ?? null,
 
-        slug: post.slug,
+        slug: post.slug ?? '',
 
-        title: post.title,
+        title: post.title ?? '',
 
-        excerpt: post.excerpt,
+        excerpt: post.excerpt ?? '',
 
-        imageUrl: post.imageUrl,
+        imageUrl: post.imageUrl ?? null,
 
-        createdAt: post.createdAt,
+        createdAt: post.createdAt ?? null,
 
         author: {
           name:
-            post.author?.name || '',
+            post.author?.name ?? '',
           slug:
-            post.author?.slug || '',
+            post.author?.slug ?? '',
         },
 
         category: post.category
   ? {
       _id:
-        post.category?._id || null,
+        post.category?._id ?? null,
 
       name:
-        post.category?.name || '',
+        post.category?.name ?? '',
 
       slug:
-        post.category?.slug || '',
+        post.category?.slug ?? '',
     }
   : null
 
