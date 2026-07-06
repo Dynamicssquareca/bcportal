@@ -787,7 +787,7 @@ export async function getStaticProps({
 
       relatedPosts =
         sameCategoryPosts
-          .slice(0, 3)
+          .slice(0, 2)
           .map(p => ({
             slug: p.slug ?? '',
             title: p.title ?? '',
@@ -816,7 +816,7 @@ export async function getStaticProps({
             p =>
               p._id !== post._id
           )
-          .slice(0, 3)
+          .slice(0, 2)
           .map(p => ({
             slug: p.slug ?? '',
             title: p.title ?? '',
@@ -883,21 +883,14 @@ export async function getStaticProps({
       scheduleDate:
         post.scheduleDate ?? null,
 
-      schema:
-        post.schema || [],
+      // omit schema JSON-LD from serialized props to reduce page payload
 
       author: {
-        name:
-          post.author?.name ?? '',
-
-        slug:
-          post.author?.slug ?? '',
-
-        image:
-          post.author?.image ?? '',
-
-        about:
-          post.author?.about ?? '',
+        name: post.author?.name ?? '',
+        slug: post.author?.slug ?? '',
+        image: post.author?.image ?? '',
+        // send only a short preview of author about text
+        about: post.author?.about ? String(post.author?.about).slice(0, 240) : '',
       },
 
       category:
