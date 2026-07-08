@@ -40,7 +40,7 @@ const AuthorIndex = ({ authors }) => {
 
 
 
-        <div className="row">
+        <div className="row g-3">
           <div className='col-lg-12'>
             <div className='common-title'>
               <h1>Authors</h1>
@@ -48,14 +48,14 @@ const AuthorIndex = ({ authors }) => {
           </div>
           {authorList.map(author => (
             <div key={author._id} className="col-md-3">
-              <div className="card card-categ h-100 text-center">
+              <div className="card card-categ text-center">
                 <div className="card-body">
                   <Link href={`author/${author.slug || author._id}`}>
                     <Image
                        src={getAuthorAvatarUrl(author)}
                       alt={author.name}
-                      width={60}
-                      height={60}
+                      width={180}
+                      height={180}
                       className="author-avatar mb-2"
                     />
                     <h5 className="card-title">{author.name}</h5>
@@ -66,6 +66,18 @@ const AuthorIndex = ({ authors }) => {
           ))}
         </div>
       </div>
+      <style jsx global>
+        {`
+        .author-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+        `}
+      </style>
     </>
   );
 };

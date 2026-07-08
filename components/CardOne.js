@@ -96,7 +96,7 @@ export default function CardOne({
     };
 
     const getDate = (b) => {
-        const raw = b?.publishedAt || b?.createdAt || b?.date;
+        const raw = b?.updatedAt || b?.publishedAt || b?.createdAt || b?.date;
         if (!raw) return "";
         try {
             const d = new Date(raw);

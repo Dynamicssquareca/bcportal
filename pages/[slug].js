@@ -293,8 +293,8 @@ const BlogPost = ({
                         </Link>
                       </span>
 
-                      {(post?.scheduleDate ||
-                        post?.updatedAt) && (
+                      {(post?.updatedAt ||
+                        post?.createdAt) && (
                         <>
                           <span className="mx-2">
                             |
@@ -302,8 +302,8 @@ const BlogPost = ({
 
                           <span>
                             {formatDate(
-                              post.scheduleDate ||
-                              post.updatedAt
+                              post.updatedAt ||
+                              post.createdAt
                             )}
                           </span>
                         </>
@@ -610,8 +610,8 @@ const BlogPost = ({
 
                         </span>
 
-                        {(rp?.scheduleDate ||
-                          rp?.updatedAt) && (
+                        {(rp?.updatedAt ||
+                          rp?.createdAt) && (
                           <>
                             <span className="mx-2">
                               |
@@ -619,8 +619,8 @@ const BlogPost = ({
 
                             <span>
                               {formatDate(
-                                rp.scheduleDate ||
-                                rp.updatedAt
+                                rp.updatedAt ||
+                                rp.createdAt
                               )}
                             </span>
                           </>
@@ -794,8 +794,8 @@ export async function getStaticProps({
             excerpt: p.excerpt ?? '',
             imageUrl: p.imageUrl ?? null,
             updatedAt: p.updatedAt ?? null,
-            scheduleDate:
-              p.scheduleDate ?? null,
+            createdAt:
+              p.createdAt ?? null,
 
             author: {
               name:
@@ -823,8 +823,8 @@ export async function getStaticProps({
             excerpt: p.excerpt ?? '',
             imageUrl: p.imageUrl ?? null,
             updatedAt: p.updatedAt ?? null,
-            scheduleDate:
-              p.scheduleDate ?? null,
+            createdAt:
+              p.createdAt ?? null,
 
             author: {
               name:
@@ -880,8 +880,8 @@ export async function getStaticProps({
 
       updatedAt: post.updatedAt ?? null,
 
-      scheduleDate:
-        post.scheduleDate ?? null,
+      createdAt:
+        post.createdAt ?? null,
 
       // omit schema JSON-LD from serialized props to reduce page payload
 

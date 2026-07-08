@@ -244,7 +244,7 @@ const CategoryPage = ({
                         </div>
 
                         <div className='av-date-b'>
-                          {formatPostMeta(post.createdAt, post.readtimes)}
+                          {formatPostMeta(post.updatedAt, post.readtimes)}
                         </div>
 
                       </div>
@@ -437,8 +437,8 @@ export async function getStaticProps({
           imageUrl:
             post.imageUrl ?? null,
 
-          createdAt:
-            post.createdAt ?? null,
+          updatedAt:
+            post.updatedAt ?? null,
 
           readtimes:
             post.readtimes ?? 0,
