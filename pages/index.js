@@ -23,8 +23,13 @@ const BlogIndex = ({ posts, categories }) => {
     posts?.[0] || null;
 
   // SIDE POSTS
+// SIDE POSTS
   const sidePosts =
     posts?.slice(1, 4) || [];
+
+  // IDS ALREADY SHOWN IN HERO SECTION
+  const usedPostIds =
+    [latestPost?._id, ...sidePosts.map(p => p._id)].filter(Boolean);
 
   // FILTER POSTS
   const filteredPosts =
@@ -310,7 +315,10 @@ const BlogIndex = ({ posts, categories }) => {
 
                   </div>
 
-                  <CardOne categoryName="Business Central" />
+                   <CardOne
+                    categoryName="Business Central"
+                    excludeIds={usedPostIds}
+                  />
 
                 </div>
 

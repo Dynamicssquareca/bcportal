@@ -14,6 +14,7 @@ export default function CardOne({
     assetBase = "https://businesscentralapi.onrender.com/uploads",
     limit = 12,
     className = "",
+    excludeIds = [], 
 }) {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -134,10 +135,12 @@ export default function CardOne({
         return cats.length ? cats[0].name : "";
     };
 
-    const filtered = useMemo(() => {
-        const f = blogs.filter(matchCategory);
+const filtered = useMemo(() => {
+        const f = blogs
+            .filter(matchCategory)
+            .filter((b) => !excludeIds.includes(b?._id));   // <-- added
         return limit ? f.slice(0, limit) : f;
-    }, [blogs, limit, categoryId, categoryName]);
+    }, [blogs, limit, categoryId, categoryName, excludeIds]);  // <-- added excludeIds
 
     // split featured + others
     const featured = filtered.length > 0 ? filtered[0] : null;
@@ -285,4 +288,5 @@ CardOne.propTypes = {
     assetBase: PropTypes.string,
     limit: PropTypes.number,
     className: PropTypes.string,
+    excludeIds: PropTypes.array,
 };
