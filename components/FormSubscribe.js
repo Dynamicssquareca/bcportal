@@ -257,11 +257,7 @@ export default function SubscribeForm() {
 
                       <div className="col-12">
                         <div className="submitscr">
-                          <p>
-                            After submitting this form your data will be processed by Nineteen Group in accordance with our&nbsp;
-                            <a href="/privacy-policy/" target="_blank" rel="noreferrer">privacy policy</a>. If you would like to prevent your personal data from being processed in this way, please contact us on data@nineteengroup.com to update your preferences.
-                          </p>
-
+                          <p>By submitting this form, you consent to Business Central Partners processing your personal data in accordance with our <a href="/privacy-policy/" target="_blank" rel="noreferrer">privacy policy</a>. You can update your preferences or opt out of marketing communications at any time.</p>
                           <button
                             type="submit"
                             id="subscribe-button"
